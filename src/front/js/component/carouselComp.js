@@ -28,9 +28,14 @@ export const CarouselComp = () =>{
                             <div className="carousel-item active" key={index}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>
                                 <div className="carousel-caption ">
-                                    <h5 className="posterImage_title">{movie.title} </h5>
-                                    <div className="d-none d-sm-block">
-                                        <p>Some representative placeholder content for the first slide.</p>
+                                    <h5 className="posterImage_title d-none d-sm-block">{movie.title} </h5>
+                                    <div className="d-none d-md-block">
+                                        <div className="posterImage_runtime">
+                                                {movie ? movie.release_date : ""}
+                                        </div>
+                                        <div className="posterImage_description .d-sm-none .d-lg-block">
+                                            {movie ? movie.overview : ""}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -41,9 +46,14 @@ export const CarouselComp = () =>{
                             <div className="carousel-item" key={index}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>
                                 <div className="carousel-caption ">
-                                    <h5 className="posterImage_title">{movie.title} </h5>
-                                    <div className="d-none d-sm-block">
-                                        <p>Some representative placeholder content for the first slide.</p>
+                                    <h5 className="posterImage_title d-none d-sm-block">{movie.title} </h5>
+                                    <div className="d-none d-md-block">
+                                        <div className="posterImage_runtime">
+                                            {movie ? movie.release_date : ""}
+                                        </div>
+                                        <div className="posterImage_description .d-sm-none .d-md-block">
+                                            {movie ? movie.overview : ""}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
