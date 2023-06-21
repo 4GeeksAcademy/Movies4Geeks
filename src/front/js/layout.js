@@ -15,6 +15,7 @@ import { Private } from "./pages/private";
 
 import { ContactUs } from "./component/contactUs";
 import { MovieProfile } from "./component/movieProfile";
+import { Login } from "./pages/login";
 
 //create your first component
 const Layout = () => {
