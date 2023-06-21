@@ -31,9 +31,9 @@ export const CarouselComp = () =>{
                                     <h5 className="posterImage_title d-none d-sm-block">{movie.title} </h5>
                                     <div className="d-none d-md-block">
                                         <div className="posterImage_runtime">
-                                                {movie ? movie.release_date : ""}
+                                                Release date: {movie ? movie.release_date : ""}
                                         </div>
-                                        <div className="posterImage_description .d-sm-none .d-lg-block">
+                                        <div className="posterImage_description d-none d-xl-block">
                                             {movie ? movie.overview : ""}
                                         </div>
                                     </div>
@@ -49,9 +49,9 @@ export const CarouselComp = () =>{
                                     <h5 className="posterImage_title d-none d-sm-block">{movie.title} </h5>
                                     <div className="d-none d-md-block">
                                         <div className="posterImage_runtime">
-                                            {movie ? movie.release_date : ""}
+                                            Release date: {movie ? movie.release_date : ""}
                                         </div>
-                                        <div className="posterImage_description .d-sm-none .d-md-block">
+                                        <div className="posterImage_description d-none d-xl-block">
                                             {movie ? movie.overview : ""}
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@ export const CarouselComp = () =>{
             </button>
             </div>
         {/*  -------------------------------------------with react-responsive-carousel -------------  */}
-        <Carousel
+        {/* <Carousel
             showThumbs={false}
             autoPlay={false}
             transitionTime={3}
@@ -85,9 +85,9 @@ export const CarouselComp = () =>{
                         <div className="poster" key={index}>
                             <div className="posterImage" key={index}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}/> 
-                                {/* <div className="legend">
+                                <div className="legend">
                                     
-                                </div> */}
+                                </div>
                             <div className="posterImage_overlay">
                                 <div className="posterImage_title">
                                     {movie ? movie.original_title : ""}
@@ -107,7 +107,7 @@ export const CarouselComp = () =>{
 
 
 
-        </Carousel>
+        </Carousel> */}
         </>
     )
 }
