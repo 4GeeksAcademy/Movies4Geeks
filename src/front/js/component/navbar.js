@@ -1,18 +1,20 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import {Login} from "./login"
 
-const App = () => {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-  
-	const handleLogin = () => {
-	  setIsLoggedIn(true);
-	};
-  
-	const handleLogout = () => {
-	  setIsLoggedIn(false);
-	};
-export const Navbar = () => {
+
+	export const Navbar = () => {
+		
+			const [isLoggedIn, setIsLoggedIn] = useState(false);
+		  
+			const handleLogin = () => {
+			  setIsLoggedIn(true);
+			};
+		  
+			const handleLogout = () => {
+			  setIsLoggedIn(false);
+			};
+	
 	return (
 		<nav className="navbar navbar-light "style={{background:"#3F97CD"}}>
 			<p>LOGO</p>
@@ -24,17 +26,13 @@ export const Navbar = () => {
     </form>
     <div>
       {isLoggedIn ? (
-        <button onClick={handleLogout}>Acceder a tu área de usuario</button>
+        <button className=onClick={handleLogout}>Acceder a tu área de usuario</button>
       ) : (
         <button onClick={handleLogin}>Iniciar sesión</button>
       )}
     </div>
-  );
-};
-
-
-
 		
 		</nav>
 	);
 };
+
