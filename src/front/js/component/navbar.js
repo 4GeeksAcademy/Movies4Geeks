@@ -20,13 +20,17 @@ import {Login} from "./login"
 		<p>LOGO</p>
 		<a className="nav-link text-light" href="#">Peliculas</a>
 		<a className="nav-link text-light" href="#">Trailers</a>
-		<form className="d-flex">
-  <input className="form-control mr-2 bg-light" type="search"style={{ borderRadius:"10px 0 0 10px ", border:"0" }}  placeholder="Buscar" aria-label="Search" />
-  <button className="btn bg-light mr-1 br-0" type="submit" style={{ borderRadius:"0 10px 10px 0", border:"0" }}>
+		<a className="nav-link text-light" href="#">Reviews</a>
+		<a className="nav-link text-light" href="#">Top rated</a>
+		
+
+		<form className="d-flex" >
+  <input className="form-control  bg-light" type="search"style={{ borderRadius:"10px 0 0 10px ", border:"0" }}  placeholder="Buscar" aria-label="Search" />
+  <span className="btn bg-light br-0" type="submit" style={{ borderRadius:"0 10px 10px 0", border:"0" }}>
   <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search ml-1" viewBox="0 0 16 16">
     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
   </svg>
-</button>
+</span>
    
 </form>
 <button className="btn bg-light mr-1 br-0" type="submit" style={{ borderRadius:"10px", marginRight:"25px", border:"0" }}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">

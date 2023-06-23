@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React,{useState} from "react";
+import { Link } from "react-router-dom";
+import {Login} from "./login"
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
+	<footer className="d-flex justify-content-center"  style={{ background: "#3F97CD" }} >
+		<p className="text-light m-4">
+			Made by Javier, Johanna, Johanna and Ruben.  
 		</p>
+		<Link to="contactUs" className="btn bg-light m-3">Contact us</Link>
 	</footer>
 );
