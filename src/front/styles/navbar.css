@@ -1,0 +1,11 @@
+.navbar{
+    background-color: #3F97CD
+}
+.input-form{
+    border-radius:10px 0 0 10px;
+    border:0 
+}
+.btn-submit{
+    border-radius:0 10px 10px 0;
+    border : 0
+}
