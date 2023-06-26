@@ -1,5 +1,6 @@
 .navbar{
-    background-color: #3F97CD
+    background-color: #161616;
+    padding: 0;
 }
 .input-form{
     border-radius:10px 0 0 10px;
@@ -8,4 +9,12 @@
 .btn-submit{
     border-radius:0 10px 10px 0;
     border : 0
+}
+.logo{
+    width: 7%;
+}
+.icon-navbar{
+    color: white;
+    margin-right: 20px;
+    border-radius: 5px;
 }
