@@ -25,3 +25,38 @@
      border:0;
      margin-left: 50px;
 }
+.navbar-div{
+    display: flex;
+}
+.ul-navbar{
+    width: 100%;
+    justify-content: space-around;
+}
+.btn-icon{
+    border-radius:10px; 
+    margin-right:25px;
+    margin-left: 25px;
+    border:0
+}
+@media only screen and (max-width: 600px){
+    .navbar-div{
+        display: block;
+    }
+     .input-form{
+        border-radius:10px 0 0 10px;
+        border:none;
+        width: 80%;
+      
+    }
+    .btn-submit{
+        border-radius:0 10px 10px 0;
+        border : none;
+        width:20%
+    } 
+    .btn-icon{
+        border-radius:10px; 
+       margin: 0;
+        border:0;
+        width: 100%;
+    }
+}
