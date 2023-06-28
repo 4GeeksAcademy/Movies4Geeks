@@ -8,6 +8,6 @@ export const Footer = () => (
 		<p className="text-light m-4">
 			Made by Javier, Johanna and Ruben.  
 		</p>
-		<Link to="/component/contactUs" className="btn bg-light m-3">Contact us</Link>
+		<Link to="/contactUs" className="btn bg-light m-3">Contact us</Link>
 	</footer>
 );

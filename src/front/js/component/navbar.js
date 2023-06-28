@@ -6,85 +6,41 @@ import logo from "../../img/logo_transparente.png"
 
 
 	export const Navbar = () => {
-		
-			const [isLoggedIn, setIsLoggedIn] = useState(false);
-		  
-			const handleLogin = () => {
-			  setIsLoggedIn(true);
-			};
-		  
-			const handleLogout = () => {
-			  setIsLoggedIn(false);
-			};
-	
 	return (
-// 		<nav classNameName="navbar " >
+    <>
+  
+    {/* <Link to="/movieProfile" className="btn bg-light m-3">Prueba</Link> */}
 		
 
-// 		<form classNameName="d-flex" >
-//   <input classNameName="form-control  bg-light input-form" type="search"  placeholder="Buscar" aria-label="Search" />
-//   <span classNameName="btn bg-light br-0 btn-submit" type="submit" >
-//   <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" classNameName="bi bi-search ml-1" viewBox="0 0 16 16">
-//     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-//   </svg>
-// </span>
-   
-// </form>
-// <button classNameName="btn bg-light mr-1 br-0" type="submit" style={{ borderRadius:"10px", marginRight:"25px", border:"0" }}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
-//   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-// </svg></button>
-// <button classNameName="navbar-toggler bg-light  d-md-none" type="button" data-mdb-toggle="collapse"
-//       data-mdb-target="#navbarToggleExternalContent2" aria-controls="navbarToggleExternalContent2"
-//       aria-expanded="false" aria-label="Toggle navigation">
-//       <i className="fas fa-bars"></i>
-//     </button>
-	
+  
 
-// 	<nav classNameName="navbar navbar-light bg-light">
-//   <div classNameName="container-fluid">
-//     <button classNameName="navbar-toggler" type="button" data-mdb-toggle="collapse"
-//       data-mdb-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-//       aria-expanded="false" aria-label="Toggle navigation">
-//       <i classNameName="fas fa-bars"></i>
-//     </button>
-//   </div>
-// </nav>
-// <div classNameName="collapse" id="navbarToggleExternalContent">
-//   <div classNameName="bg-light shadow-3 p-4">
-//     <button classNameName="btn btn-link btn-block border-bottom m-0">Link 1</button>
-//     <button classNameName="btn btn-link btn-block border-bottom m-0">Link 2</button>
-//     <button classNameName="btn btn-link btn-block m-0">Link 3</button>
-//   </div>
-// </div>
-	  
-		
-// 	  </nav>
-<nav className="navbar navbar-expand-lg navbar-light main-navbar ">
+<nav className="navbar navbar-expand-lg">
   <div className="container-fluid">
-    
-    <button className="navbar-toggler  icon-navbar bg-light button-navbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon "></span>
+  <img src={logo} className="navbar-brand logo " href="#"></img>
+    <button className="navbar-toggler icon-navbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <svg xmlns="http://www.w3.org/2000/svg" className="svg-icon " height="1em" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
     </button>
-    <div className="collapse navbar-collapse navbar-div" id="navbarSupportedContent">
-<img src={logo} className="navbar-brand logo " href="#"></img>
-<h1 className=" title-home">Home</h1>
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0 ul-navbar">
+    
+ 
+    <div className="collapse navbar-collapse navbar-list" id="navbarSupportedContent">
+    <ul className="navbar-nav me-auto mb-2 mb-lg-0 ul-navbar">
 		
-        <li className="nav-item">
-          <a className="nav-link text-light li-navbar" aria-current="page" href="#">Peliculas</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-light li-navbar" href="#">Trailers</a>
-        </li>
-		<li className="nav-item">
-			<a className="nav-link text-light li-navbar " aria-aria-current="page" href="#">Reviews</a>
-		</li>
-		<li className="nav-item">
-			<a className="nav-link text-light li-navbar" href="#">Top Rated</a>
-		</li>
-      
-      </ul>
-       		<form className="d-flex" >
+    <li className="nav-item">
+      <a className="nav-link text-light li-navbar" aria-current="page" href="#">Peliculas</a>
+    </li>
+    <li className="nav-item">
+      <a className="nav-link text-light li-navbar" href="#">Trailers</a>
+    </li>
+<li className="nav-item">
+  <a className="nav-link text-light li-navbar " aria-aria-current="page" href="#">Reviews</a>
+</li>
+{/* <Link to="/movieProfile" className="btn bg-light m-3">Prueba</Link> */}
+<li className="nav-item">
+  <a className="nav-link text-light li-navbar" href="#">Top Rated</a>
+</li>
+  
+  </ul>
+  <form className="d-flex" >
    <input className="form-control  bg-light input-form " type="search"  placeholder="Buscar" aria-label="Search" />
    <span className="btn bg-light br-0 btn-submit" type="submit" >
    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search ml-1" viewBox="0 0 16 16">
@@ -93,14 +49,14 @@ import logo from "../../img/logo_transparente.png"
  </span>
    
 </form>
- <button className="btn bg-light mr-1 br-0 btn-icon" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
+<button className="btn bg-light mr-1 br-0 btn-icon" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
  </svg></button>
-
-
     </div>
   </div>
 </nav>
+</>
+
 	  
 	);
 };

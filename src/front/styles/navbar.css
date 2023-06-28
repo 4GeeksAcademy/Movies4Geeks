@@ -1,6 +1,7 @@
 .navbar{
     background-color: #161616;
     padding: 0;
+    color: white;
 }
 .input-form{
     border-radius:10px 0 0 10px;
@@ -13,11 +14,7 @@
 .logo{
     width: 7%;
 }
-.icon-navbar{
-    color: white;
-    /* margin-right: 20px; */
-    border-radius: 5px;
-}
+
 
 .navbar-login{
     
@@ -49,15 +46,25 @@
         padding-top: 10px;
         
     }
-    .button-navbar{
-        width: 100%;
+    .icon-navbar{
+        
+        /* margin-right: 20px; */
+        border-radius: 5px;
+       
+        background-color: #161616;
+        border: 1px solid #EAEDED  !important ;
+    }
+  
+    .svg-icon{
+        fill: #3F97CD;
     }
     .navbar-div{
-        display: block;
+        display: none;
     }
 
     .navbar-brand{
-        display: none;
+        display: block;
+        width: 20%;
     }
     .title-home{
         display: block;
