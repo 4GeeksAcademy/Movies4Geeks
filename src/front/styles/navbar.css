@@ -15,9 +15,10 @@
 }
 .icon-navbar{
     color: white;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     border-radius: 5px;
 }
+
 .navbar-login{
     
     border-radius:10px;
@@ -38,9 +39,42 @@
     margin-left: 25px;
     border:0
 }
+.title-home{
+    display: none;
+    color:white
+}
 @media only screen and (max-width: 600px){
+    .main-navbar{
+        padding-bottom: 10px;
+        padding-top: 10px;
+        
+    }
+    .button-navbar{
+        width: 100%;
+    }
     .navbar-div{
         display: block;
+    }
+
+    .navbar-brand{
+        display: none;
+    }
+    .title-home{
+        display: block;
+        color: white;
+        display: flex;
+        justify-content: center;
+    }
+    .li-navbar{
+        display: flex;
+        justify-content: center;
+    }
+    .navbar-toggler{
+        .li-navbar{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
     }
      .input-form{
         border-radius:10px 0 0 10px;
@@ -58,5 +92,7 @@
        margin: 0;
         border:0;
         width: 100%;
+        margin-top:10px;
+        margin-bottom: 10px;
     }
 }

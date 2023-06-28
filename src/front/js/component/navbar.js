@@ -59,27 +59,28 @@ import logo from "../../img/logo_transparente.png"
 	  
 		
 // 	  </nav>
-<nav className="navbar navbar-expand-lg navbar-light ">
+<nav className="navbar navbar-expand-lg navbar-light main-navbar ">
   <div className="container-fluid">
-    <img src={logo} className="navbar-brand logo " href="#"></img>
-    <button className="navbar-toggler  icon-navbar bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    
+    <button className="navbar-toggler  icon-navbar bg-light button-navbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon "></span>
     </button>
     <div className="collapse navbar-collapse navbar-div" id="navbarSupportedContent">
-
+<img src={logo} className="navbar-brand logo " href="#"></img>
+<h1 className=" title-home">Home</h1>
       <ul className="navbar-nav me-auto mb-2 mb-lg-0 ul-navbar">
 		
         <li className="nav-item">
-          <a className="nav-link text-light" aria-current="page" href="#">Peliculas</a>
+          <a className="nav-link text-light li-navbar" aria-current="page" href="#">Peliculas</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link text-light" href="#">Trailers</a>
+          <a className="nav-link text-light li-navbar" href="#">Trailers</a>
         </li>
 		<li className="nav-item">
-			<a className="nav-link text-light " aria-aria-current="page" href="#">Reviews</a>
+			<a className="nav-link text-light li-navbar " aria-aria-current="page" href="#">Reviews</a>
 		</li>
 		<li className="nav-item">
-			<a className="nav-link text-light" href="#">Top Rated</a>
+			<a className="nav-link text-light li-navbar" href="#">Top Rated</a>
 		</li>
       
       </ul>
