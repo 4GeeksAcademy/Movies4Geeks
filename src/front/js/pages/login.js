@@ -18,55 +18,109 @@ export const Login = () => {
       .classList.remove("formulario__register-active");
   };
 
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    fetch(process.env.BACKEND_URL + "api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleRegister = (event) => {
+    event.preventDefault();
+
+    const name = event.target.name.value;
+    const last_name = event.target.last_name.value;
+    const nickname = event.target.nickname.value;
+    const email = event.target.email.value;
+    const birthday = event.target.birthday.value;
+    const password = event.target.password.value;
+
+    fetch(process.env.BACKEND_URL + "api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, last_name, nickname, email, birthday, password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <main>
       <div className="container__todo">
         <div className="caja__trasera">
           <div className="caja__trasera__login">
-            <h3>¿Ya tienes una cuenta?</h3>
-            <p>Inicia sesión para entrar en la página</p>
+            <h3>Already have an account?</h3>
+            <p>Log in to access the page</p>
             <button id="btn__iniciar-sesion" onClick={handleLoginClick}>
-              Iniciar sesión
+              Log in
             </button>
           </div>
           <div className="caja__trasera-register">
-            <h3>¿Aún no tienes una cuenta?</h3>
-            <p>Regístrate y disfruta de las ventajas</p>
+            <h3>Don't have an account yet?</h3>
+            <p>Register and enjoy the benefits</p>
             <button id="btn__registrarse" onClick={handleRegisterClick}>
-              Registrarse
+              Register
             </button>
           </div>
         </div>
-        {/* formulario de login y registro */}
+        {/* Login and registration form */}
         <div className="container__login-register">
           <form
             action=""
             className={`formulario__login ${
               showLoginForm ? "active" : "inactive"
             }`}
+            onSubmit={handleLogin}
           >
-            <h2>Iniciar Sesión</h2>
-            <input type="text" placeholder="Correo Electrónico" />
+            <h2>Log in</h2>
+            <input type="text" name="email" placeholder="Email" />
             <br />
-            <input type="password" placeholder="Contraseña" />
+            <input type="password" name="password" placeholder="Password" />
             <br />
-            <button>Entrar</button>
+            <button type="submit">Enter</button>
           </form>
           <form
             action=""
             className={`formulario__register ${
               showLoginForm ? "inactive" : "active"
             }`}
+            onSubmit={handleRegister}
           >
-            <h2>Regístrate</h2>
-            <input type="text" placeholder="Nombre completo" />
+            <h2>Register</h2>
+            <input type="text" name="name" placeholder="Name" />
             <br />
-            <input type="text" placeholder="Correo Electrónico" />
+            <input type="text" name="last_name" placeholder="Last Name" />
             <br />
-            <input type="text" placeholder="Nickname" />
+            <input type="text" name="nickname" placeholder="Nickname" />
             <br />
-            <input type="password" placeholder="Contraseña" />
-            <button>Registrarse</button>
+            <input type="text" name="email" placeholder="Email" />
+            <br />
+            <input type="text" name="birthday" placeholder="Birthday" />
+            <br />
+            <input type="password" name="password" placeholder="Password" />
+            <button type="submit">Register</button>
           </form>
         </div>
       </div>

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a5499d4e80c7
+Revision ID: afd26463e459
 Revises: 
-Create Date: 2023-06-18 20:16:57.170047
+Create Date: 2023-06-26 16:48:15.210454
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a5499d4e80c7'
+revision = 'afd26463e459'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,7 +25,7 @@ def upgrade():
     sa.Column('poster_path', sa.String(length=120), nullable=False),
     sa.Column('release_date', sa.String(length=120), nullable=False),
     sa.Column('backdrop_path', sa.String(length=120), nullable=False),
-    sa.Column('genre_ids', sa.Integer(), nullable=False),
+    sa.Column('gender_ids', sa.Integer(), nullable=False),
     sa.Column('trailer', sa.String(length=120), nullable=False),
     sa.Column('image', sa.String(length=120), nullable=False),
     sa.PrimaryKeyConstraint('id')
@@ -34,11 +34,11 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=80), nullable=False),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.Column('name', sa.String(length=120), nullable=False),
     sa.Column('last_name', sa.String(length=120), nullable=False),
     sa.Column('nickname', sa.String(length=120), nullable=False),
-    sa.Column('birthday', sa.String(length=80), nullable=False),
+    sa.Column('birthday', sa.String(length=80), nullable=True),
+    sa.Column('avatar', sa.String(length=80), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('nickname')
@@ -57,7 +57,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('review_id', sa.Integer(), nullable=True),
-    sa.Column('like', sa.Boolean(), nullable=False),
+    sa.Column('like', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['review_id'], ['review.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')

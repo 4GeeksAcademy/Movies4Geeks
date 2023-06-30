@@ -160,7 +160,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(data.results.length)
 				//setStore({ upcoming: data.results })
 				
-			}
+			},
+		
+
+			
+			
 		}
 	};
 };
