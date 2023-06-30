@@ -80,14 +80,14 @@ import cartel from "../../img/lord_of_the_rings.jpg"
                     decisión para proteger a los demás y cumplir su misión de destruir el anillo.</p>
                     </div>
                 <h3>Reseñas</h3>
-                <div className="reseña">
+                <div className="resena">
                 <h4>Ruben</h4>
                 <p>"El Señor de los Anillos: La Comunidad del Anillo" narra la historia de Frodo Bolsón, quien debe emprender un peligroso viaje para destruir un anillo mágico que puede sumir a la Tierra Media en la oscuridad. Con la ayuda de un grupo de valientes compañeros, enfrentan criaturas malévolas y peligrosas, mientras el poderoso Señor Oscuro Sauron busca recuperar el anillo. La Comunidad del Anillo se enfrenta a numerosos desafíos, y Frodo se ve obligado a tomar una difícil 
                     decisión para proteger a los demás y cumplir su misión de destruir el anillo.</p>
                 <button style={{ backgroundColor: colorBoton1 }} onClick={handleClickBoton1} className="btn "><i className="far fa-thumbs-up icon-thumbs" ></i></button> 
                  <button style={{ backgroundColor: colorBoton2 }} onClick={handleClickBoton2} className="btn "><i className="far fa-thumbs-down icon-thumbs" ></i></button> 
                 </div>
-                <div className="reseña">
+                <div className="resena">
                 <h4>Javi</h4>
                 <p>Demasiado larga, pero genial!</p>
                 <button style={{ backgroundColor: colorBoton3 }} onClick={handleClickBoton3} className="btn "><i className="far fa-thumbs-up icon-thumbs" ></i></button> 
@@ -100,12 +100,14 @@ import cartel from "../../img/lord_of_the_rings.jpg"
                 <h4>Vaya porqueria</h4>
                 <p>Me encantan los paisajes! Y la escena de Arwen en el río es brutal!</p>
                 <h6>Ashley</h6>
-                
+                <div className="resena">
                 <h4 className="title-review">Vaya porqueria</h4>
                 <p className="review">No me dan de comer mientras la ven!</p>
+                
                 <h6 className="author">Ashley</h6>
                 <button style={{ backgroundColor: colorBoton7 }} onClick={handleClickBoton7} className="btn "><i className="far fa-thumbs-up icon-thumbs" ></i></button> 
                  <button style={{ backgroundColor: colorBoton8 }} onClick={handleClickBoton8} className="btn "><i className="far fa-thumbs-down icon-thumbs" ></i></button> 
+                </div>
                 </div>
                 </div>
     )
