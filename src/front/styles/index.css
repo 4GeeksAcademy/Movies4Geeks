@@ -1,6 +1,9 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+body{
+    background-color: #161616;
+}
 #carouselExampleCaptions {
     max-height: 600px;
 }
