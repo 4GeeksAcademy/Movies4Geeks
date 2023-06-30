@@ -5,7 +5,7 @@ import  "../../styles/movieProfile.css"
   
         export const MovieProfile = () => {
             return (
-    <h1>Hello</h1>
+    
     )
             }
             

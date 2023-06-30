@@ -34,7 +34,7 @@ import logo from "../../img/logo_transparente.png"
 <li className="nav-item">
   <a className="nav-link text-light li-navbar " aria-aria-current="page" href="#">Reviews</a>
 </li>
-{/* <Link to="/movieProfile" className="btn bg-light m-3">Prueba</Link> */}
+<Link to="/movieProfile" className="btn bg-light m-3">Prueba</Link>
 <li className="nav-item">
   <a className="nav-link text-light li-navbar" href="#">Top Rated</a>
 </li>
