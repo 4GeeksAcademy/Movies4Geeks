@@ -27,7 +27,13 @@ class User(db.Model):
             "avatar": self.avatar
             # do not serialize the password, its a security breach
         }
-    
+
+Genre_Movie = db.Table('Genre_Movie',
+    db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'), primary_key=True),
+    db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'), primary_key=True)                       
+)
+
+
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     original_title = db.Column(db.String(120), unique=False, nullable=False)
@@ -35,9 +41,12 @@ class Movie(db.Model):
     poster_path = db.Column(db.String(120), unique=False, nullable=False)
     release_date = db.Column(db.String(120), unique=False, nullable=False)
     backdrop_path = db.Column(db.String(120), unique=False, nullable=False)
-    gender_ids = db.Column(db.Integer, unique=False, nullable=False) # -----------------Preguntar Marcos
-    trailer = db.Column(db.String(120), unique=False, nullable=False) # -----------------Preguntar Marcos
-    image = db.Column(db.String(120), unique=False, nullable=False) # -----------------Preguntar Marcos
+    vote_average = db.Column(db.Float(precision=2), unique=False, nullable=True)
+    vote_count = db.Column(db.Integer, unique=False, nullable=True)
+    genre_movie = db.relationship('Genre', secondary=Genre_Movie, lazy='subquery',
+        backref=db.backref('movies', lazy=True)) 
+    videos = db.relationship('Videos', backref='movie', lazy=True) 
+    
 
     def __repr__(self):
         return f'<Movie {self.original_title}>'
@@ -46,15 +55,34 @@ class Movie(db.Model):
         return {
             "id": self.id,
             "original_title": self.original_title,
+            "overview": self.overview,
             "poster_path": self.poster_path,
             "release_date": self.release_date,
             "backdrop_path": self.backdrop_path,
-            "gender_ids": self.gender_ids,
-            "trailer": self.trailer,
-            "image": self.image
+            "vote_average": self.vote_average,
+            "vote_count": self.vote_count,
+            "genres": list(map(lambda x: x.serialize(), self.genre_movie)),
+            "videos": list(map(lambda x: x.serialize(), self.videos))
+            #"genre_movie": self.genre_movie,
+            #"videos": self.videos,
         }
     
-class Score(db.Model):
+class Genre(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=False, nullable=False)
+    #genre_movie = db.relationship('Genre_Movie', backref='genre', lazy=True)
+    
+
+    def __repr__(self):
+        return f'<Genre {self.name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name           
+        }
+
+class Score(db.Model): #-----------------PREGUNTAR MARCOS ---------------------#
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     value = db.Column(db.Integer, unique=False, nullable=False)
@@ -84,7 +112,7 @@ class Review(db.Model):
     
 
     def __repr__(self):
-        return f'<Score {self.value}>'
+        return f'<Review {self.value}>'
 
     def serialize(self):
         return {
@@ -109,4 +137,30 @@ class Like(db.Model):
             "user_id": self.user_id,
             "review": self.review,
             "like": self.like,
+        }
+    
+
+
+    
+
+    
+class Videos(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), unique=False, nullable=False)
+    key = db.Column(db.String(120), unique=False, nullable=False)
+    type = db.Column(db.String(120), unique=False, nullable=False)
+    site = db.Column(db.String(120), unique=False, nullable=False)
+    movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
+    
+
+    def __repr__(self):
+        return f'<Videos {self.name}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "key": self.key,
+            "type": self.type,
+            "site": self.site,           
         }

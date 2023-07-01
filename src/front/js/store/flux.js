@@ -15,6 +15,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			upcoming: [
+				
+			],
+			topRated: [
+				{
+					adult: false,
+					backdrop_path: "/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",
+					genre_ids: [
+						18,
+						80
+					],
+					id: 238,
+					original_language: "en",
+					original_title: "The Godfather",
+					overview: "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
+					popularity: 117.353,
+					poster_path: "/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+					release_date: "1972-03-14",
+					title: "The Godfather",
+					video: false,
+					vote_average: 8.7,
+					vote_count: 18106
+				},
+				{
+					adult: false,
+					backdrop_path: "/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg",
+					genre_ids: [
+						18,
+						80
+					],
+					id: 278,
+					original_language: "en",
+					original_title: "The Shawshank Redemption",
+					overview: "Framed in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.",
+					popularity: 89.119,
+					poster_path: "/lyQBXzOQSuE59IsHyhrp0qIiPAz.jpg",
+					release_date: "1994-09-23",
+					title: "The Shawshank Redemption",
+					video: false,
+					vote_average: 8.7,
+					vote_count: 23976
+				},
 				{
 					adult: false,
 					backdrop_path: "/nGxUxi3PfXDRm7Vg95VBNgNM8yc.jpg",
@@ -28,72 +69,72 @@ const getState = ({ getStore, getActions, setStore }) => {
 					original_language: "en",
 					original_title: "Spider-Man: Across the Spider-Verse",
 					overview: "After reuniting with Gwen Stacy, Brooklyn’s full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse’s very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders and must set out on his own to save those he loves most.",
-					popularity: 2471.835,
+					popularity: 2068.003,
 					poster_path: "/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
 					release_date: "2023-05-31",
 					title: "Spider-Man: Across the Spider-Verse",
 					video: false,
-					vote_average: 8.8,
-					vote_count: 1285
+					vote_average: 8.7,
+					vote_count: 1525
 				},
 				{
 					adult: false,
-					backdrop_path: "/8FhKnPpql374qyyHAkZDld93IUw.jpg",
+					backdrop_path: "/kGzFbGhp99zva6oZODW5atUtnqi.jpg",
 					genre_ids: [
-						9648,
-						53,
-						878
+						18,
+						80
 					],
-					id: 536437,
+					id: 240,
 					original_language: "en",
-					original_title: "Hypnotic",
-					overview: "A detective becomes entangled in a mystery involving his missing daughter and a secret government program while investigating a string of reality-bending crimes.",
-					popularity: 2137.534,
-					poster_path: "/3IhGkkalwXguTlceGSl8XUJZOVI.jpg",
-					release_date: "2023-05-11",
-					title: "Hypnotic",
+					original_title: "The Godfather Part II",
+					overview: "In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to expand the family business into Las Vegas, Hollywood and Cuba.",
+					popularity: 65.573,
+					poster_path: "/bMadFzhjy9T7R8J48QGq1ngWNAK.jpg",
+					release_date: "1974-12-20",
+					title: "The Godfather Part II",
 					video: false,
-					vote_average: 6.6,
-					vote_count: 166
+					vote_average: 8.6,
+					vote_count: 10930
 				},
 				{
 					adult: false,
-					backdrop_path: "/9NgtktUFLm9cnFDFaekx2ROh84f.jpg",
+					backdrop_path: "/zb6fM1CX41D9rF9hdgclu0peUmy.jpg",
 					genre_ids: [
-						28,
-						12,
-						878
+						18,
+						36,
+						10752
 					],
-					id: 667538,
+					id: 424,
 					original_language: "en",
-					original_title: "Transformers: Rise of the Beasts",
-					overview: "When a new threat capable of destroying the entire planet emerges, Optimus Prime and the Autobots must team up with a powerful faction known as the Maximals. With the fate of humanity hanging in the balance, humans Noah and Elena will do whatever it takes to help the Transformers as they engage in the ultimate battle to save Earth.",
-					popularity: 1751.386,
-					poster_path: "/gPbM0MK8CP8A174rmUwGsADNYKD.jpg",
-					release_date: "2023-06-06",
-					title: "Transformers: Rise of the Beasts",
+					original_title: "Schindler's List",
+					overview: "The true story of how businessman Oskar Schindler saved over a thousand Jewish lives from the Nazis while they worked as slaves in his factory during World War II.",
+					popularity: 56.704,
+					poster_path: "/sF1U4EUQS8YHUYjNl3pMGNIQyr0.jpg",
+					release_date: "1993-12-15",
+					title: "Schindler's List",
 					video: false,
-					vote_average: 7.4,
-					vote_count: 260
+					vote_average: 8.6,
+					vote_count: 14183
 				},
 				{
 					adult: false,
-					backdrop_path: "/9t0tJXcOdWwwxmGTk112HGDaT0Q.jpg",
+					backdrop_path: "/vI3aUGTuRRdM7J78KIdW98LdxE5.jpg",
 					genre_ids: [
-						27,
-						53
+						35,
+						18,
+						10749
 					],
-					id: 890771,
-					original_language: "en",
-					original_title: "The Black Demon",
-					overview: "Oilman Paul Sturges' idyllic family vacation turns into a nightmare when they encounter a ferocious megalodon shark that will stop at nothing to protect its territory. Stranded and under constant attack, Paul and his family must somehow find a way to get his family back to shore alive before it strikes again in this epic battle between humans and nature.",
-					popularity: 1187.323,
-					poster_path: "/uiFcFIjig0YwyNmhoxkxtAAVIL2.jpg",
-					release_date: "2023-04-26",
-					title: "The Black Demon",
+					id: 19404,
+					original_language: "hi",
+					original_title: "दिलवाले दुल्हनिया ले जायेंगे",
+					overview: "Raj is a rich, carefree, happy-go-lucky second generation NRI. Simran is the daughter of Chaudhary Baldev Singh, who in spite of being an NRI is very strict about adherence to Indian values. Simran has left for India to be married to her childhood fiancé. Raj leaves for India with a mission at his hands, to claim his lady love under the noses of her whole family. Thus begins a saga.",
+					popularity: 28.255,
+					poster_path: "/ktejodbcdCPXbMMdnpI9BUxW6O8.jpg",
+					release_date: "1995-10-19",
+					title: "Dilwale Dulhania Le Jayenge",
 					video: false,
-					vote_average: 6.5,
-					vote_count: 162
+					vote_average: 8.6,
+					vote_count: 4150
 				}
 			]
 		},
@@ -139,10 +180,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				redirect: 'follow'
 				};
 
-				const resp = await fetch("https://api.themoviedb.org/3/movie/upcoming", requestOptions)
+				const resp = await fetch(process.env.BACKEND_URL + "/api/upcoming", requestOptions)
 				const data = await resp.json()
-				console.log(data.results)
+				console.log(data)
 				setStore({ upcoming: data.results })
+				
 				
 			},
 			getTopRated: async() => {
@@ -155,10 +197,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				redirect: 'follow'
 				};
 
-				const resp = await fetch("https://api.themoviedb.org/3/movie/top_rated", requestOptions)
+				const resp = await fetch(process.env.BACKEND_URL + "/api/top_rated", requestOptions)
 				const data = await resp.json()
-				console.log(data.results.length)
-				//setStore({ upcoming: data.results })
+				console.log(data)
+				setStore({ topRated: data.results })
 				
 			}
 		}

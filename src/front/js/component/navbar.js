@@ -7,6 +7,7 @@ import logo from "../../img/logo_transparente.png"
 
 	export const Navbar = () => {
 	return (
+
     <>
   
     {/* <Link to="/movieProfile" className="btn bg-light m-3">Prueba</Link> */}
@@ -58,6 +59,7 @@ import logo from "../../img/logo_transparente.png"
 </>
 
 	  
+
 	);
 };
 
