@@ -22,11 +22,11 @@ body{
     width: 100%;
     padding: 0;
     margin: 0;
-    left: 0;
+    left: 0 !important;
     right: 0;
     padding: 5%;
     background-image: linear-gradient(rgb(0,0,0,0), rgb(0,0,0,1));
-    text-align: left;
+    text-align: left !important;
 
 }
 .posterImage_title{

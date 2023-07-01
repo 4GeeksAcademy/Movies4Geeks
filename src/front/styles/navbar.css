@@ -1,0 +1,105 @@
+.navbar{
+    background-color: #161616;
+    padding: 0;
+    color: white;
+}
+.input-form{
+    border-radius:10px 0 0 10px;
+    border:0 
+}
+.btn-submit{
+    border-radius:0 10px 10px 0;
+    border : 0
+}
+.logo{
+    width: 7%;
+}
+
+
+.navbar-login{
+    
+    border-radius:10px;
+     margin-right:25px;
+     border:0;
+     margin-left: 50px;
+}
+.navbar-div{
+    display: flex;
+}
+.ul-navbar{
+    width: 100%;
+    justify-content: space-around;
+}
+.btn-icon{
+    border-radius:10px; 
+    margin-right:25px;
+    margin-left: 25px;
+    border:0
+}
+.title-home{
+    display: none;
+    color:white
+}
+@media only screen and (max-width: 600px){
+    .main-navbar{
+        padding-bottom: 10px;
+        padding-top: 10px;
+        
+    }
+    .icon-navbar{
+        
+        /* margin-right: 20px; */
+        border-radius: 5px;
+       
+        background-color: #161616;
+        border: 1px solid #EAEDED  !important ;
+    }
+  
+    .svg-icon{
+        fill: #3F97CD;
+    }
+    .navbar-div{
+        display: none;
+    }
+
+    .navbar-brand{
+        display: block;
+        width: 20%;
+    }
+    .title-home{
+        display: block;
+        color: white;
+        display: flex;
+        justify-content: center;
+    }
+    .li-navbar{
+        display: flex;
+        justify-content: center;
+    }
+    .navbar-toggler{
+        .li-navbar{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+    }
+     .input-form{
+        border-radius:10px 0 0 10px;
+        border:none;
+        width: 80%;
+      
+    }
+    .btn-submit{
+        border-radius:0 10px 10px 0;
+        border : none;
+        width:20%
+    } 
+    .btn-icon{
+        border-radius:10px; 
+       margin: 0;
+        border:0;
+        width: 100%;
+        margin-top:10px;
+        margin-bottom: 10px;
+    }
+}

@@ -4,12 +4,15 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { CarouselComp } from "../component/carouselComp";
 import { PosterCarousel } from "../component/posterCarousel";
+import {Navbar} from "../component/navbar"
+
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="text-center ">
+			
 			<CarouselComp />
 			
 			<PosterCarousel view="topRated"/>
