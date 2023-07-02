@@ -16,7 +16,7 @@ import cartel from "../../img/lord_of_the_rings.jpg"
           
             const handleClickBoton2 = () => {
               setColorBoton1('');
-              setColorBoton2('red');
+              setColorBoton2('#E74C3C ');
             };
             const [colorBoton3, setColorBoton3] = useState('');
             const [colorBoton4, setColorBoton4] = useState('');
@@ -28,7 +28,7 @@ import cartel from "../../img/lord_of_the_rings.jpg"
           
             const handleClickBoton4 = () => {
               setColorBoton3('');
-              setColorBoton4('red');
+              setColorBoton4('#E74C3C ');
             };
             const [colorBoton5, setColorBoton5] = useState('');
             const [colorBoton6, setColorBoton6] = useState('');
@@ -40,7 +40,7 @@ import cartel from "../../img/lord_of_the_rings.jpg"
           
             const handleClickBoton6 = () => {
               setColorBoton5('');
-              setColorBoton6('red');
+              setColorBoton6('#E74C3C ');
             };
             const [colorBoton7, setColorBoton7] = useState('');
             const [colorBoton8, setColorBoton8] = useState('');
@@ -52,25 +52,25 @@ import cartel from "../../img/lord_of_the_rings.jpg"
           
             const handleClickBoton8 = () => {
               setColorBoton7('');
-              setColorBoton8('red');
+              setColorBoton8('#E74C3C ');
             };
             return (
                 <div className="movie-profile-full">
                 <div className="movie-profile">
                 <h1 className="title-movie-profile">El señor de los anillos:La comunidad del anillo</h1>
-                <div className="center-div">
-                    <div className="poster">
-                    <img src={cartel} className="navbar-brand logo cartel" href="#"></img>
+                <div className="center-div container">
+                    <div className="poster col-4">
+                    <img src={cartel} className="navbar-brand img-fluid cartel" href="#"></img>
                     </div>
-                    <div className="trailer">
+                    <div className="trailer col-6 ">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/3GJp6p_mgPo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
-                    <div className="center-div-right">
+                    <div className="center-div-right col-2">
                         <ul className="list-profile-movie">
-                            <li>Lord of the rings</li>
-                            <li>19 de diciembre 2001</li>
-                            <li>Fantasía</li>
-                            <li>Valoracion</li>
+                            <li><h5>Lord of the rings</h5></li>
+                            <li><p>19 de diciembre 2001</p></li>
+                            <li ><p className="genre">Fantasía</p><p className="genre">Epica</p></li>
+                            <li><p>Valoracion</p></li>
                         </ul>
                     </div>
 
@@ -79,32 +79,36 @@ import cartel from "../../img/lord_of_the_rings.jpg"
                 <h3>Sinopsis</h3><p>"El Señor de los Anillos: La Comunidad del Anillo" narra la historia de Frodo Bolsón, quien debe emprender un peligroso viaje para destruir un anillo mágico que puede sumir a la Tierra Media en la oscuridad. Con la ayuda de un grupo de valientes compañeros, enfrentan criaturas malévolas y peligrosas, mientras el poderoso Señor Oscuro Sauron busca recuperar el anillo. La Comunidad del Anillo se enfrenta a numerosos desafíos, y Frodo se ve obligado a tomar una difícil 
                     decisión para proteger a los demás y cumplir su misión de destruir el anillo.</p>
                     </div>
-                <h3>Reseñas</h3>
+                <h3 className="title-resenas">Reseñas</h3>
+                <h4 className="write-review">Escribe tu reseña</h4>
+                <div className="form-group own-review col-6">
+    <label for="exampleFormControlTextarea1">Tu reseña</label>
+    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <button className="btn btn-review-send ">Enviar</button>
+  </div>
                 <div className="resena">
-                <h4>Ruben</h4>
+                <h4 className="title-review">Brutal</h4>
                 <p>"El Señor de los Anillos: La Comunidad del Anillo" narra la historia de Frodo Bolsón, quien debe emprender un peligroso viaje para destruir un anillo mágico que puede sumir a la Tierra Media en la oscuridad. Con la ayuda de un grupo de valientes compañeros, enfrentan criaturas malévolas y peligrosas, mientras el poderoso Señor Oscuro Sauron busca recuperar el anillo. La Comunidad del Anillo se enfrenta a numerosos desafíos, y Frodo se ve obligado a tomar una difícil 
                     decisión para proteger a los demás y cumplir su misión de destruir el anillo.</p>
+                    <h6 className="author">Ruben</h6>
                 <button style={{ backgroundColor: colorBoton1 }} onClick={handleClickBoton1} className="btn "><i className="far fa-thumbs-up icon-thumbs" ></i></button> 
                  <button style={{ backgroundColor: colorBoton2 }} onClick={handleClickBoton2} className="btn "><i className="far fa-thumbs-down icon-thumbs" ></i></button> 
                 </div>
                 <div className="resena">
-                <h4>Javi</h4>
+                <h6 className="title-review">Larga y buena</h6>
+                
                 <p>Demasiado larga, pero genial!</p>
+                <h4 className="author">Javi</h4>
                 <button style={{ backgroundColor: colorBoton3 }} onClick={handleClickBoton3} className="btn "><i className="far fa-thumbs-up icon-thumbs" ></i></button> 
                  <button style={{ backgroundColor: colorBoton4 }} onClick={handleClickBoton4} className="btn "><i className="far fa-thumbs-down icon-thumbs" ></i></button> 
                  </div>
-                <h4>Es la leche!</h4><h6>Johanna</h6>
-                <p>Me encantan los paisajes! Y la escena de Arwen en el río es brutal!</p>
-                <button style={{ backgroundColor: colorBoton5 }} onClick={handleClickBoton5} className="btn "><i className="far fa-thumbs-up icon-thumbs" ></i></button> 
-                 <button style={{ backgroundColor: colorBoton6 }} onClick={handleClickBoton6} className="btn "><i className="far fa-thumbs-down icon-thumbs" ></i></button> 
-                <h4>Vaya porqueria</h4>
-                <p>Me encantan los paisajes! Y la escena de Arwen en el río es brutal!</p>
-                <h6>Ashley</h6>
-                <div className="resena">
-                <h4 className="title-review">Vaya porqueria</h4>
-                <p className="review">No me dan de comer mientras la ven!</p>
+              
                 
-                <h6 className="author">Ashley</h6>
+                <div className="resena">
+                <h4 className="title-review">Peliculon!</h4>
+                <p className="review">Los paisajes que tiene, la historia, la banda sonora.. me encantan!</p>
+                
+                <h6 className="author">Johanna</h6>
                 <button style={{ backgroundColor: colorBoton7 }} onClick={handleClickBoton7} className="btn "><i className="far fa-thumbs-up icon-thumbs" ></i></button> 
                  <button style={{ backgroundColor: colorBoton8 }} onClick={handleClickBoton8} className="btn "><i className="far fa-thumbs-down icon-thumbs" ></i></button> 
                 </div>

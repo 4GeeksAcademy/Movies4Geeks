@@ -15,12 +15,32 @@
 .center-div{
     display: flex;
     justify-content: center;
+    
+}
+.cartel{
+    height: 315px;
 }
 .center-div-right{
-    list-style: none;
+    
+    display: flex;
+    justify-content: center;
 }
 .list-profile-movie{
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+}
+ul.list-profile-movie li{
+    margin-bottom: 20px;
+}
+.genre{
+    background-color: #2C3E50;
+    border-radius: 10px;
+    display: inline;
+    padding: 10px;
+    margin-right: 4px;
 }
 .icon-thumbs{
     color: white;
@@ -31,10 +51,20 @@
     padding: 10px;
     border-radius: 10px;
 }
+.own-review{
+    margin: 0 auto;
+}
+.btn-review-send{
+    background-color: #2C3E50;
+    color: white;
+    margin-top: 5px;
+    
+
+}
 .resena{
     border: 1px solid white;
     margin:5px;
-    padding: 5px;
+    padding: 15px;
     background-color: #2C3E50 ;
     border-radius: 10px;
 }
