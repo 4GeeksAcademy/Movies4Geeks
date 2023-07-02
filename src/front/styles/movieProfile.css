@@ -53,6 +53,19 @@ ul.list-profile-movie li{
 }
 .own-review{
     margin: 0 auto;
+    height: 250px;
+}
+.title-resenas{
+    margin-top: 15px;
+}
+.btn-review-send{
+    background-color: #EB984E;
+    color: red;
+    margin: 0 auto;
+    
+}
+.textarea-own{
+    height: 150px;
 }
 .btn-review-send{
     background-color: #2C3E50;

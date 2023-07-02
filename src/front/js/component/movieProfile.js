@@ -56,16 +56,16 @@ import cartel from "../../img/lord_of_the_rings.jpg"
             };
             return (
                 <div className="movie-profile-full">
-                <div className="movie-profile">
+                <div className="movie-profile container">
                 <h1 className="title-movie-profile">El señor de los anillos:La comunidad del anillo</h1>
-                <div className="center-div container">
-                    <div className="poster col-4">
+                <div className="center-div " >
+                    <div className="poster col-lg-4 col-md-3 col-sm-0">
                     <img src={cartel} className="navbar-brand img-fluid cartel" href="#"></img>
                     </div>
-                    <div className="trailer col-6 ">
+                    <div className="trailer col-lg-6 col-md-6 col-sm-12 ">
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/3GJp6p_mgPo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
-                    <div className="center-div-right col-2">
+                    <div className="center-div-right col-lg-2 col-md-3 col-sm-0">
                         <ul className="list-profile-movie">
                             <li><h5>Lord of the rings</h5></li>
                             <li><p>19 de diciembre 2001</p></li>
@@ -80,11 +80,11 @@ import cartel from "../../img/lord_of_the_rings.jpg"
                     decisión para proteger a los demás y cumplir su misión de destruir el anillo.</p>
                     </div>
                 <h3 className="title-resenas">Reseñas</h3>
-                <h4 className="write-review">Escribe tu reseña</h4>
-                <div className="form-group own-review col-6">
-    <label for="exampleFormControlTextarea1">Tu reseña</label>
-    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    <button className="btn btn-review-send ">Enviar</button>
+                <h4 className="write-review">Qué te ha parecido la película?</h4>
+                <div className="form-group own-review col-4">
+    <label for="exampleFormControlTextarea1">Escribe tu reseña</label>
+    <textarea className="form-control textarea-own" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <button className="btn btn-review-send  ">Enviar</button>
   </div>
                 <div className="resena">
                 <h4 className="title-review">Brutal</h4>
