@@ -34,6 +34,34 @@ export const Private = () => {
     return (
       <div className="container">
         <h1>Bienvenido, {user.name}</h1>
+  const [userInfo, setUserInfo] = useState(null);
+  const [userName, setUserName] = useState("");
+  const token = localStorage.getItem("token")
+
+  useEffect(() => {
+    actions.isAuthenticated(token);
+    getUserInfo();
+  }, []);
+
+  const getUserInfo = async () => {
+    try {
+      const user = await actions.getUserInfo();
+      setUserInfo(user);
+      setUserName(user.name); 
+    } catch (error) {
+      navigate("/error");
+    }
+  };
+
+  const signOut = () => {
+    // actions.signOut();
+    // localStorage.removeItem("token");
+    // navigate("/");
+  };
+  if (store.isAuthenticated && userInfo) {
+    return (
+      <div className="container">
+        <h1>Bienvenido, {userName}</h1>
         <button type="button" className="btn btn-primary" onClick={signOut}>
           Cerrar sesión
         </button>

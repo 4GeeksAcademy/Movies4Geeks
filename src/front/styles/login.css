@@ -128,7 +128,9 @@ body {
   display: none;
 }
 
-.form__register.active {
+.form__register-active {
+  margin-top: -400px;
+  opacity: 1;
   display: block;
 }
 

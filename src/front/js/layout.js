@@ -16,6 +16,7 @@ import { Private } from "./pages/private";
 import { ContactUs } from "./component/contactUs";
 import { MovieProfile } from "./component/movieProfile";
 import { Login } from "./pages/login";
+import { Private } from "./pages/private";
 
 
 //create your first component

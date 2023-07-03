@@ -183,7 +183,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					is very emotional for me. It is rare achievement, but "Schindler's List" is a three hour film that feels 
 					too short.`
 				}
-			]
+			],
+			storeToken: false,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
