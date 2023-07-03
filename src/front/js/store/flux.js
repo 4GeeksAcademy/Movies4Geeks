@@ -95,7 +95,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					vote_average: 6.5,
 					vote_count: 162
 				}
-			]
+			],
+			storeToken: false,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -161,6 +162,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//setStore({ upcoming: data.results })
 				
 			},
+
+
+			isAuthenticated: (token) => {
+				console.log(token)
+				const options = {
+				  method: 'POST',
+				  headers: {
+					"Content-Type": "application/json",
+					"Authorization": 'Bearer ' + token
+				  },
+				  body: JSON.stringify({})
+				};
+			  
+				fetch(process.env.BACKEND_URL + "/api/private", options)
+				  .then(response => {
+					if (response.status === 200) {
+					  return response.json();
+					} else {
+					  throw new Error("There was a problem in the login request");
+					}
+				  })
+				  .then(response => setStore({ storeToken: true }))
+				  .catch(error => console.log('error', error));
+			  },
+			  
+		
+			getTopRated: async () => {
+				try {
+				  const myHeaders = new Headers();
+				  myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MGYxMDkyNDZkNzUxYmJhYjNmMTQzMGNlYzNmYmU0NCIsInN1YiI6IjY0ODgxODY1ZDJiMjA5MDBjYTIxMTg2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RiM24dMvTMZi652gXFQnpguE7dT8yYex5ZsTaY3OjJw");
+			  
+				  const requestOptions = {
+					method: 'GET',
+					headers: myHeaders,
+					redirect: 'follow'
+				  };
+			  
+				  const resp = await fetch("https://api.themoviedb.org/3/movie/top_rated", requestOptions);
+				  const data = await resp.json();
+				  console.log(data.results.length);
+				  
+				  setStore({ topRated: data.results });
+				} catch (error) {
+				  console.error("Error al obtener las películas mejor valoradas:", error);
+				}
+			  },
 		
 
 			

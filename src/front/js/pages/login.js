@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/login.css";
 
 export const Login = () => {
   const [showLoginForm, setShowLoginForm] = useState(true);
+  const [alertMessage, setAlertMessage] = useState(null);
+  const navigate = useNavigate();
 
   const handleRegisterClick = () => {
     setShowLoginForm(false);
@@ -33,7 +36,17 @@ export const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if (data.message === "Email and password are required") {
+          setAlertMessage("Email and password are required");
+        } else if (data.message === "User doesn't exist") {
+          setAlertMessage("User doesn't exist");
+        } else if (data.message === "Password incorrect") {
+          setAlertMessage("Password incorrect");
+        } else if (data.token) {
+          localStorage.setItem("token", data.token);
+          console.log(localStorage.getItem("token"));
+          navigate("/");
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -95,6 +108,11 @@ export const Login = () => {
             onSubmit={handleLogin}
           >
             <h2>Log in</h2>
+            {alertMessage && (
+              <div className="alert alert-warning" role="alert">
+                {alertMessage}
+              </div>
+            )}
             <input type="text" name="email" placeholder="Email" />
             <br />
             <input type="password" name="password" placeholder="Password" />

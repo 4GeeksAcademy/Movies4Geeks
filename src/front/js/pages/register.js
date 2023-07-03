@@ -33,3 +33,7 @@ function register() {
   caja_trasera_register.style.opacity = "1";
   caja_trasera_login.style.opacity = "0";
 }
+
+
+
+
