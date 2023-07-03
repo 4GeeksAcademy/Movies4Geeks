@@ -1,5 +1,6 @@
 .movie-profile-full{
     background-color: #161616;
+    margin-bottom: 10px;
 }
 .movie-profile{
     background-color: #161616;
@@ -8,6 +9,7 @@
     padding:15px;
     border-radius:10px;
     border:1px solid #fafafa;
+    
 }
 .title-movie-profile{
     text-align: center;
@@ -15,6 +17,7 @@
 .center-div{
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
     
 }
 .cartel{
@@ -51,6 +54,10 @@ ul.list-profile-movie li{
     padding: 10px;
     border-radius: 10px;
 }
+.write-review{
+    margin-top: 15px;
+}
+
 .own-review{
     margin: 0 auto;
     height: 250px;
@@ -58,11 +65,9 @@ ul.list-profile-movie li{
 .title-resenas{
     margin-top: 15px;
 }
-.btn-review-send{
+.review-send{
     background-color: #EB984E;
-    color: red;
-    margin: 0 auto;
-    
+    margin-top: 10px;
 }
 .textarea-own{
     height: 150px;
