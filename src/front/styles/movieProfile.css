@@ -22,6 +22,7 @@
 }
 .cartel{
     height: 315px;
+    width: 100%;
 }
 .center-div-right{
     
@@ -37,17 +38,27 @@
     background-color: #2C3E50;
     border: 1px solid white;
     border-radius: 10px;
-    padding: 10px;
+    width: 100%;
+    /* padding: 10px; */
+}
+ul.list-profile-movie{
+    padding: 0;
 }
 ul.list-profile-movie li{
+  display: flex;
+ 
+  justify-content: center;
     margin-bottom: 20px;
+   padding: 0;
+   
+    
 }
 .genre{
     background-color: #161616;
     border-radius: 10px;
     display: inline;
     padding: 10px;
-    margin-right: 4px;
+    margin-left: 4px;
 }
 .icon-thumbs{
     color: white;

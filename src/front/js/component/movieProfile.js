@@ -58,14 +58,14 @@ import cartel from "../../img/lord_of_the_rings.jpg"
                 <div className="movie-profile-full">
                 <div className="movie-profile container">
                 <h1 className="title-movie-profile">El señor de los anillos:La comunidad del anillo</h1>
-                <div className="center-div " >
-                    <div className="poster col-lg-3 col-md-3 col-sm-0">
-                    <img src={cartel} className="navbar-brand img-fluid cartel" href="#"></img>
-                    </div>
-                    <div className="trailer col-lg-6 col-md-6 col-sm-12 ">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/3GJp6p_mgPo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                    <div className="center-div-right col-lg-3 col-md-3 col-sm-0">
+                <div className="center-div row " >
+                   <div className="poster col-lg-3 col-md-3 col-sm-0">
+                      <img src={cartel} className="navbar-brand img-fluid cartel" href="#"></img>
+                  </div>
+                  <div className="trailer col-lg-6 col-md-6 col-sm-12 ">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/3GJp6p_mgPo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+                  <div className="center-div-right col-lg-3 col-md-3 col-sm-6">
                         <ul className="list-profile-movie">
                             <li><h5>Lord of the rings</h5></li>
                             <li><p>19 de diciembre 2001</p></li>
@@ -73,7 +73,7 @@ import cartel from "../../img/lord_of_the_rings.jpg"
                             <li><p>Tu valoracion</p></li>
                             <li><p>Valoracion</p></li>
                         </ul>
-                    </div>
+                  </div>
 
                 </div>
                 <div className="sinopsis">
