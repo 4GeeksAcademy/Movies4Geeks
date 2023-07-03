@@ -34,12 +34,16 @@
     flex-direction: column;
     justify-content: center;
     align-content: space-between;
+    background-color: #2C3E50;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
 }
 ul.list-profile-movie li{
     margin-bottom: 20px;
 }
 .genre{
-    background-color: #2C3E50;
+    background-color: #161616;
     border-radius: 10px;
     display: inline;
     padding: 10px;
@@ -49,7 +53,7 @@ ul.list-profile-movie li{
     color: white;
 }
 .sinopsis{
-    
+    background-color: #2C3E50;
     border:1px solid white;
     padding: 10px;
     border-radius: 10px;
@@ -60,7 +64,11 @@ ul.list-profile-movie li{
 
 .own-review{
     margin: 0 auto;
-    height: 250px;
+    
+    background-color: #2C3E50;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 .title-resenas{
     margin-top: 15px;
