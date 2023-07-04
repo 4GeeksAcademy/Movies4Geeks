@@ -58,10 +58,10 @@ export const Private = () => {
     // localStorage.removeItem("token");
     // navigate("/");
   };
-  if (store.isAuthenticated && userInfo) {
+  if (store.storeToken && userInfo) {
     return (
       <div className="container">
-        <h1>Bienvenido, {userName}</h1>
+          <h1>Bienvenido, {store.user && store.user.name}</h1>
         <button type="button" className="btn btn-primary" onClick={signOut}>
           Cerrar sesión
         </button>
