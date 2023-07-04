@@ -96,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					vote_count: 162
 				}
 			],
-			storeToken: false,
+			isAuthenticated: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -165,7 +165,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			isAuthenticated: (token) => {
-				console.log(token)
+				console.log(token);
+				localStorage.setItem('token', token); 
+			  
 				const options = {
 				  method: 'POST',
 				  headers: {
@@ -183,7 +185,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					  throw new Error("There was a problem in the login request");
 					}
 				  })
-				  .then(response => setStore({ storeToken: true }))
+				  .then(response => {
+					setStore({ storeToken: true, token: token }); 
+				  })
 				  .catch(error => console.log('error', error));
 			  },
 			  
