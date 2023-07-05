@@ -96,7 +96,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					vote_count: 162
 				}
 			],
-			isAuthenticated: false
+			isAuthenticated: false,
+			user: null
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -189,6 +190,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ storeToken: true, token: token }); 
 				  })
 				  .catch(error => console.log('error', error));
+			  },
+			  login: (email, password) => {
+				fetch(process.env.BACKEND_URL + "api/login", {
+					method: "POST",
+					headers: {
+					  "Content-Type": "application/json",
+					},
+					body: JSON.stringify({ email, password }),
+				  })
+					.then((response) => response.json())
+					.then((data) => {
+					  if (data.message === "Email and password are required") {
+						setAlertMessage("Email and password are required");
+					  } else if (data.message === "User doesn't exist") {
+						setAlertMessage("User doesn't exist");
+					  } else if (data.message === "Password incorrect") {
+						setAlertMessage("Password incorrect");
+					  } else if (data.token) {
+						localStorage.setItem("token", data.token);
+						setStore({user:data.user})
+						console.log(localStorage.getItem("token"));
+						console.log(data.user)
+					  }
+					})
+					.catch((error) => {
+					  console.error(error);
+					});
 			  },
 			  
 		

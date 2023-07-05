@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/login.css";
+import { Context } from "../store/appContext";
 
 export const Login = () => {
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
   const navigate = useNavigate();
+  const {store, actions} = useContext(Context)
 
   const handleRegisterClick = () => {
     setShowLoginForm(false);
@@ -28,30 +30,8 @@ export const Login = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    fetch(process.env.BACKEND_URL + "api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.message === "Email and password are required") {
-          setAlertMessage("Email and password are required");
-        } else if (data.message === "User doesn't exist") {
-          setAlertMessage("User doesn't exist");
-        } else if (data.message === "Password incorrect") {
-          setAlertMessage("Password incorrect");
-        } else if (data.token) {
-          localStorage.setItem("token", data.token);
-          console.log(localStorage.getItem("token"));
-          navigate("/");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    actions.login(email, password)
+    navigate("/")
   };
 
   const handleRegister = (event) => {

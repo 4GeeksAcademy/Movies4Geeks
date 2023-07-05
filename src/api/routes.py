@@ -70,7 +70,15 @@ def login():
         return jsonify({"message": "Password incorrect"}), 401
 
     token = create_access_token(identity=user.id)
-    return jsonify({"token": token}), 200
+    return (
+        jsonify(
+            {
+                "token": token,
+                "user": user.serialize(),
+            }
+        ),
+        200,
+    )
 
 
 @api.route("/private", methods=["POST"])
@@ -94,10 +102,8 @@ def validate_token():
 def get_user_info():
     current_user_id = get_jwt_identity()
     user = User.query.filter_by(id=current_user_id).first()
+    data = []
     if user is None:
         return jsonify({"message": "User not found"}), 404
     else:
         return jsonify(message="Welcome, {}".format(user.name)), 200
-
-
-
