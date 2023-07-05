@@ -1,13 +1,13 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../store/appContext";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel } from 'react-responsive-carousel';
 
 
 
 export const CarouselComp = () =>{
     const { store, actions } = useContext(Context);
-    console.log(store.upcoming.length)
+    console.log(store.upcoming)
 
 
 
@@ -15,11 +15,6 @@ export const CarouselComp = () =>{
         <>
         {/* //--------------------------------with bootstrap ----------------------------------------------// */}
         <div id="carouselExampleCaptions" className="carousel slide ">
-            {/* <div className="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div> */}
             <div className="carousel-inner">
                 {store.upcoming.map((movie, index)=>{
                     if (index == 0) {
@@ -28,7 +23,7 @@ export const CarouselComp = () =>{
                             <div className="carousel-item active" key={index}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>
                                 <div className="carousel-caption ">
-                                    <h5 className="posterImage_title d-none d-sm-block">{movie.title} </h5>
+                                    <h5 className="posterImage_title d-none d-sm-block">{movie.original_title} </h5>
                                     <div className="d-none d-md-block">
                                         <div className="posterImage_runtime">
                                                 Release date: {movie ? movie.release_date : ""}
@@ -46,7 +41,7 @@ export const CarouselComp = () =>{
                             <div className="carousel-item" key={index}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>
                                 <div className="carousel-caption ">
-                                    <h5 className="posterImage_title d-none d-sm-block">{movie.title} </h5>
+                                    <h5 className="posterImage_title d-none d-sm-block">{movie.original_title} </h5>
                                     <div className="d-none d-md-block">
                                         <div className="posterImage_runtime">
                                             Release date: {movie ? movie.release_date : ""}
@@ -70,7 +65,7 @@ export const CarouselComp = () =>{
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
             </button>
-            </div>
+        </div>
         {/*  -------------------------------------------with react-responsive-carousel -------------  */}
         {/* <Carousel
             showThumbs={false}

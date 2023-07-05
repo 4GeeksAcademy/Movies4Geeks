@@ -13,6 +13,8 @@ import { Footer } from "./component/footer";
 import { Login } from "./pages/login";
 import { Private } from "./pages/private";
 
+import { ContactUs } from "./component/contactUs";
+import { MovieProfile } from "./component/movieProfile";
 
 //create your first component
 const Layout = () => {
@@ -34,8 +36,12 @@ const Layout = () => {
                         <Route element={<Private />} path="/private" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
+                        <Route element={<ContactUs />} path="/contactUs" />
+                        <Route element={<MovieProfile />} path="/movieProfile" />
                     </Routes>
+                    
                     <Footer />
+                    
                 </ScrollToTop>
             </BrowserRouter>
         </div>

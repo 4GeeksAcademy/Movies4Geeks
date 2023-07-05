@@ -4,6 +4,9 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { CarouselComp } from "../component/carouselComp";
 import { useNavigate } from "react-router-dom";
+import { PosterCarousel } from "../component/posterCarousel";
+import {Navbar} from "../component/navbar"
+
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -12,8 +15,10 @@ export const Home = () => {
 
 	return (
 		<div className="text-center ">
+			
 			<CarouselComp />
-			<h1>Hello Rigo!!</h1>
+			
+			<PosterCarousel view="topRated"/>
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
