@@ -8,6 +8,7 @@ import { PosterCarousel } from "../component/posterCarousel";
 import {Navbar} from "../component/navbar"
 import { Reviews } from "../component/reviews";
 
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -27,6 +28,7 @@ export const Home = () => {
 				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
 			</div>
 			<Reviews />
+			<button onClick={e=>navigate("/private")}  >private </button>
 			<p>
 				This boilerplate comes with lots of documentation:{" "}
 				<a href="https://start.4geeksacademy.com/starters/react-flask">

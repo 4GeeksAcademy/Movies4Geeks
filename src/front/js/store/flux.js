@@ -184,7 +184,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					too short.`
 				}
 			],
-			isAuthenticated: false
+			isAuthenticated: false,
+			user: null
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

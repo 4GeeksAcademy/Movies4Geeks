@@ -40,28 +40,30 @@ export const Private = () => {
 
   useEffect(() => {
     actions.isAuthenticated(token);
-    getUserInfo();
+  //  getUserInfo();
   }, []);
 
-  const getUserInfo = async () => {
-    try {
-      const user = await actions.getUserInfo();
-      setUserInfo(user);
-      setUserName(user.name); 
-    } catch (error) {
-      navigate("/error");
-    }
-  };
+  // //const getUserInfo = async () => {
+  //   try {
+  //     const user = await actions.getUserInfo();
+  //     setUserName(user.name); 
+  //   } catch (error) {
+  //     navigate("/private");
+  //   }
+  // };
+  
 
   const signOut = () => {
-    // actions.signOut();
-    // localStorage.removeItem("token");
-    // navigate("/");
+    actions.signOut();
+    localStorage.removeItem("token");
+    navigate("/");
   };
-  if (store.storeToken && userInfo) {
+  console.log(store.user.name)
+
+  if (store.storeToken && user) {
     return (
       <div className="container">
-          <h1>Bienvenido, {store.user && store.user.name}</h1>
+        <h1>Bienvenido, {user.name}</h1>
         <button type="button" className="btn btn-primary" onClick={signOut}>
           Cerrar sesión
         </button>
