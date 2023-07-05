@@ -28,7 +28,7 @@ export const Private = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
-  console.log(store.user.name)
+  console.log(store.user)
 
   if (store.storeToken && user) {
     return (
