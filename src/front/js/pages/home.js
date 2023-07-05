@@ -3,7 +3,9 @@ import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { CarouselComp } from "../component/carouselComp";
+import { PosterCarousel } from "../component/posterCarousel";
 import {Navbar} from "../component/navbar"
+
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -12,7 +14,8 @@ export const Home = () => {
 		<div className="text-center ">
 			
 			<CarouselComp />
-			<h1>Hello Rigo!!</h1>
+			
+			<PosterCarousel view="topRated"/>
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
