@@ -31,7 +31,6 @@ def register():
 
     if not email or not password:
         return jsonify({"message": "Email and password are required"})
-
     existing_user = User.query.filter_by(email=email).first()
     if existing_user:
         return jsonify({"message": "User already exists"})
@@ -101,8 +100,4 @@ def get_user_info():
         return jsonify(message="Welcome, {}".format(user.name)), 200
 
 
-class User(db.Model):
-    # ... definición de las columnas y relaciones de la tabla User ...
 
-    def check_password(self, password):
-        return check_password_hash(self.password, password)

@@ -4,6 +4,7 @@ import "../../styles/login.css";
 
 export const Login = () => {
   const [showLoginForm, setShowLoginForm] = useState(true);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
   const navigate = useNavigate();
 
@@ -72,7 +73,19 @@ export const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if (data.message === "Email and password are required") {
+          setAlertMessage("Email and password are required");
+        } else if (data.message === "User already exists") {
+          setTimeout(() => {
+            setAlertMessage("User already exists");
+          }, 2000);
+        } else if (data.message === "User registered successfully") {
+          setShowSuccessAlert(true);
+          setTimeout(() => {
+            setShowSuccessAlert(false);
+            navigate("/");
+          }, 3000);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -119,6 +132,7 @@ export const Login = () => {
             <br />
             <button type="submit">Enter</button>
           </form>
+
           <form
             action=""
             className={`formulario__register ${
@@ -127,6 +141,16 @@ export const Login = () => {
             onSubmit={handleRegister}
           >
             <h2>Register</h2>
+            {alertMessage && (
+              <div className="alert alert-warning" role="alert">
+                {alertMessage}
+              </div>
+            )}
+            {showSuccessAlert && (
+              <div className="alert alert-success" role="alert">
+                User registered successfully!
+              </div>
+            )}
             <input type="text" name="name" placeholder="Name" />
             <br />
             <input type="text" name="last_name" placeholder="Last Name" />
@@ -135,7 +159,7 @@ export const Login = () => {
             <br />
             <input type="text" name="email" placeholder="Email" />
             <br />
-            <input type="text" name="birthday" placeholder="Birthday" />
+            <input type="date" name="birthday" placeholder="Birthday" />
             <br />
             <input type="password" name="password" placeholder="Password" />
             <button type="submit">Register</button>
