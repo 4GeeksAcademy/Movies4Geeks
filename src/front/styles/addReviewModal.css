@@ -1,0 +1,82 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+  
+  
+.addReviewModal {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  width: 400px;
+  display: block;
+  right: 0 !important;
+  text-align: left;
+  position: relative;
+  height: 90%;    
+}
+.reviewModalInput{
+  margin: 0;
+  margin-bottom: 16px;
+}
+.rating{
+  text-align: justify;
+  font-size: 16px;
+  justify-content: space-between;
+  display: flex;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+.reviewModalTextArea{
+  height: 16rem !important;
+  border-radius: 8px !important;
+}
+.reviewModalHeader{
+  position: relative;
+}
+.reviewModalIconClose{
+  position: absolute;
+  top: 5px;
+  width: auto;
+  right: 16px;
+}
+.reviewModalIconClose:hover{
+  color: #3F97CD;
+}
+.reviewModalTextTitle{
+  border-radius: 8px !important;
+  margin-bottom: 16px;
+}
+.reviewModalContent{
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  overflow-x: hidden
+}
+small{
+  text-align: end;
+}
+.reviewModalBtnSubmit{
+  text-align: center;
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #D4D4D4;
+  background-color: #161616;
+
+}
+.reviewModalBtnSubmit:hover{
+  color: #3F97CD;
+}
+.stars{
+  font-size: 1.3rem;
+}
+  
