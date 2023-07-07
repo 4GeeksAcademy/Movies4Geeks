@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -13,9 +12,9 @@ class User(db.Model):
     birthday = db.Column(db.String(80), unique=False, nullable=True)
     avatar = db.Column(db.String(80), unique=False, nullable=True)
 
+
     def __repr__(self):
-        return f"<User {self.email}>"
-        return f"<User {self.email}>"
+        return f'<User {self.email}>'
 
     def serialize(self):
         return {
@@ -29,14 +28,11 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-<<<<<<< HEAD
-=======
 Genre_Movie = db.Table('Genre_Movie',
     db.Column('movie_id', db.Integer, db.ForeignKey('movie.id'), primary_key=True),
     db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'), primary_key=True)                       
 )
 
->>>>>>> main
 
 class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,28 +41,15 @@ class Movie(db.Model):
     poster_path = db.Column(db.String(120), unique=False, nullable=False)
     release_date = db.Column(db.String(120), unique=False, nullable=False)
     backdrop_path = db.Column(db.String(120), unique=False, nullable=False)
-<<<<<<< HEAD
-    gender_ids = db.Column(
-        db.Integer, unique=False, nullable=False
-    )  # -----------------Preguntar Marcos
-    trailer = db.Column(
-        db.String(120), unique=False, nullable=False
-    )  # -----------------Preguntar Marcos
-    image = db.Column(
-        db.String(120), unique=False, nullable=False
-    )  # -----------------Preguntar Marcos
-=======
     vote_average = db.Column(db.Float(precision=2), unique=False, nullable=True)
     vote_count = db.Column(db.Integer, unique=False, nullable=True)
     genre_movie = db.relationship('Genre', secondary=Genre_Movie, lazy='subquery',
         backref=db.backref('movies', lazy=True)) 
     videos = db.relationship('Videos', backref='movie', lazy=True) 
     
->>>>>>> main
 
     def __repr__(self):
-        return f"<Movie {self.original_title}>"
-        return f"<Movie {self.original_title}>"
+        return f'<Movie {self.original_title}>'
 
     def serialize(self):
         return {
@@ -76,15 +59,6 @@ class Movie(db.Model):
             "poster_path": self.poster_path,
             "release_date": self.release_date,
             "backdrop_path": self.backdrop_path,
-<<<<<<< HEAD
-            "gender_ids": self.gender_ids,
-            "trailer": self.trailer,
-            "image": self.image,
-        }
-
-
-class Score(db.Model):
-=======
             "vote_average": self.vote_average,
             "vote_count": self.vote_count,
             "genres": list(map(lambda x: x.serialize(), self.genre_movie)),
@@ -110,13 +84,14 @@ class Genre(db.Model):
 
 class Score(db.Model): #-----------------PREGUNTAR MARCOS ---------------------#
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     value = db.Column(db.Integer, unique=False, nullable=False)
-    movie_id = db.Column(db.Integer, db.ForeignKey("movie.id"))
-    review_id = db.Column(db.Integer, db.ForeignKey("review.id"))
+    movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
+    review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
+    
 
     def __repr__(self):
-        return f"<Score {self.value}>"
+        return f'<Score {self.value}>'
 
     def serialize(self):
         return {
@@ -124,16 +99,17 @@ class Score(db.Model): #-----------------PREGUNTAR MARCOS ---------------------#
             "user_id": self.user_id,
             "value": self.value,
             "movie_id": self.movie_id,
-            "review_id": self.review_id,
+            "review_id": self.review_id
         }
-
-
+    
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    movie_id = db.Column(db.Integer, db.ForeignKey("movie.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
     title = db.Column(db.String(120), unique=False, nullable=False)
     text = db.Column(db.String(1200), unique=False, nullable=False)
+
+    
 
     def __repr__(self):
         return f'<Review {self.value}>'
@@ -145,16 +121,15 @@ class Review(db.Model):
             "title": self.title,
             "text": self.text,
         }
-
-
+    
 class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    review_id = db.Column(db.Integer, db.ForeignKey("review.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
     like = db.Column(db.Integer, unique=False, nullable=False)
 
     def __repr__(self):
-        return f"<Like {self.id}>"
+        return f'<Like {self.id}>'
 
     def serialize(self):
         return {
