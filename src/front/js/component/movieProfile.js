@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import {Login} from "./login"
 import  "../../styles/movieProfile.css"
@@ -6,79 +6,91 @@ import logo from "../../img/logo_transparente.png"
 import cartel from "../../img/lord_of_the_rings.jpg"
   
         export const MovieProfile = () => {
-            const [colorBoton1, setColorBoton1] = useState('');
-            const [colorBoton2, setColorBoton2] = useState('');
+          useEffect(() => {
+            fetch ("Direccion?")
+            .then((response) => response.json())
+            .then((response) => {
+              console.log(response)
+              setContacts(response)
+          })
+          fetch (`https://assets.breatheco.de/apis/fake/contact/${id}`, config)
+	.then ((response)=> response.json())
+	.then (response => console.log("success"))
+	}
+          }, [])
+            // const [colorBoton1, setColorBoton1] = useState('');
+            // const [colorBoton2, setColorBoton2] = useState('');
           
-            const handleClickBoton1 = () => {
-              setColorBoton1('green');
-              setColorBoton2('');
-            };
+            // const handleClickBoton1 = () => {
+            //   setColorBoton1('green');
+            //   setColorBoton2('');
+            // };
           
-            const handleClickBoton2 = () => {
-              setColorBoton1('');
-              setColorBoton2('#E74C3C ');
-            };
-            const [colorBoton3, setColorBoton3] = useState('');
-            const [colorBoton4, setColorBoton4] = useState('');
+            // const handleClickBoton2 = () => {
+            //   setColorBoton1('');
+            //   setColorBoton2('#E74C3C ');
+            // };
+            // const [colorBoton3, setColorBoton3] = useState('');
+            // const [colorBoton4, setColorBoton4] = useState('');
           
-            const handleClickBoton3 = () => {
-              setColorBoton3('green');
-              setColorBoton4('');
-            };
+            // const handleClickBoton3 = () => {
+            //   setColorBoton3('green');
+            //   setColorBoton4('');
+            // };
           
-            const handleClickBoton4 = () => {
-              setColorBoton3('');
-              setColorBoton4('#E74C3C ');
-            };
-            const [colorBoton5, setColorBoton5] = useState('');
-            const [colorBoton6, setColorBoton6] = useState('');
+            // const handleClickBoton4 = () => {
+            //   setColorBoton3('');
+            //   setColorBoton4('#E74C3C ');
+            // };
+            // const [colorBoton5, setColorBoton5] = useState('');
+            // const [colorBoton6, setColorBoton6] = useState('');
           
-            const handleClickBoton5 = () => {
-              setColorBoton5('green');
-              setColorBoton6('');
-            };
+            // const handleClickBoton5 = () => {
+            //   setColorBoton5('green');
+            //   setColorBoton6('');
+            // };
           
-            const handleClickBoton6 = () => {
-              setColorBoton5('');
-              setColorBoton6('#E74C3C ');
-            };
-            const [colorBoton7, setColorBoton7] = useState('');
-            const [colorBoton8, setColorBoton8] = useState('');
+            // const handleClickBoton6 = () => {
+            //   setColorBoton5('');
+            //   setColorBoton6('#E74C3C ');
+            // };
+            // const [colorBoton7, setColorBoton7] = useState('');
+            // const [colorBoton8, setColorBoton8] = useState('');
           
-            const handleClickBoton7 = () => {
-              setColorBoton7('green');
-              setColorBoton8('');
-            };
+            // const handleClickBoton7 = () => {
+            //   setColorBoton7('green');
+            //   setColorBoton8('');
+            // };
           
-            const handleClickBoton8 = () => {
-              setColorBoton7('');
-              setColorBoton8('#E74C3C ');
-            };
+            // const handleClickBoton8 = () => {
+            //   setColorBoton7('');
+            //   setColorBoton8('#E74C3C ');
+            // };
             return (
                 <div className="movie-profile-full">
                 <div className="movie-profile container">
-                <h1 className="title-movie-profile">El señor de los anillos:La comunidad del anillo</h1>
+                <h1 className="title-movie-profile">{MovieProfile.title}</h1>
                 <div className="center-div row " >
                    <div className="poster col-lg-3 col-md-3 col-sm-0">
-                      <img src={cartel} className="navbar-brand img-fluid cartel" href="#"></img>
+                      <img src={MovieProfile.cartel} className="navbar-brand img-fluid cartel" href="#"></img>
                   </div>
                   <div className="trailer col-lg-6 col-md-6 col-sm-12 ">
+                    //De donde puedo buscar el trailer aqui?
                     <iframe width="100%" height="315" src="https://www.youtube.com/embed/3GJp6p_mgPo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                   </div>
                   <div className="center-div-right col-lg-3 col-md-3 col-sm-6">
                         <ul className="list-profile-movie">
-                            <li><h5>Lord of the rings</h5></li>
-                            <li><p>19 de diciembre 2001</p></li>
-                            <li ><p className="genre">Fantasía</p><p className="genre">Epica</p></li>
-                            <li><p>Tu valoracion</p></li>
-                            <li><p>Valoracion</p></li>
+                            <li><h5>{MovieProfile.title}</h5></li>
+                            <li><p>{MovieProfile.date}</p></li>
+                            <li ><p className="genre">{MovieProfile.type}</p><p className="genre">Epica</p></li>
+                            {/* <li><p>Tu valoracion</p></li>
+                            <li><p>Valoracion</p></li> */}
                         </ul>
                   </div>
 
                 </div>
                 <div className="sinopsis">
-                <h3>Sinopsis</h3><p>"El Señor de los Anillos: La Comunidad del Anillo" narra la historia de Frodo Bolsón, quien debe emprender un peligroso viaje para destruir un anillo mágico que puede sumir a la Tierra Media en la oscuridad. Con la ayuda de un grupo de valientes compañeros, enfrentan criaturas malévolas y peligrosas, mientras el poderoso Señor Oscuro Sauron busca recuperar el anillo. La Comunidad del Anillo se enfrenta a numerosos desafíos, y Frodo se ve obligado a tomar una difícil 
-                    decisión para proteger a los demás y cumplir su misión de destruir el anillo.</p>
+                <h3>Sinopsis</h3><p>{MovieProfile.resumen}</p>
                     </div>
                 
                 <h4 className="write-review">Qué te ha parecido la película?</h4>

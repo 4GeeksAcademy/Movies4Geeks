@@ -20,6 +20,16 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+@api.route('/movie', methods=['POST', 'GET'])
+def movie_profile():
+
+    response_body = {
+        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    }
+
+    return jsonify(response_body), 200
+
+
 @api.route('/get-upcoming', methods=['GET'])
 def get_upcoming():
 
