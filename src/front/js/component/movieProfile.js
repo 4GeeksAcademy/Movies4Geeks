@@ -5,18 +5,15 @@ import  "../../styles/movieProfile.css"
 import logo from "../../img/logo_transparente.png"
 import cartel from "../../img/lord_of_the_rings.jpg"
   
-        export const MovieProfile = () => {
+export const MovieProfile = () => {
           useEffect(() => {
-            fetch ("Direccion?")
+            fetch (process.env.BACKEND_URL + "/api/movie/1")
             .then((response) => response.json())
             .then((response) => {
               console.log(response)
-              setContacts(response)
+             
           })
-          fetch (`https://assets.breatheco.de/apis/fake/contact/${id}`, config)
-	.then ((response)=> response.json())
-	.then (response => console.log("success"))
-	}
+         
           }, [])
             // const [colorBoton1, setColorBoton1] = useState('');
             // const [colorBoton2, setColorBoton2] = useState('');

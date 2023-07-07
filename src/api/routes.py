@@ -20,14 +20,13 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route('/movie', methods=['POST', 'GET'])
-def movie_profile():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
+@api.route('/movie/<id_pelicula>', methods=['GET'])
+def movie_profile(id_pelicula):
+    pelicula = Movie.query.filter_by(id=id_pelicula).first()
+    if pelicula:
+        return jsonify(pelicula.serialize()), 200
+    
+    return jsonify("No existe la película"), 400
 
 
 @api.route('/get-upcoming', methods=['GET'])
