@@ -138,7 +138,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			isAuthenticated: false,
-			user: null
+			user: null,
+			reviews: [
+				{
+					id: 1,
+					user_id: 1,
+					movie_id: 424,
+					title: "Whoever saves one life, saves the world entirely.",
+					text: `As you may know there is lots of World War II movies. Some of them shows you 
+					the worst parts of war, this one is doing something better. <br/><br/>
+
+					Shows you the war is bad for everyone. Shows you een the little kindness is the greatest 
+					thing. Shows you "Whoever saves one life, saves the world entirely." <br/><br/>
+					
+					I saw so many World War II movies, non of them gave me these feelings. Most of them are 
+					just too sided with USA. Some of them just made with fictional characters. And I don't 
+					know how but some of them says war is a good thing if you're shooting bad people.<br/><br/>
+					
+					Besides one of the greatest historical Screenplay, the Acting Performances just superb. 
+					I don't imagine any better casting for any character. They all chosen well. With Liam Neeson's 
+					Schindler, Ben Kingsley's Stern and the great villain Ralp Fiennes' Amon Goth.<br/><br/>
+					
+					Scores is the soul of the movie. John Williams mades you feel that.<br/><br/
+					
+					Cinematography is too great, watching this movie with these colors makes the movie too much 
+					realistic. I don't know how is it doing that. I know some of the movies are trying that when 
+					flashback scenes are coming, but most of them are not being successful at.
+					
+					Art Direction and Set Decoration is also too varied. They managed to do an enormous job. You 
+					feel the greatness in the movie with varied places and objects.`
+				},
+				{
+					id: 2,
+					user_id: 2,
+					movie_id: 424,
+					title: "A three hour film that feels too short",
+					text: `This film tells the story of Nazi officer Oskar Schindler, who secretly saved hundreds of 
+					Jewish people from concentration camps.
+
+					I have wanted to watch "Schindler's List" for years, but could not bring myself to do so because I 
+					don't want to be disappointed. "Schindler's List" is phenomenally powerful and effective in portraying 
+					the historical atrocities. I believe no one can keep their eyes dry from Schindler's List". The scene 
+					involving mothers running after trucks of children is particularly memorable. The final farewell scene 
+					is very emotional for me. It is rare achievement, but "Schindler's List" is a three hour film that feels 
+					too short.`
+				}
+			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

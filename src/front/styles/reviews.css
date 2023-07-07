@@ -1,0 +1,50 @@
+.reviewsContainer{
+    color: white;
+    background-color: black;
+    padding: 5px;
+}
+.reviewsHeader{
+    display: flex;
+    justify-content: space-between;
+}
+.reviewsHeader h2{
+    margin-left: 5px;
+}
+.reviewsHeader button{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+}
+.reviewsHeader button svg,p {
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+.reviewsHeader button p {
+    margin-left: 5px;
+}
+.addReviewButtom {
+    color: #3F97CD;
+}
+.reviewContainer{
+    background: #161616;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+    padding: 24px;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
+}
+.reviewTitle {
+    margin-bottom: 24px;
+}
+.reviewFooter{
+    display: flex;
+}
+.reviewFooter > div {
+    padding: 5px;
+}
+.reviewFooter > div > svg {
+    font-size: 1.5rem;
+}
