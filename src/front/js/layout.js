@@ -17,6 +17,7 @@ import { ContactUs } from "./component/contactUs";
 import { MovieProfile } from "./component/movieProfile";
 import { Login } from "./pages/login";
 
+
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain

@@ -22,7 +22,11 @@ typing-extensions = "*"
 flask-jwt-extended = "*"
 =======
 requests = "*"
+<<<<<<< HEAD
 >>>>>>> main
+=======
+flask-jwt-extended = "*"
+>>>>>>> 6694a87 (prueba)
 
 [requires]
 python_version = "3.10"

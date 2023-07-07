@@ -140,6 +140,7 @@ export const Login = () => {
             <input type="text" name="email" placeholder="Email" />
             <br />
             <input type="date" name="birthday" placeholder="Birthday" />
+            <input type="text" name="birthday" placeholder="Birthday" />
             <br />
             <input type="password" name="password" placeholder="Password" />
             <button type="submit">Register</button>

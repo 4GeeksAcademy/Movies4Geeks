@@ -15,6 +15,7 @@ class User(db.Model):
 
     def __repr__(self):
         return f"<User {self.email}>"
+        return f"<User {self.email}>"
 
     def serialize(self):
         return {
@@ -65,6 +66,7 @@ class Movie(db.Model):
 
     def __repr__(self):
         return f"<Movie {self.original_title}>"
+        return f"<Movie {self.original_title}>"
 
     def serialize(self):
         return {
@@ -107,7 +109,6 @@ class Genre(db.Model):
         }
 
 class Score(db.Model): #-----------------PREGUNTAR MARCOS ---------------------#
->>>>>>> main
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     value = db.Column(db.Integer, unique=False, nullable=False)
@@ -135,11 +136,7 @@ class Review(db.Model):
     text = db.Column(db.String(1200), unique=False, nullable=False)
 
     def __repr__(self):
-<<<<<<< HEAD
-        return f"<Score {self.value}>"
-=======
         return f'<Review {self.value}>'
->>>>>>> main
 
     def serialize(self):
         return {
@@ -166,8 +163,6 @@ class Like(db.Model):
             "review": self.review,
             "like": self.like,
         }
-<<<<<<< HEAD
-=======
     
 
 
@@ -194,4 +189,3 @@ class Videos(db.Model):
             "type": self.type,
             "site": self.site,           
         }
->>>>>>> main

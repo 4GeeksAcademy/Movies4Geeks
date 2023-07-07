@@ -1,5 +1,6 @@
 """empty message
 
+<<<<<<< HEAD
 <<<<<<<< HEAD:migrations/versions/afd26463e459_.py
 Revision ID: afd26463e459
 Revises: 
@@ -9,6 +10,17 @@ Revision ID: 8c4e7433aff9
 Revises: 
 Create Date: 2023-06-30 11:37:25.529921
 >>>>>>>> main:migrations/versions/8c4e7433aff9_.py
+=======
+<<<<<<<< HEAD:migrations/versions/21de3d0ff743_.py
+Revision ID: 21de3d0ff743
+Revises: 
+Create Date: 2023-07-06 09:11:45.081608
+========
+Revision ID: afd26463e459
+Revises: 
+Create Date: 2023-06-26 16:48:15.210454
+>>>>>>>> c4ec9b7 (formularios conectados a la base de datos):migrations/versions/afd26463e459_.py
+>>>>>>> 6694a87 (prueba)
 
 """
 from alembic import op
@@ -16,11 +28,19 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
+<<<<<<< HEAD
 <<<<<<<< HEAD:migrations/versions/afd26463e459_.py
 revision = 'afd26463e459'
 ========
 revision = '8c4e7433aff9'
 >>>>>>>> main:migrations/versions/8c4e7433aff9_.py
+=======
+<<<<<<<< HEAD:migrations/versions/21de3d0ff743_.py
+revision = '21de3d0ff743'
+========
+revision = 'afd26463e459'
+>>>>>>>> c4ec9b7 (formularios conectados a la base de datos):migrations/versions/afd26463e459_.py
+>>>>>>> 6694a87 (prueba)
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -40,6 +60,7 @@ def upgrade():
     sa.Column('poster_path', sa.String(length=120), nullable=False),
     sa.Column('release_date', sa.String(length=120), nullable=False),
     sa.Column('backdrop_path', sa.String(length=120), nullable=False),
+<<<<<<< HEAD
 <<<<<<<< HEAD:migrations/versions/afd26463e459_.py
     sa.Column('gender_ids', sa.Integer(), nullable=False),
     sa.Column('trailer', sa.String(length=120), nullable=False),
@@ -48,6 +69,16 @@ def upgrade():
     sa.Column('vote_average', sa.Float(precision=2), nullable=True),
     sa.Column('vote_count', sa.Integer(), nullable=True),
 >>>>>>>> main:migrations/versions/8c4e7433aff9_.py
+=======
+<<<<<<<< HEAD:migrations/versions/21de3d0ff743_.py
+    sa.Column('vote_average', sa.Float(precision=2), nullable=True),
+    sa.Column('vote_count', sa.Integer(), nullable=True),
+========
+    sa.Column('gender_ids', sa.Integer(), nullable=False),
+    sa.Column('trailer', sa.String(length=120), nullable=False),
+    sa.Column('image', sa.String(length=120), nullable=False),
+>>>>>>>> c4ec9b7 (formularios conectados a la base de datos):migrations/versions/afd26463e459_.py
+>>>>>>> 6694a87 (prueba)
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
