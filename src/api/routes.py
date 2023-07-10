@@ -24,6 +24,7 @@ def handle_hello():
 def movie_profile(id_pelicula):
     pelicula = Movie.query.filter_by(id=id_pelicula).first()
     if pelicula:
+        print (pelicula.serialize())
         return jsonify(pelicula.serialize()), 200
     
     return jsonify("No existe la película"), 400
