@@ -57,15 +57,15 @@ import logo from "../../img/logo_transparente.png"
    
 </form>
 </li>
-<li className="btn ">
+
+    </ul>
+    </div><li className="btn  ">
 {isLoggedIn ? (
             <Link className="text-light text-decoration-none" to="/perfil">Mi perfil</Link>
           ) : (
-            <Link className="text-light text-decoration-none" to="/login">Log in</Link>
+            <Link className="text-light text-decoration-none btn-login" to="/userPage">Log in</Link>
           )}
           </li>
-    </ul>
-    </div>
   </div>
 </nav>
 </>

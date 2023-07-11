@@ -45,11 +45,17 @@
     display: none;
     color:white
 }
+.svg-icon{
+    fill: #3F97CD;
+}
 @media only screen and (max-width: 600px){
     .main-navbar{
         padding-bottom: 10px;
         padding-top: 10px;
         
+    }
+    .btn-icon{
+        background-color: red;
     }
     .icon-navbar{
         
