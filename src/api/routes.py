@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Movie, Videos, Genre, Genre_Movie
 from api.utils import generate_sitemap, APIException
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import requests
 from datetime import datetime
 import time
@@ -209,3 +210,107 @@ def top_rated():
     movies_by_rate = sorted(all_movies_filtered, key=lambda x: (x.get("vote_average") , x.get("vote_count") ), reverse=True)
     #print(movies_by_rate)
     return jsonify({"results": movies_by_rate})
+
+
+
+
+
+@api.route("/register", methods=["POST"])
+def register():
+    data = request.get_json()
+    print(data)
+    email = data.get("email")
+    password = data.get("password")
+    name = data.get("name")
+    last_name = data.get("last_name")
+    nickname = data.get("nickname")
+    birthday = data.get("birthday")
+    avatar = data.get("avatar")
+
+    if not email or not password:
+        return jsonify({"message": "Email and password are required"})
+    
+    existing_user_email = User.query.filter_by(email=email).first()
+    
+    if existing_user_email:
+        return jsonify({"message": "User with this email already exists"})
+    
+    existing_user_nickname = User.query.filter_by(nickname=nickname).first()
+    
+    if existing_user_nickname:
+        return jsonify({"message": "Nickname already exists"})
+    
+    new_user = User(
+        email=email,
+        password=password,
+        name=name,
+        last_name=last_name,
+        nickname=nickname,
+        birthday=birthday,
+        avatar=avatar,
+    )
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"message": "User registered successfully"})
+
+
+@api.route("/login", methods=["POST"])
+def login():
+    data = request.get_json()
+    print(data)
+    email = data.get("email")
+    password = data.get("password")
+
+    if not email or not password:
+        return jsonify({"message": "Email and password are required"}), 400
+    user = User.query.filter_by(email=email).first()
+    print(user)
+
+    if not user:
+        return jsonify({"message": "User doesn't exist"}), 401
+    token = create_access_token(identity=user.id)
+    print(token)
+
+    if user.password != password:
+        return jsonify({"message": "Password incorrect"}), 401
+
+    token = create_access_token(identity=user.id)
+    return (
+        jsonify(
+            {
+                "token": token,
+                "user": user.serialize(),
+            }
+        ),
+        200,
+    )
+
+
+@api.route("/private", methods=["POST"])
+@jwt_required()
+def validate_token():
+    data = request.json
+
+    current_user_id = get_jwt_identity()
+    print(current_user_id)
+
+    user = User.query.filter_by(id=current_user_id).first()
+    if user is None:
+        raise APIException("User not found", status_code=404)
+    print(user)
+
+    return jsonify("User authenticated"), 200
+
+
+@api.route("/private", methods=["GET"])
+@jwt_required()
+def get_user_info():
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
+    data = []
+    if user is None:
+        return jsonify({"message": "User not found"}), 404
+    else:
+        return jsonify(message="Welcome, {}".format(user.name)), 200
