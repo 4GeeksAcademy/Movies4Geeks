@@ -35,11 +35,11 @@ import logo from "../../img/logo_transparente.png"
   </Link>
     </li> */}
 		
-    <li className="nav-item me-5">
+    <li className="nav-item me-5 ms-4 buttton-login-navbar">
       <Link to="/" className="nav-link text-light li-navbar" aria-current="page" >Peliculas</Link>
     </li>
     
-<li className="nav-item me-5 ms-4">
+<li className="nav-item me-5 ms-4 buttton-login-navbar">
   <Link to="/" className="nav-link text-light li-navbar " aria-aria-current="page" >Reviews</Link>
 </li>
 
@@ -49,7 +49,7 @@ import logo from "../../img/logo_transparente.png"
   </Link>
 </li> */}
   
-  <li>
+  <li className="buttton-login-navbar">
   <form className="d-flex ms-4" >
    <input className="form-control  bg-light input-form " type="search"  placeholder="Buscar" aria-label="Search" />
    <span className="btn bg-light br-0 btn-submit" type="submit" >
@@ -61,14 +61,16 @@ import logo from "../../img/logo_transparente.png"
 </form>
 </li>
 
-    </ul>
-    </div><div className="btn col-2 ">
+    
+    <li className="btn  buttton-login-navbar ">
 {isLoggedIn ? (
             <Link className="text-light text-decoration-none" to="/perfil">Mi perfil</Link>
           ) : (
             <Link className="text-light text-decoration-none btn-login" to="/userPage">Log in</Link>
           )}
-          </div>
+          </li>
+          </ul>
+  </div>
   </div>
 </nav>
 </>

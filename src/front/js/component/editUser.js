@@ -1,12 +1,11 @@
 import React,{useState} from "react";
 import { Link } from "react-router-dom";
-import  "../../styles/userPage.css"
+
+import  "../../styles/editUser.css"
 
 
 
-	export const UserPage = () => {
-
-
+	export const EditUser = () => {
         return(
             <>
             <form className="form-user mt-3">
@@ -26,25 +25,25 @@ import  "../../styles/userPage.css"
   <div className="row">
   <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
     <label for="password" className="form-label">New Password</label>
-    <input type="password" className="form-control" id="password"  placeholder="******"/>
+    <input type="password" className="form-control" id="password"  aria-describedby="emailHelp"/>
     
   </div>
   
   <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
     <label for="newPassword" className="form-label">Confirm Password</label>
-    <input type="password" className="form-control" id="newPassword" placeholder="******" />
+    <input type="password" className="form-control" id="newPassword"  />
     
   </div> 
   </div>
   <div className="row">
    <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
     <label for="newemail" className="form-label">New email</label>
-    <input type="text" className="form-control" id="newemail" placeholder="rubengarciagut@gmail.com" />
+    <input type="text" className="form-control" id="newemail" placeholder="a@a.com" />
     
   </div>
   <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
     <label for="confirmemail" className="form-label">Confirm new email</label>
-    <input type="password" className="form-control" id="confirmemail" placeholder="rubengarciagut@gmail.com"  />
+    <input type="password" className="form-control" id="confirmemail" placeholder="a@a.com"  />
     
   </div> 
   </div>
@@ -64,13 +63,14 @@ import  "../../styles/userPage.css"
     
   </div>
 <div className="button-user">
-  
+  <Link to="../editUser"><button type="reset" className="btn edit-user">Edit</button></Link>
   <button type="reset" className="btn cancel-user">Cancel</button>
   <button type="submit" className="btn submit-user">Submit</button>
   </div>
 </form>
 
 </>
+          
 
         );
     }

@@ -116,4 +116,10 @@
         margin-top:10px;
         margin-bottom: 10px;
     }
+    .buttton-login-navbar{
+        justify-content: center;
+        margin: 0 auto;
+        margin-right: 0;
+        margin-left: 0;
+    }
 }

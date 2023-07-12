@@ -13,6 +13,7 @@ import { Footer } from "./component/footer";
 import { ContactUs } from "./component/contactUs";
 import { MovieProfile } from "./component/movieProfile";
 import {UserPage} from "./component/userPage"
+import {EditUser} from "./component/editUser"
 
 //create your first component
 const Layout = () => {
@@ -35,6 +36,9 @@ const Layout = () => {
                         <Route element={<ContactUs />} path="/contactUs" />
                         <Route element={<MovieProfile />} path="/movieProfile" />
                         <Route element={<UserPage />} path="/userPage" />
+                        <Route element={<EditUser/>} path="/editUser" />
+                        
+
                     </Routes>
                     
                     <Footer />
