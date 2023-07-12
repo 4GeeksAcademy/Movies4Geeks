@@ -1,0 +1,14 @@
+.form-user{
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid white;
+    padding: 15px;
+    color: white;
+}
+.button-user{
+    display: flex;
+    justify-content: center;
+}
+.button-user button{
+    margin-right: 15px;
+}

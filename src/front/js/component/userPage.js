@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import {Login} from "./login"
-import  "../../styles/navbar.css"
+import  "../../styles/userPage.css"
 import logo from "../../img/logo_transparente.png"
 
 
@@ -10,7 +10,7 @@ import logo from "../../img/logo_transparente.png"
 
         return(
             <>
-            <form>
+            <form className="form-user">
   <div className="mb-3">
     <label for="userName" className="form-label">Name</label>
     <input type="text" className="form-control" id="userName" placeholder="Ruben" disabled aria-describedby="emailHelp"/>
@@ -23,17 +23,17 @@ import logo from "../../img/logo_transparente.png"
   </div>
   <div className="mb-3">
     <label for="password" className="form-label">New Password</label>
-    <input type="password" className="form-control" id="password" placeholder="Ruben" disabled aria-describedby="emailHelp"/>
+    <input type="password" className="form-control" id="password"  aria-describedby="emailHelp"/>
     
   </div>
   <div className="mb-3">
     <label for="newPassword" className="form-label">Confirm Password</label>
-    <input type="password" className="form-control" id="newPassword" placeholder="Ruben" disabled aria-describedby="emailHelp"/>
+    <input type="password" className="form-control" id="newPassword"  />
     
   </div> 
    <div className="mb-3">
-    <label for="exampleInputEmail1" className="form-label">NickName</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" placeholder="RubenGarGu" aria-describedby="emailHelp"/>
+    <label for="exampleInputEmail1" className="form-label">Alias</label>
+    <input type="text" className="form-control" id="exampleInputEmail1" placeholder="RubenGarGu" />
     
   </div>
   <div className="mb-3">
@@ -42,12 +42,12 @@ import logo from "../../img/logo_transparente.png"
   </div>
   {/* Avatar */}
   <div className="mb-3 form-check">
-    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-    <label className="form-check-label" for="exampleCheck1">Check me out</label>
+    
   </div>
-
-
-  <button type="submit" className="btn btn-primary">Submit</button>
+<div className="button-user">
+  <button type="reset" className="btn btn-danger">Cancel</button>
+  <button type="submit" className="btn btn-success ml-1">Submit</button>
+  </div>
 </form>
 
 </>
