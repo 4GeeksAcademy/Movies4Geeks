@@ -32,7 +32,7 @@
 }
 .ul-navbar{
     width: 100%;
-    justify-content: space-around;
+    justify-content: center;
 }
 .btn-icon{
     border-radius:10px; 
@@ -76,6 +76,9 @@
     .navbar-brand{
         display: block;
         width: 20%;
+    }
+    .logo{
+        width: 140%;
     }
     .title-home{
         display: block;
