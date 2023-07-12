@@ -4,6 +4,7 @@
     border: 1px solid white;
     padding: 15px;
     color: white;
+    border-radius: 10px
 }
 .button-user{
     display: flex;
@@ -11,4 +12,11 @@
 }
 .button-user button{
     margin-right: 15px;
+}
+.cancel-user{
+    background-color: #EB984E;
+}
+.submit-user{
+    background-color: #3F97CD;
+
 }
