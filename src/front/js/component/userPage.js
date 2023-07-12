@@ -23,35 +23,12 @@ import  "../../styles/userPage.css"
     
   </div>
   </div>  
-  <div className="row">
-  <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-    <label for="password" className="form-label">New Password</label>
-    <input type="password" className="form-control" id="password"  placeholder="******"/>
-    
-  </div>
+
   
-  <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-    <label for="newPassword" className="form-label">Confirm Password</label>
-    <input type="password" className="form-control" id="newPassword" placeholder="******" />
-    
-  </div> 
-  </div>
-  <div className="row">
-   <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-    <label for="newemail" className="form-label">New email</label>
-    <input type="text" className="form-control" id="newemail" placeholder="rubengarciagut@gmail.com" />
-    
-  </div>
-  <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-    <label for="confirmemail" className="form-label">Confirm new email</label>
-    <input type="password" className="form-control" id="confirmemail" placeholder="rubengarciagut@gmail.com"  />
-    
-  </div> 
-  </div>
   <div className="row">
    <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
     <label for="exampleInputEmail1" className="form-label">Alias</label>
-    <input type="text" className="form-control" id="exampleInputEmail1" placeholder="RubenGarGu" />
+    <input type="text" className="form-control" id="exampleInputEmail1" disabled placeholder="RubenGarGu" />
     
   </div>
   <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
@@ -64,7 +41,7 @@ import  "../../styles/userPage.css"
     
   </div>
 <div className="button-user">
-  
+<Link to="../editUser"><button type="reset" className="btn edit-user">Edit</button></Link>
   <button type="reset" className="btn cancel-user">Cancel</button>
   <button type="submit" className="btn submit-user">Submit</button>
   </div>

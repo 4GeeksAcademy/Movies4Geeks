@@ -6,6 +6,28 @@ import  "../../styles/editUser.css"
 
 
 	export const EditUser = () => {
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [isValidPassword, setIsValidPassword] = useState(true);
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
+  
+    const handleChangePassword = (event) => {
+      const newPassword = event.target.value;
+      setPassword(newPassword);
+      setIsValidPassword(validatePassword(newPassword));
+      setPasswordsMatch(newPassword === confirmPassword);
+    };
+  
+    const handleChangeConfirmPassword = (event) => {
+      const newConfirmPassword = event.target.value;
+      setConfirmPassword(newConfirmPassword);
+      setPasswordsMatch(password === newConfirmPassword);
+    };
+  
+    const validatePassword = (password) => {
+      const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*().-])[A-Za-z\d!@#$%^&*().-]{8,}$/;
+      return regex.test(password);
+    };
         return(
             <>
             <form className="form-user mt-3">
@@ -23,17 +45,21 @@ import  "../../styles/editUser.css"
   </div>
   </div>  
   <div className="row">
-  <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-    <label for="password" className="form-label">New Password</label>
-    <input type="password" className="form-control" id="password"  aria-describedby="emailHelp"/>
-    
-  </div>
-  
-  <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-    <label for="newPassword" className="form-label">Confirm Password</label>
-    <input type="password" className="form-control" id="newPassword"  />
-    
-  </div> 
+  <div>
+      <label>
+        Password:
+        <input type="password" value={password} onChange={handleChangePassword} />
+      </label>
+      {!isValidPassword && (
+        <p>La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.</p>
+      )}
+
+      <label>
+        Confirm Password:
+        <input type="password" value={confirmPassword} onChange={handleChangeConfirmPassword} />
+      </label>
+      {!passwordsMatch && <p>Las contraseñas no coinciden.</p>}
+    </div>
   </div>
   <div className="row">
    <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
@@ -63,7 +89,7 @@ import  "../../styles/editUser.css"
     
   </div>
 <div className="button-user">
-  <Link to="../editUser"><button type="reset" className="btn edit-user">Edit</button></Link>
+ 
   <button type="reset" className="btn cancel-user">Cancel</button>
   <button type="submit" className="btn submit-user">Submit</button>
   </div>

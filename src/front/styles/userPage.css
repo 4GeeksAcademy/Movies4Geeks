@@ -14,12 +14,26 @@
     margin-right: 15px;
 }
 .cancel-user{
-    background-color: #EB984E;
+    background-color: white;
+    color: black;
 }
-.submit-user{
-    background-color: #3F97CD;
+.cancel-user:hover{
+    background-color: #EB984E;
 
 }
+.submit-user{
+    background-color: white;
+    color: black;
+
+}
+.submit-user:hover{
+    background-color: #3F97CD;
+}
 .edit-user{
-    background-color: #F9E79F;
+    background-color: white;
+    color: black;
+}
+.edit-user:hover{
+    background-color: #F7DC6F;
+    color: white;
 }
