@@ -6,6 +6,12 @@
 .input-form{
     border-radius:10px 0 0 10px;
     border:0 
+}.user-navbar{
+    border-radius:10px;
+    border : 1px solid white
+}
+.icon-login-navbar{
+    margin-right: 5px;
 }
 .btn-submit{
     border-radius:0 10px 10px 0;
