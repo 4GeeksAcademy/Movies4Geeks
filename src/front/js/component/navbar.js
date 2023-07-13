@@ -21,9 +21,17 @@ import logo from "../../img/logo_transparente.png"
     
     
     <div className="col-2">
-   <a href="/" className="li-logo"><img src={logo} className="navbar-brand logo " ></img></a>
+   <a href="/" className="li-logo"><img src={logo} className="navbar-brand logo col-sm-4 " ></img></a>
+   
    </div>
-   <button className="navbar-toggler icon-navbar" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <div className="btn  buttton-login-navbar col-sm-4 ">
+{isLoggedIn ? (
+            <Link className="text-light text-decoration-none" to="/perfil">Mi perfil</Link>
+          ) : (
+            <Link className="text-light text-decoration-none btn-login" to="/userPage">Log in</Link>
+          )}
+          </div>
+   <button className="navbar-toggler icon-navbar col-sm-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <svg xmlns="http://www.w3.org/2000/svg" className="svg-icon " height="1em" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
     </button>
     <div className="collapse navbar-collapse navbar-list" id="navbarSupportedContent">
@@ -62,15 +70,10 @@ import logo from "../../img/logo_transparente.png"
 </li>
 
     
-    <li className="btn  buttton-login-navbar ">
-{isLoggedIn ? (
-            <Link className="text-light text-decoration-none" to="/perfil">Mi perfil</Link>
-          ) : (
-            <Link className="text-light text-decoration-none btn-login" to="/userPage">Log in</Link>
-          )}
-          </li>
+   
           </ul>
   </div>
+ 
   </div>
 </nav>
 </>
