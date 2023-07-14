@@ -181,7 +181,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					is very emotional for me. It is rare achievement, but "Schindler's List" is a three hour film that feels 
 					too short.`
 				}
-			]
+			],
+			isAuthenticated: false,
+			user: null,
+			auth: false
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -247,9 +250,73 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(data)
 				setStore({ topRated: data.results })
 				
+			},
+			isAuthenticated: (token) => {
+				console.log(token);
+				localStorage.setItem('token', token); 
+			  
+				const options = {
+				  method: 'POST',
+				  headers: {
+					"Content-Type": "application/json",
+					"Authorization": 'Bearer ' + token
+				  },
+				  body: JSON.stringify({})
+				};
+			  
+				fetch(process.env.BACKEND_URL + "/api/private", options)
+				  .then(response => {
+					if (response.status === 200) {
+					  return response.json();
+					} else {
+					  throw new Error("There was a problem in the login request");
+					}
+				  })
+				  .then(response => {
+					setStore({ storeToken: true, token: token }); 
+				  })
+				  .catch(error => console.log('error', error));
+			  },
+
+			 
+			  
+			  login: (email, password) => {
+				return new Promise((resolve, reject) => {
+				  fetch(process.env.BACKEND_URL + "api/login", {
+					method: "POST",
+					headers: {
+					  "Content-Type": "application/json",
+					},
+					body: JSON.stringify({ email, password }),
+				  })
+					.then((response) => response.json())
+					.then((data) => {
+					  if (data.token) {
+						localStorage.setItem("token", data.token);
+						setStore({ user: data.user });
+						setStore({ auth: true });
+						resolve(true);
+					  } else {
+						console.log("Password or mail incorrect");
+						resolve(false);
+					  }
+					})
+					.catch((error) => {
+					  console.error(error);
+					  reject(error);
+					});
+				});
+			  
+					
+			},
+			signOut: () =>{
+				localStorage.removeItem("token");
+				setStore({auth:false})
 			}
+			  
+			  }
 		}
 	};
-};
+
 
 export default getState;
