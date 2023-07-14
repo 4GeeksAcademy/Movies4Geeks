@@ -33,7 +33,7 @@ import  "../../styles/userPage.css"
   </div>
   <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
     <label for="birthday" className="form-label">Birthday</label>
-    <input type="date" className="form-control" disabled id="birthday" placeholder="11/02/1988"/>
+    <input type="text" className="form-control"  id="birthday" disabled placeholder="11/02/1988"/>
   </div>
   </div>
   {/* Avatar */}

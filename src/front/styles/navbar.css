@@ -3,6 +3,9 @@
     padding: 0;
     color: white;
 }
+.container-navbar{
+    font-size: x-large;
+}
 .input-form{
     border-radius:10px 0 0 10px;
     border:0 
@@ -17,6 +20,7 @@
     border-radius:0 10px 10px 0;
     border : 0
 }
+
 .li-logo{
     height: auto;   
     width: 100px;
@@ -24,7 +28,11 @@
 .logo{
     width: 47%;
 }
-
+.logout-button{
+    border:1px solid white;
+    border-radius: 10px;
+    margin-left: 2%;
+}
 
 .navbar-login{
     
@@ -46,13 +54,18 @@
     margin-left: 25px;
     border:0
 }
-
+.buttton-login-navbar{
+    font-size: large;
+}
 .title-home{
     display: none;
     color:white
 }
 .svg-icon{
     fill: #3F97CD;
+}
+.buttton-login-navbar{
+   font-size: large;
 }
 @media only screen and (max-width: 600px){
     .main-navbar{
@@ -80,6 +93,12 @@
     }
     .navbar-div{
         display: none;
+    }
+    .buttton-login-navbar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 0px;
     }
 
     .navbar-brand{
