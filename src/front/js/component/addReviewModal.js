@@ -7,10 +7,10 @@ import { faPlus, faThumbsUp, faThumbsDown, faStar, faXmark } from "@fortawesome/
 import { StarRating } from "./starRating";
 
 
-export const AddReviewModal = ({isOpen, onClose, movie_id}) =>{
+export const AddReviewModal = ({isOpen, onClose, movieId}) =>{
     const { store, actions } = useContext(Context);
-    const moviefinded = store.topRated.find((movie) =>{
-      if (movie.id === movie_id){
+    const moviefinded = store.allMovies.find((movie) =>{
+      if (movie.id === movieId){
         return movie
       }
     })
