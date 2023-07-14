@@ -213,6 +213,24 @@ def top_rated():
 
 
 
+def validate_password(password):
+    requirements = [
+        "At least 8 characters in length",
+        "At least one uppercase letter",
+        "At least one lowercase letter",
+        "At least one digit"
+    ]
+  
+    if len(password) < 8:
+        return False, requirements
+    if not any(char.isupper() for char in password):
+        return False, requirements
+    if not any(char.islower() for char in password):
+        return False, requirements
+    if not any(char.isdigit() for char in password):
+        return False, requirements
+    return True, []
+
 
 
 @api.route("/register", methods=["POST"])
@@ -240,6 +258,13 @@ def register():
     if existing_user_nickname:
         return jsonify({"message": "Nickname already exists"})
     
+    valid_password, requirements = validate_password(password)
+    if not valid_password:
+        return jsonify({
+            "message": "<p className='text-black'> Password must meet the following requirements:</p>",
+            "requirements": requirements
+        })
+
     new_user = User(
         email=email,
         password=password,
@@ -254,6 +279,10 @@ def register():
     db.session.commit()
 
     return jsonify({"message": "User registered successfully"})
+
+
+
+
 
 
 @api.route("/login", methods=["POST"])
@@ -291,16 +320,12 @@ def login():
 @api.route("/private", methods=["POST"])
 @jwt_required()
 def validate_token():
-    data = request.json
-
     current_user_id = get_jwt_identity()
-    print(current_user_id)
-
     user = User.query.filter_by(id=current_user_id).first()
+    
     if user is None:
         raise APIException("User not found", status_code=404)
-    print(user)
-
+    
     return jsonify("User authenticated"), 200
 
 
@@ -309,8 +334,26 @@ def validate_token():
 def get_user_info():
     current_user_id = get_jwt_identity()
     user = User.query.filter_by(id=current_user_id).first()
-    data = []
+    
     if user is None:
         return jsonify({"message": "User not found"}), 404
-    else:
-        return jsonify(message="Welcome, {}".format(user.name)), 200
+    
+    return jsonify(message="Welcome, {}".format(user.name)), 200
+
+
+@api.errorhandler(APIException)
+def handle_api_exception(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+class APIException(Exception):
+    def __init__(self, message, status_code):
+        super().__init__(message)
+        self.status_code = status_code
+
+    def to_dict(self):
+        return {
+            "message": str(self),
+            "status_code": self.status_code
+        }

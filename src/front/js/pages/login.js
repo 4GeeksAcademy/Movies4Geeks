@@ -51,6 +51,22 @@ export const Login = () => {
     const birthday = event.target.birthday.value;
     const password = event.target.password.value;
 
+    const requirements = [
+      "At least 8 characters in length",
+      "At least one uppercase letter",
+      "At least one lowercase letter",
+      "At least one digit"
+    ];
+
+    if (password.length < 8 ||
+        !/[A-Z]/.test(password) ||
+        !/[a-z]/.test(password) ||
+        !/\d/.test(password)) {
+      const formattedRequirements = requirements.map(req => `<li>${req}</li>`).join('');
+      setAlertMessage(`<p class = 'text-black'  >Password must meet the following requirements:</p><ul>${formattedRequirements}</ul>`);
+      return;
+    }
+
     const response = await fetch(process.env.BACKEND_URL + "api/register", {
       method: "POST",
       headers: {
@@ -81,14 +97,14 @@ export const Login = () => {
         <div className="caja__trasera">
           <div className="caja__trasera__login">
             <h3>Already have an account?</h3>
-            <p>Log in to access the page</p>
+              Log in to access the page
             <button id="btn__iniciar-sesion" onClick={handleLoginClick}>
               Log in
             </button>
           </div>
           <div className="caja__trasera-register">
             <h3>Don't have an account yet?</h3>
-            <p>Register and enjoy the benefits</p>
+            Register and enjoy the benefits
             <button id="btn__registrarse" onClick={handleRegisterClick}>
               Register
             </button>
@@ -125,11 +141,10 @@ export const Login = () => {
             <h2>Register</h2>
             {alertMessage && (
               <div
-                className={`alert ${showSuccessAlert ? "alert-success" : "alert-warning"}`}
+                className={`alert ${showSuccessAlert ? "alert-success text-black" : "alert-warning text-black"}`} 
                 role="alert"
-              >
-                {alertMessage}
-              </div>
+                dangerouslySetInnerHTML={{ __html: alertMessage }}
+              />
             )}
             <input type="text" name="name" placeholder="Name" />
             <br />
