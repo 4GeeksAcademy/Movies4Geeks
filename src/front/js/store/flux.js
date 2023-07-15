@@ -182,7 +182,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			login: (email, password) => {
 				return new Promise((resolve, reject) => {
-					fetch(process.env.BACKEND_URL + "api/login", {
+					fetch(process.env.BACKEND_URL + "/api/login", {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
