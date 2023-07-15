@@ -14,6 +14,8 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { ContactUs } from "./component/contactUs";
 import { MovieProfile } from "./component/movieProfile";
+import { AllMovies } from "./pages/allMovies";
+import { Movie } from "./pages/movie";
 
 //create your first component
 const Layout = () => {
@@ -37,6 +39,11 @@ const Layout = () => {
                         <Route element={<h1>Not found!</h1>} />
                         <Route element={<ContactUs />} path="/contactUs" />
                         <Route element={<MovieProfile />} path="/movieProfile" />
+                        <Route element={<AllMovies />} path="/allMovies" />
+                        <Route
+							path="/allMovies/:movieId"
+							element={<Movie />}
+						/>
                     </Routes>
                     
                     <Footer />

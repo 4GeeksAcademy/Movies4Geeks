@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 
 export const CarouselComp = () =>{
     const { store, actions } = useContext(Context);
-    console.log(store.upcoming)
+    //console.log(store.upcoming)
 
 
 
@@ -18,7 +18,7 @@ export const CarouselComp = () =>{
             <div className="carousel-inner">
                 {store.upcoming.map((movie, index)=>{
                     if (index == 0) {
-                        console.log(movie)
+                        //console.log(movie)
                         return (
                             <div className="carousel-item active" key={index}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>
@@ -36,7 +36,7 @@ export const CarouselComp = () =>{
                             </div>
                         );
                     }
-                    if (index > 0 && index < 4) {
+                    if (index > 0 && index < 10) {
                         return (
                             <div className="carousel-item" key={index}>
                                 <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>

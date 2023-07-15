@@ -1,13 +1,19 @@
 import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../store/appContext";
+import { TrailerModal } from "./trailerModal";
+
+import { createPortal } from "react-dom";
+import "../../styles/trailerModal.css";
 
 export const CardPoster = (props) =>{
-    //console.log(props.movie);
+    //console.log(props.movie.id);
     const { store, actions } = useContext(Context);
-    const [displayTitle, setDisplayTitle] = useState("none")
-    const handleDisplayOnHover = () => {
-        setDisplayTitle("block")
-    }
+    const [displayTitle, setDisplayTitle] = useState("none"); 
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    
+
     
     return(
         <>
@@ -18,13 +24,26 @@ export const CardPoster = (props) =>{
                 <span>{props.movie.vote_average}</span>
             </div>
             <div className="carouselTrailer">
-                <div className="buttonPlay" onMouseEnter={() => setDisplayTitle("block")} onMouseLeave={() => setDisplayTitle("none")}>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"  ><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"/></svg>
-
-                </div>
+                <div 
+                    className="buttonPlay" 
+                    onMouseEnter={() => setDisplayTitle("block")} 
+                    onMouseLeave={() => setDisplayTitle("none")}
+                    onClick={ () => props.onTrailerButtonClick(props.movie.id)}
+                >                
+                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"  ><path d="M0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c-7.6 4.2-12.3 12.3-12.3 20.9V344c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z"/></svg>
+                
+                {/* {createPortal(
+                    <TrailerModal isOpen={isModalOpen} onClose={closeModal} trailer={trailer} key={trailer}/>,
+                    document.getElementById('modal-root')
+                )} */}
+                {/* <TrailerModal isOpen={isModalOpen} onClose={closeModal} trailer={trailer}/> */}
+            </div>
                 <span style={{display: displayTitle}}>{props.movie.original_title}</span>
+                
             </div>
         </div>
+        
+        
         {/* <div className="carouselBody ">
             <h5 className="">{props.movie.title} </h5>
             <div className="">

@@ -11,6 +11,9 @@ class User(db.Model):
     nickname = db.Column(db.String(120), unique=True, nullable=False)
     birthday = db.Column(db.String(80), unique=False, nullable=True)
     avatar = db.Column(db.String(80), unique=False, nullable=True)
+    #adding reviews and like
+    reviews = db.relationship('Review', backref='user', lazy=True)
+    likes = db.relationship('Like', backref='user', lazy=True)
 
 
     def __repr__(self):
@@ -24,8 +27,12 @@ class User(db.Model):
             "nickname": self.nickname,
             "email": self.email,
             "birthday": self.birthday,
-            "avatar": self.avatar
+            "avatar": self.avatar,
             # do not serialize the password, its a security breach
+            #adding reviews and like
+            "reviews": [review.serialize() for review in self.reviews],
+            "likes": [like.serialize() for like in self.likes]
+            
         }
 
 Genre_Movie = db.Table('Genre_Movie',
@@ -46,6 +53,9 @@ class Movie(db.Model):
     genre_movie = db.relationship('Genre', secondary=Genre_Movie, lazy='subquery',
         backref=db.backref('movies', lazy=True)) 
     videos = db.relationship('Videos', backref='movie', lazy=True) 
+    #adding reviews and score
+    reviews = db.relationship('Review', backref='movie', lazy=True)
+    scores = db.relationship('Score', backref='movie', lazy=True)
     
 
     def __repr__(self):
@@ -62,9 +72,12 @@ class Movie(db.Model):
             "vote_average": self.vote_average,
             "vote_count": self.vote_count,
             "genres": list(map(lambda x: x.serialize(), self.genre_movie)),
-            "videos": list(map(lambda x: x.serialize(), self.videos))
+            "videos": list(map(lambda x: x.serialize(), self.videos)),
             #"genre_movie": self.genre_movie,
             #"videos": self.videos,
+            #adding reviews and score
+            "reviews": list(map(lambda x: x.serialize(), self.reviews)),
+            "scores": list(map(lambda x: x.serialize(), self.scores))
         }
     
 class Genre(db.Model):
@@ -108,18 +121,24 @@ class Review(db.Model):
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
     title = db.Column(db.String(120), unique=False, nullable=False)
     text = db.Column(db.String(1200), unique=False, nullable=False)
+    #adding likes
+    likes = db.relationship('Like', backref='review', lazy=True)
 
     
 
     def __repr__(self):
-        return f'<Review {self.value}>'
+        return f'<Review {self.title}>'
 
     def serialize(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
+            "movie_id": self.movie_id,
             "title": self.title,
             "text": self.text,
+            #adding likes
+            "likes": list(map(lambda x: x.serialize(), self.likes)),
+           
         }
     
 class Like(db.Model):

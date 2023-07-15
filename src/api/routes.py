@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Movie, Videos, Genre, Genre_Movie
+from api.models import db, User, Movie, Videos, Genre, Genre_Movie, Score, Review
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import requests
@@ -183,17 +183,17 @@ def get_videos(movie_id):
 @api.route('/upcoming', methods=['GET'])
 def upcoming():
     now = datetime.now().date()
-    print(now)
+    #print(now)
     movies = Movie.query.all()
     all_movies = list(map(lambda x: x.serialize(), movies))
     upcoming_movies = []
     for movie in all_movies:
-        print(movie.get("release_date"))
+        #print(movie.get("release_date"))
         movie_date = movie.get("release_date")
         dateFormatter = "%Y-%m-%d"
         fecha_final=datetime.strptime(movie_date, dateFormatter)
         fecha_date=fecha_final.date()
-        print(now < fecha_date)
+        #print(now < fecha_date)
         if now < fecha_date:
             upcoming_movies.append(movie)
     #print(upcoming_movies)     
@@ -212,6 +212,105 @@ def top_rated():
     return jsonify({"results": movies_by_rate})
 
 
+@api.route('/all_movies', methods=['GET'])
+def all_movies():
+    movies = Movie.query.all()
+    all_movies = list(map(lambda x: x.serialize(), movies))
+    return jsonify({"results": all_movies})
+
+
+@api.route('/review', methods=['POST'])
+def review():
+    data = request.json
+    print(data)
+    score = data.get("score")
+    title = data.get("title")
+    text = data.get("text")
+    movie_id = data.get("movie_id")
+    user_id = data.get("user_id")
+    #validar si existe un score con este usuario para esta pelicula
+    get_score = Score.query.filter_by(user_id=user_id, movie_id=movie_id).first()
+    if get_score:
+        return jsonify({"results": "Score existe"}), 400
+    #validar si existe un review con este usuario a esta pelicula
+    get_review = Review.query.filter_by(user_id=user_id, movie_id=movie_id).first()
+    if get_review:
+        return jsonify({"results": "review existe"}), 400
+    #validar que exista la pelicula
+    get_movie = Movie.query.filter_by(id=movie_id).first()
+    if not get_movie:
+        return jsonify({"results": "no existe la pelicula"}), 400
+    #guardar el review
+    new_review = Review(
+        user_id = user_id,
+        movie_id = movie_id,
+        title = title,
+        text = text
+    )
+    db.session.add(new_review)
+    db.session.commit()
+    #guardar el score 
+    new_score = Score(
+        user_id = user_id,
+        value = score,
+        movie_id = movie_id,
+        review_id = new_review.id
+    )
+    db.session.add(new_score)
+    db.session.commit()
+    return jsonify({"results": "review creada con succeso"})
+
+
+@api.route('/all_movies/<int:movie_id>', methods=['GET'])
+def get_movie(movie_id):
+    movie = Movie.query.get(movie_id)
+    
+    if movie:
+        movie_detail = movie.serialize()       
+        return jsonify({"results": movie_detail})
+    
+    return jsonify({'mensaje': 'This movie doesn´t exist'})
+
+
+
+@api.route('/all_movies/trailer/<int:movie_id>', methods=['GET'])
+def get_trailer(movie_id):
+    movie = Movie.query.get(movie_id)
+    if movie:
+        videos = movie.videos
+        all_videos = list(map(lambda x: x.serialize(), videos))
+        #print(all_videos)
+        #return jsonify(all_videos)
+        for video in all_videos:
+            #print(video)
+            if video['type'] == 'Trailer':
+                return jsonify({"results": video['key']}) 
+    return jsonify({'message': 'This movie doesn´t have trailer'})
+
+
+@api.route('/all_movies/genres/<int:movie_id>', methods=['GET'])
+def get_genres_by_movie_id(movie_id):
+    movie = Movie.query.get(movie_id)
+    if movie:
+        genres = movie.genre_movie
+        all_genres = list(map(lambda x: x.serialize(), genres))
+        #print(all_genres)
+        #return jsonify(all_genres)
+        genres_name = []
+        for genre in all_genres:
+        #     #print(video)
+        #     if video['type'] == 'Trailer':
+            genres_name.append(genre['name'])
+        return jsonify({"results": genres_name}) 
+    return jsonify({'message': 'This movie doesn´t have trailer'})
+
+
+@api.route('/reviews/<int:movie_id>', methods=['GET'])
+def get_reviews_by_id(movie_id):
+    reviews = Review.query.filter_by(movie_id=movie_id).all()
+    reviews_data = [review.serialize() for review in reviews]
+    print(reviews_data)
+    return jsonify({"results": reviews_data})
 
 def validate_password(password):
     requirements = [
@@ -279,10 +378,6 @@ def register():
     db.session.commit()
 
     return jsonify({"message": "User registered successfully"})
-
-
-
-
 
 
 @api.route("/login", methods=["POST"])

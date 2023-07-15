@@ -43,8 +43,8 @@
   .carousel-card {
     flex: 0 0 100%; /* Ajusta el tamaño de las tarjetas según el número visible */
     padding: 0;
-    /* border: 1px solid #ccc; */
-    background-color: #f8f8f8;
+    /* border: 1px solid #ccc; 
+    background-color: #f8f8f8; */ 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,6 +168,22 @@
   font-weight: bold;
 }
 
+.carouselPosterTitle{
+  text-align: left;
+  padding: 8px;
+  color: white;
+  width: fit-content;
+  margin-bottom: 16px;
+}
+.carouselPosterTitle:hover span{
+  color: #3F97CD;
+}
+.carouselPosterContainer{
+  margin-top: 16px;
+}
+.carouselPosterTitleIcon{
+  margin-left: 8px;
+}
 
 
 

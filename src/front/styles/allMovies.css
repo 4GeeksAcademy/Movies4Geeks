@@ -1,0 +1,50 @@
+.allMovies {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 300px)      
+    );
+    gap: 16px;
+    padding: 16px;
+    justify-content: center;
+}
+.singleMovie{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+
+}
+.singleMoviePoster{
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 0;
+    filter: brightness(0.8);
+}
+.singleMoviePoster:hover{
+    filter: none
+}
+
+.allMoviesSearch{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 32px;
+    
+}
+.allMoviesSearch input{
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+}
+.allMoviesSearch span{
+    position: absolute;
+    top: 7px;
+    right: 5px;
+
+}
+
