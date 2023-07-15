@@ -82,7 +82,8 @@ export const Login = () => {
       setAlertMessage("User registered successfully!");
       setTimeout(() => {
         setShowSuccessAlert(false);
-        navigate("/");
+        navigate("/login");
+        handleLoginClick()
       }, 3000);
     } else if (response.status === 409 && data.message === "Nickname already exists") {
       setAlertMessage("Nickname already exists");
