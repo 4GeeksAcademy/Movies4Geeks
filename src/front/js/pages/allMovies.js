@@ -40,25 +40,25 @@ export const AllMovies = () => {
 
     //console.log(filteredMovies)
     return <>
-        
-        <div className="allMoviesSearch">
-            <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search Movie"  />
-            <span><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
-        </div>
-        <ul className="allMovies" >
-            {filteredMovies.map((movie, index) =>{
-                return(
-                    <li key={index} className="singleMovie" onClick={() => handleClick(movie.id)}>
-                        <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} className="singleMoviePoster" alt="..."/>
-                        <div className="singleMovieData">
-                            <h3>{movie.original_title} </h3>
-                        </div>
-                    </li>
+        <div className="container">
+            <div className="allMoviesSearch">
+                <input type="text" value={searchTerm} onChange={handleSearch} placeholder="Search Movie"  />
+                <span><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
+            </div>
+            <ul className="allMovies" >
+                {filteredMovies.map((movie, index) =>{
+                    return(
+                        <li key={index} className="singleMovie" onClick={() => handleClick(movie.id)}>
+                            <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} className="singleMoviePoster" alt="..."/>
+                            <div className="singleMovieData">
+                                <h3>{movie.original_title} </h3>
+                            </div>
+                        </li>
 
-                )
-            })}
-        </ul>
-    
+                    )
+                })}
+            </ul>
+        </div>    
     </>
     
 }
