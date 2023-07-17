@@ -1,8 +1,21 @@
 .aside-user{
-    background-color: #EBEDEF;
+    background-color: #1C2833;
     color: #808B96;
     padding: 10px;
     border-radius: 15px;
+    
+}
+.main-user{
+    background-color: #1C2833;
+    padding: 10px;
+    border-radius: 15px;
+    margin-left: 5%;
+}
+.main-user form:first-child{
+    color:#808B96;
+}
+.input-user{
+    background-color: #AED6F1;
 }
 .logout-button{
     color:#808B96;
@@ -27,9 +40,7 @@
     color: black;
 
 }
-.submit-user:hover{
-    background-color: #3F97CD;
-}
+
 .user-control{
     display: inline-block;
     color: #808B96;
@@ -41,19 +52,50 @@
 .user-control:hover{
     background-color: #F5B7B1;
 }
+.edit-user{
+    width: 50%;
+    color: #808B96;
+    margin-top: 5px;
+    width: 100%;
+}
 .edit-user:hover{
     background-color: #FCF3CF; 
-    color: white;
+    color: #808B96;
+    width: 100%;
+    border-radius: 15px;
+    
 }
+.aside-user p:first-child{
+    margin: 0 auto;
+}
+
 .personal-aside-user{
     background-color: #AED6F1;
     padding: 5px;
     border-radius: 15px;
     font-weight: bold;
+    margin-top: 5%;
+    color:#808B96;
+    text-decoration: none;
+}
+.personal-aside-user:hover{
+    color: #808B96;
+    
+}
+.userPage-container{
+    display: flex;
 }
 .aside-user{
     padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start !important;
+    height: 60%;
+}
+
+@media only screen and (max-width: 950px){
+    .userPage-container{
+        flex-direction: column;
+    }
+
 }
