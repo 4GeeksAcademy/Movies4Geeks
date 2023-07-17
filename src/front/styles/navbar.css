@@ -67,6 +67,18 @@
 .buttton-login-navbar{
    font-size: large;
 }
+@media only screen and (max-width: 1068px){
+    .buttton-login-navbar{
+        width: 100%;
+    }
+
+
+
+
+
+
+}
+
 @media only screen and (max-width: 600px){
     .main-navbar{
         padding-bottom: 10px;
@@ -149,5 +161,14 @@
         margin: 0 auto;
         margin-right: 0;
         margin-left: 0;
+    }
+    .user-navbar{
+        width: 100%;
+    }
+    .logout-button{
+        width:100%;
+    }
+    .form-navbar{
+        width: 93%;
     }
 }

@@ -71,12 +71,12 @@ import  "../../styles/editUser.css"
   <div className="row">
    <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
     <label for="newemail" className="form-label">New email</label>
-    <input type="text" className="form-control" id="newemail" placeholder="a@a.com" />
+    <input type="email" className="form-control" id="newemail" placeholder="a@a.com" />
     
   </div>
   <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
     <label for="confirmemail" className="form-label">Confirm new email</label>
-    <input type="password" className="form-control" id="confirmemail" placeholder="a@a.com"  />
+    <input type="email" className="form-control" id="confirmemail" placeholder="a@a.com"  />
     
   </div> 
   </div>

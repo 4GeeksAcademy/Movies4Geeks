@@ -1,10 +1,11 @@
-.form-user{
-    width: 80%;
-    margin: 0 auto;
-    border: 1px solid white;
-    padding: 15px;
-    color: white;
-    border-radius: 10px
+.aside-user{
+    background-color: #EBEDEF;
+    color: #808B96;
+    padding: 10px;
+    border-radius: 15px;
+}
+.logout-button{
+    color:#808B96;
 }
 .button-user{
     display: flex;
@@ -31,7 +32,7 @@
 }
 .edit-user{
     background-color: white;
-    color: black;
+    color: #808B96;
 }
 .edit-user:hover{
     background-color: #F7DC6F;
