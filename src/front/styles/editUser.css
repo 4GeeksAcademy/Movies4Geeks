@@ -25,10 +25,7 @@
 .submit-user :hover{
     background-color: red;
 }
-.edit-user{
-    background-color: white;
-    color: black;
-}
+
 .edit-user:hover{
     background-color: #F7DC6F;
 }

@@ -30,11 +30,30 @@
 .submit-user:hover{
     background-color: #3F97CD;
 }
-.edit-user{
-    background-color: white;
+.user-control{
+    display: inline-block;
     color: #808B96;
 }
+.user-control p{
+    display: inline-block;
+    color: #808B96;
+}
+.user-control:hover{
+    background-color: #F5B7B1;
+}
 .edit-user:hover{
-    background-color: #F7DC6F;
+    background-color: #FCF3CF; 
     color: white;
+}
+.personal-aside-user{
+    background-color: #AED6F1;
+    padding: 5px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+.aside-user{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
 }
