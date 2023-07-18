@@ -1,3 +1,6 @@
+.userPage-container{
+    margin-top: 25px;
+}
 .aside-user{
     background-color: #1C2833;
     color: #808B96;
@@ -57,6 +60,8 @@
     color: #808B96;
     margin-top: 5px;
     width: 100%;
+    padding: 15px;
+    margin-bottom: 25px;
 }
 .edit-user:hover{
     background-color: #FCF3CF; 
@@ -71,12 +76,13 @@
 
 .personal-aside-user{
     background-color: #AED6F1;
-    padding: 5px;
+    padding: 15px;
     border-radius: 15px;
     font-weight: bold;
     margin-top: 5%;
     color:#808B96;
     text-decoration: none;
+    margin-bottom: 15px;
 }
 .personal-aside-user:hover{
     color: #808B96;

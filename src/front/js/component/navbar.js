@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/navbar.css"
 import logo from "../../img/logo_transparente.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
+import { UserPage } from "./userPage";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 
 export const Navbar = () => {
   const [expanded, setExpanded] = useState(false);
+  const {store,actions}=useContext (Context) 
 
   const toggleNavbar = () => {
     setExpanded(!expanded);
@@ -50,9 +54,9 @@ export const Navbar = () => {
                 </div>
               </li>
             </ul>
-            <button className="btn btn-dark d-none d-lg-block perfilLarge">
+            <Link to={store.auth? "/userPage":"/login"}><button  className="btn btn-dark d-none d-lg-block perfilLarge">
               <FontAwesomeIcon icon={faUser} />
-            </button>
+            </button></Link>
           </div>
         </div>
       </nav>
