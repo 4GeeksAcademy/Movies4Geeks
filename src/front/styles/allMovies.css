@@ -1,3 +1,63 @@
+.ratingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .ratingStar {
+    color:#3F97CD;
+    margin-right: 5px;
+    font-size: 25px;
+  }
+  
+  .ratingText {
+    margin: 0;
+    font-size: 20px;
+  }
+  .titleRatingContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .genreButton {
+    border: none;
+    background: black;
+    color: white;
+    padding: 10px;
+
+    margin: 10px;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: 0.2s;
+  }
+  
+  .genreButton:hover {
+    background: rgb(29, 28, 37);
+    box-shadow: 0 0 10px #3d86b1, 0 0 40px #3d86b1, 0 0 80px #3d86b1 ;
+  }
+  /*opcional para que aparezca gradualmente la sipnosis*/
+
+  .fade-in-text {
+    opacity: 0;
+    animation: fade-in 8s ease-in-out forwards;
+  }
+  
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+/*hasta qui mis cambios*/
+
+
 .allMovies {
     display: grid;
     grid-template-columns: repeat(
@@ -23,6 +83,7 @@
     border-radius: 5px;
     margin: 0;
     filter: brightness(0.8);
+   
 }
 .singleMoviePoster:hover{
     filter: none
