@@ -28,14 +28,22 @@ import  "../../styles/editUser.css"
       const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*().-])[A-Za-z\d!@#$%^&*().-]{8,}$/;
       return regex.test(password);
     };
-    // A repasar con Marcos
-    // const DateInput = () => {
-    //   const [selectedDate, setSelectedDate] = useState('');
-    
-    //   const handleDateChange = (event) => {
-    //     setSelectedDate(event.target.value);
-    //   };
-    // };
+    const [newEmail, setNewEmail] = useState('');
+    const [confirmEmail, setConfirmEmail] = useState('');
+    const [passwordMatch, setPasswordMatch] = useState(true);
+    const handleInputChange = (e) => {
+      const { id, value } = e.target;
+  
+      
+      if (id === 'newemail') {
+        setNewEmail(value);
+      } else if (id === 'confirmemail') {
+        setConfirmEmail(value);
+      }
+  
+
+      setPasswordMatch(newEmail === confirmEmail);
+    };
     
         return(
             
@@ -80,17 +88,26 @@ import  "../../styles/editUser.css"
     </div>
     </div>
   
-  <div className="row">
-   <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-    <label for="newemail" className="form-label">New email</label>
-    <input type="email" className="form-control" id="newemail" placeholder="a@a.com" />
-    
-  </div>
-  <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-    <label for="confirmemail" className="form-label">Confirm new email</label>
-    <input type="email" className="form-control" id="confirmemail" placeholder="a@a.com"  />
-    
-  </div> 
+    <div className="row">
+      <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
+        <label htmlFor="newemail" className="form-label">New email</label>
+        <input type="email" className="form-control" id="newemail" placeholder="a@a.com" value={newEmail} onChange={handleInputChange}
+        />
+      </div>
+      <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
+        <label htmlFor="confirmemail" className="form-label">Confirm new email</label>
+        <input type="email" className={`form-control ${passwordMatch ? '' : 'is-invalid'}`} id="confirmemail" placeholder="a@a.com" value={confirmEmail} onChange={handleInputChange}
+        />
+        { !passwordsMatch && <div className="invalid-feedback">Emails do not match.</div> }
+      </div>
+    </div>
+  
+
+
+
+
+
+
   </div>
   <div className="row">
    <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
