@@ -48,10 +48,10 @@ export const UserPage = () => {
               </div>
               <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
                 <label for="birthday" className="form-label">Birthday</label>
-                <input type="text" className="form-control input-user" id="birthday" disabled value={store} />
+                <input type="text" className="form-control input-user" id="birthday" value={store.user?.birthday} />
               </div>
             </div>
-            {/* Avatar */}
+           
             <div className="mb-3 form-check">
 
             </div>

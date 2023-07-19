@@ -435,6 +435,27 @@ def get_user_info():
     
     return jsonify(message="Welcome, {}".format(user.name)), 200
 
+@api.route("/editUser",methods=["PUT"])
+@jwt_required()
+def editUser():
+    id=get_jwt_identity()
+    data = request.json
+    print(data)
+    user=User.query.get(id)
+    
+    user.email=data["email",user.email],
+    user.password=data["password",user.password],
+    user.name=data["email",user.email],
+    user.last_name=data["last_name",user.last_name],
+    user.nickname=data["nickname",user.nickname],
+    user.birthday=data["birthday",user.birthday],
+    db.session.commit()
+    return jsonify({"Msg":"Usuario editado satisfactoriamente"})
+
+       
+    
+
+
 
 @api.errorhandler(APIException)
 def handle_api_exception(error):

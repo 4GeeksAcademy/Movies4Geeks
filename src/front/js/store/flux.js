@@ -210,11 +210,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 			signOut: () => {
 				localStorage.removeItem("token");
 				setStore({ auth: false })
+			},
+			editUser:(user)=>{
+				const config = {
+					method: 'PUT',
+					body: JSON.stringify(user),
+					headers: {
+					  "content-Type": "application/json",
+					  "Authorization":"Bearer " + localStorage.getItem("token")
+				
+					}
+				  }
+
+				fetch(process.env.BACKEND_URL + "/api/editUser",config)
+				.then((response) => response.json())
+				.then((response) => {
+				  
+				  console.log(response)
+				})
 			}
 
 		}
 	}
 };
+
 
 
 export default getState;
