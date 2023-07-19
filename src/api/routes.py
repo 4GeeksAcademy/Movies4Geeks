@@ -439,7 +439,7 @@ def get_user_info():
 @jwt_required()
 def editUser():
     id=get_jwt_identity()
-    data = request.json
+    data = request.json()
     print(data)
     user=User.query.get(id)
     

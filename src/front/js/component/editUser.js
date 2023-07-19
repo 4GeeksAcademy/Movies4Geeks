@@ -7,49 +7,17 @@ import "../../styles/editUser.css"
 
 export const EditUser = () => {
 
-
-
   const { store, actions } = useContext(Context);
-
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [passwordMatch, setPasswordMatch] = useState(true);
-  const [isValidPassword, setIsValidPassword] = useState(true);
   const [name, setName]=useState(store.use?.name);
   const [last_name,setLast_name]=useState(store.use?.Last_name);
   const [email,setEmail]=useState(store.use?.email);
   const [birthday,setBirthday]= useState(store.use?.birthday);
   const [nickname,setNickname]=useState(store.use?.nickname);
+  const [password, setPassword]= useState(store.use?.password)
   
-
-  const handleChangePassword = (e) => {
-    const { value } = e.target;
-    setPassword(value);
-  };
-
-  const handleChangeConfirmPassword = (e) => {
-    const { value } = e.target;
-    setConfirmPassword(value);
-  };
-
-  useEffect(() => {
-    
-    setPasswordMatch(password === confirmPassword);
-
-    
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*.\\-])(?=.{8,15})$/;
-
-    setIsValidPassword(passwordRegex.test(password));
-  }, [password, confirmPassword]);
-
-  const [newEmail, setNewEmail] = useState('');
-  const [confirmEmail, setConfirmEmail] = useState('');
-  const [emailMatch, setEmailMatch] = useState(true);
-
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-
   
       const {store,actions}=useContext(Context)
 
@@ -76,6 +44,7 @@ export const EditUser = () => {
  
 
   }
+  
   return (
 
     <div className="container userPage-container">
@@ -93,45 +62,42 @@ export const EditUser = () => {
         <form  onSubmit={e=>editContact(e)} className="form-user mt-3">
           <div className="row">
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-              <label for="userName" className="form-label">Name</label>
+              <label for="userName" className="form-label">New name</label>
               <input type="text" className="form-control input-user" id="userName" 
               onChange={e=>setName(e.target.value)} value={name} aria-describedby="emailHelp" />
             </div>
 
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-              <label for="userSurname" className="form-label">Surname</label>
+              <label for="userSurname" className="form-label">New surname</label>
               <input type="text" className="form-control input-user" id="userLastname" 
               onChange={e=>setLast_name(e.target.value)} value={last_name} aria-describedby="emailHelp" />
             </div>
           </div>
           <div className="row">
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-              <label for="exampleInputEmail1" className="form-label">Nickname</label>
+              <label for="exampleInputEmail1" className="form-label">New nickname</label>
               <input type="text" className="form-control input-user" id="exampleInputEmail1" 
               onChange={e=>setNickname(e.target.value)}value={nickname} />
 
             </div>
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-              <label for="birthday" className="form-label">Birthday</label>
+              <label for="birthday" className="form-label">New birthday</label>
               <input type="text" className="form-control input-user" id="birthday" 
               onChange={e=>setBirthday(e.target.value)} value={birthday} />
             </div>
           </div>
           <div className="row">
-            <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-              <label for="password" className="form-label">Password</label>
-              <input type="password" className="form-control input-user" id="password" value={password} onChange={handleChangePassword} />
-
-              {!isValidPassword && (
-                <p>La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un carácter especial.</p>
-              )}
+            <div className="mb-3 col-lg-6 col-md-6 col-sm-12"> 
+              <label htmlFor="password" className="form-label">New password</label>
+              <input type="password" className="form-control input-user" id="password" value={password} />
             </div>
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-              <label for="confirmPassword" className="form-label">Confirm password</label>
-              <input type="password" className="form-control input-user" id="confirmPassword" value={store.user?.password} onChange={handleChangeConfirmPassword} />
+             <label for="confirmPassword" className="form-label">Confirm new password</label>
+             <input type="password" className="form-control input-user" id="confirmPassword"/> 
+               
 
-              {!passwordMatch && <p>Las contraseñas no coinciden.</p>}
-            </div>
+            
+            </div> 
           </div>
 
           <div className="row">
@@ -141,12 +107,13 @@ export const EditUser = () => {
               placeholder="a@a.com"
                 value={email} onChange={e=>setEmail(e.target.value)}/>
             </div>
-            <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
+            {/* <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
               <label htmlFor="confirmemail" className="form-label">Confirm new email</label>
               <input type="email" className={`form-control ${emailMatch ? '' : 'is-invalid'}`}
-                id="confirmemail" placeholder="a@a.com" value={confirmEmail} onChange={handleInputChange}/>
-              {!emailMatch && <div className="invalid-feedback">Emails do not match.</div>}
-            </div>
+                id="confirmemail" placeholder="a@a.com" value={confirmEmail} 
+                onChange={e=>setEmail(e.target.value)}/>
+                {!emailMatch && <div className="invalid-feedback">Emails do not match.</div>}
+            </div> */}
           </div>
         
           <div className="mb-3 form-check">
