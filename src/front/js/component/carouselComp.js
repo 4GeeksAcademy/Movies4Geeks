@@ -2,12 +2,19 @@ import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../store/appContext";
 // import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 // import { Carousel } from 'react-responsive-carousel';
+import { useNavigate } from "react-router-dom";
 
 
 
 export const CarouselComp = () =>{
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
     //console.log(store.upcoming)
+
+    const handleClick = (movieId) =>{
+        console.log("hola")
+        navigate(`/allMovies/${movieId}`);
+    }
 
 
 
@@ -21,7 +28,11 @@ export const CarouselComp = () =>{
                         //console.log(movie)
                         return (
                             <div className="carousel-item active" key={index}>
-                                <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>
+                                <img 
+                                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} 
+                                    className="d-block w-100" 
+                                    alt="..." onClick={() => handleClick(movie.id)}
+                                />
                                 <div className="carousel-caption ">
                                     <h5 className="posterImage_title d-none d-sm-block">{movie.original_title} </h5>
                                     <div className="d-none d-md-block">
@@ -39,7 +50,11 @@ export const CarouselComp = () =>{
                     if (index > 0 && index < 10) {
                         return (
                             <div className="carousel-item" key={index}>
-                                <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} className="d-block w-100" alt="..."/>
+                                <img 
+                                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} 
+                                    className="d-block w-100" alt="..." 
+                                    onClick={() => handleClick(movie.id)}
+                                />
                                 <div className="carousel-caption ">
                                     <h5 className="posterImage_title d-none d-sm-block">{movie.original_title} </h5>
                                     <div className="d-none d-md-block">

@@ -71,7 +71,7 @@ export const Movie = () => {
         </div>
       </div>
       <div className="movieDetailReviews">
-        <Reviews movieId={movieId} key={movie.id}/>
+        <Reviews movieId={params.movieId} image={movie.poster_path} title={movie.original_title} key={movie.id}/>
       </div>
     
     </>

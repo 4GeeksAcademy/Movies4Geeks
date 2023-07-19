@@ -30,8 +30,7 @@ class User(db.Model):
             "avatar": self.avatar,
             # do not serialize the password, its a security breach
             #adding reviews and like
-            "reviews": [review.serialize() for review in self.reviews],
-            "likes": [like.serialize() for like in self.likes]
+            
             
         }
 
@@ -130,6 +129,7 @@ class Review(db.Model):
         return f'<Review {self.title}>'
 
     def serialize(self):
+        
         return {
             "id": self.id,
             "user_id": self.user_id,
@@ -137,7 +137,10 @@ class Review(db.Model):
             "title": self.title,
             "text": self.text,
             #adding likes
-            "likes": list(map(lambda x: x.serialize(), self.likes)),
+            "likes": len([like.id for like in self.likes if like.like==1]),
+            "dislike": len([like.id for like in self.likes if like.like==0]),
+            "is_voted": False, 
+            "vote_type": None
            
         }
     

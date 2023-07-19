@@ -32,17 +32,33 @@ export const Reviews = (props) =>{
     return (
         <div className="reviewsContainer container">
             <div className="reviewsHeader">
-                <h2>Reviews 2k</h2>
+                <h2>Reviews: {store.reviews.length}</h2>
                 <div>
                     <button type="button" className="btn " onClick={openModal}>
                         <FontAwesomeIcon icon={faPlus} style={{color: "#3888B8"}} className="addReviewButtom"/>
                         <p className="addReviewButtom">Review</p>
                     </button>
-                    <AddReviewModal isOpen={isModalOpen} onClose={closeModal} movieId={movieId}/>
+                    <AddReviewModal 
+                        isOpen={isModalOpen} 
+                        onClose={closeModal} 
+                        movieId={movieId} 
+                        originalTitle={props.title} 
+                        image={props.image}
+                        onAddReview = {() =>{
+                            actions.getReviewsById(movieId);
+                            closeModal();
+                        }}
+                    />
                 </div>
             </div>
             {store.reviews.map((review, index)=>{
-                return <ReviewEntry review={review} key={index} />
+                return <ReviewEntry 
+                    review={review} 
+                    key={index}
+                    onLikeChange = {() =>{
+                        actions.getReviewsById(movieId);
+                    }} 
+                />
             })}
         </div>
     )

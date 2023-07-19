@@ -2,11 +2,11 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Movie, Videos, Genre, Genre_Movie, Score, Review
+from api.models import db, User, Movie, Videos, Genre, Genre_Movie, Score, Review, Like
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import requests
-from datetime import datetime
+from datetime import datetime, date, timedelta
 import time
 
 api = Blueprint('api', __name__)
@@ -24,7 +24,10 @@ def handle_hello():
 @api.route('/get-upcoming', methods=['GET'])
 def get_upcoming():
 
-    url = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+    today = date.today()
+    future_date = today + timedelta(days=90)
+
+    url = f"https://api.themoviedb.org/3/discover/movie?primary_release_date.gte={today}&primary_release_date.lte={future_date}"
 
     headers = {"accept": "application/json", "Authorization": f"Bearer {ACCESS_TOKEN}"}
 
@@ -32,9 +35,10 @@ def get_upcoming():
     data = response.json()
     for movie in data.get("results", []):
         #print(movie.get("title"))
-        print(Movie.query.filter_by(id= movie.get("id")).first())
-        if not Movie.query.filter_by(id= movie.get("id")).first(): #copiar desde
-            print("mensaje")
+        #print(Movie.query.filter_by(id= movie.get("id")).first())
+        backdrop_path = movie.get("backdrop_path")
+        if backdrop_path and not Movie.query.filter_by(id= movie.get("id")).first(): #copiar desde
+            #print("mensaje")
             new_movie = Movie(
                 id= movie.get("id"),
                 original_title=movie.get("title"),
@@ -47,14 +51,14 @@ def get_upcoming():
             )
             for genre_id in movie.get("genre_ids"):
                 genre= Genre.query.get(genre_id)
-                print(genre)
+                #print(genre)
                 new_movie.genre_movie.append(genre)
                 #genre_movie=Genre_Movie(genre_id=genre_id, movie_id=new_movie.id)
                 #db.session.add(genre_movie)
                 #db.session.commit()
             db.session.add(new_movie)
             db.session.commit()
-            print(new_movie)
+            #print(new_movie)
 
             get_videos(new_movie.id) #copiar hasta
             
@@ -70,9 +74,9 @@ def get_top_rated():
     response = requests.get(url, headers=headers)
     data = response.json()
     for movie in data.get("results", []):
-        print(movie.get("title"))
+        #print(movie.get("title"))
         if not Movie.query.filter_by(id= movie.get("id")).first(): #copiar desde
-            print("mensaje")
+            #print("mensaje")
             new_movie = Movie(
                 id= movie.get("id"),
                 original_title=movie.get("title"),
@@ -85,14 +89,14 @@ def get_top_rated():
             )
             for genre_id in movie.get("genre_ids"):
                 genre= Genre.query.get(genre_id)
-                print(genre)
+                #print(genre)
                 new_movie.genre_movie.append(genre)
                 #genre_movie=Genre_Movie(genre_id=genre_id, movie_id=new_movie.id)
                 #db.session.add(genre_movie)
                 #db.session.commit()
             db.session.add(new_movie)
             db.session.commit()
-            print(new_movie)
+            #print(new_movie)
 
             get_videos(new_movie.id) #copiar hasta
         
@@ -109,7 +113,7 @@ def get_genres():
     response = requests.get(url, headers=headers)
     data = response.json()
     for genre in data.get("genres", []):
-        print(genre.get("name"))
+        #print(genre.get("name"))
         if not Genre.query.filter_by(id= genre.get("id")).first():
             new_genre = Genre(id=genre.get("id"),name=genre.get("name"))
             db.session.add(new_genre)
@@ -121,39 +125,44 @@ def get_genres():
 @api.route('/get-movies-by-genre', methods=['GET'])
 def get_movies_by_genre():
 
-    url = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=27" #27=Horror genre and is sorted by popularity
+    genres = [27, 28, 35]
+    for genre in genres:
+        print(genre)
+        url = f"https://api.themoviedb.org/3/discover/movie?sort_by=vote_count.desc&with_genres={genre}" #27=Horror genre and is sorted by popularity
 
-    headers = {"accept": "application/json", "Authorization": f"Bearer {ACCESS_TOKEN}"}
+        headers = {"accept": "application/json", "Authorization": f"Bearer {ACCESS_TOKEN}"}
 
-    response = requests.get(url, headers=headers)
-    data = response.json()
-    for movie in data.get("results", []):
-        print(movie.get("title"))
-        if not Movie.query.filter_by(id= movie.get("id")).first(): #copiar desde
-            print("mensaje")
-            new_movie = Movie(
-                id= movie.get("id"),
-                original_title=movie.get("title"),
-                overview=movie.get("overview"),
-                poster_path=movie.get("poster_path"),
-                release_date=movie.get("release_date"),
-                backdrop_path=movie.get("backdrop_path"),
-                vote_average=movie.get("vote_average"),
-                vote_count=movie.get("vote_count")
-            )
-            for genre_id in movie.get("genre_ids"):
-                genre= Genre.query.get(genre_id)
-                print(genre)
-                new_movie.genre_movie.append(genre)
-                #genre_movie=Genre_Movie(genre_id=genre_id, movie_id=new_movie.id)
-                #db.session.add(genre_movie)
-                #db.session.commit()
-            db.session.add(new_movie)
-            db.session.commit()
-            print(new_movie)
-
-            get_videos(new_movie.id) #copiar hasta
+        response = requests.get(url, headers=headers)
+        data = response.json()
+        print(data)
         
+        for movie in data.get("results", []):
+            #print(movie.get("title"))
+            if not Movie.query.filter_by(id= movie.get("id")).first(): #copiar desde
+                #print("mensaje")
+                new_movie = Movie(
+                    id= movie.get("id"),
+                    original_title=movie.get("title"),
+                    overview=movie.get("overview"),
+                    poster_path=movie.get("poster_path"),
+                    release_date=movie.get("release_date"),
+                    backdrop_path=movie.get("backdrop_path"),
+                    vote_average=movie.get("vote_average"),
+                    vote_count=movie.get("vote_count")
+                )
+                for genre_id in movie.get("genre_ids"):
+                    genre= Genre.query.get(genre_id)
+                    #print(genre)
+                    new_movie.genre_movie.append(genre)
+                    #genre_movie=Genre_Movie(genre_id=genre_id, movie_id=new_movie.id)
+                    #db.session.add(genre_movie)
+                    #db.session.commit()
+                db.session.add(new_movie)
+                db.session.commit()
+                print(new_movie)
+
+                get_videos(new_movie.id) #copiar hasta
+            
     return jsonify("response_body"), 200
 
 
@@ -167,7 +176,7 @@ def get_videos(movie_id):
     response = requests.get(url, headers=headers)
     data = response.json()
     for videos in data.get("results", []):
-        print(videos.get("type"))
+        #print(videos.get("type"))
         video=Videos(
             name=videos.get("name"),
             key=videos.get("key"),
@@ -220,14 +229,15 @@ def all_movies():
 
 
 @api.route('/review', methods=['POST'])
+@jwt_required()
 def review():
     data = request.json
-    print(data)
+    #print(data)
     score = data.get("score")
     title = data.get("title")
     text = data.get("text")
     movie_id = data.get("movie_id")
-    user_id = data.get("user_id")
+    user_id = get_jwt_identity()
     #validar si existe un score con este usuario para esta pelicula
     get_score = Score.query.filter_by(user_id=user_id, movie_id=movie_id).first()
     if get_score:
@@ -306,11 +316,29 @@ def get_genres_by_movie_id(movie_id):
 
 
 @api.route('/reviews/<int:movie_id>', methods=['GET'])
+@jwt_required(optional = True)
 def get_reviews_by_id(movie_id):
+    user_id = get_jwt_identity()
+    print(user_id)
+    
     reviews = Review.query.filter_by(movie_id=movie_id).all()
-    reviews_data = [review.serialize() for review in reviews]
-    print(reviews_data)
-    return jsonify({"results": reviews_data})
+    
+    data = []
+    if user_id:
+        for review in reviews: 
+            review_data = review.serialize()
+            like = Like.query.filter_by(user_id = user_id, review_id = review.id).first()
+            if like:
+                review_data["is_voted"] = True
+                review_data["vote_type"] = like.like
+            
+            data.append(review_data)
+    else:
+        data = [review.serialize() for review in reviews]
+        print("data")
+    return jsonify({"results": data})
+
+
 
 def validate_password(password):
     requirements = [
@@ -335,7 +363,7 @@ def validate_password(password):
 @api.route("/register", methods=["POST"])
 def register():
     data = request.get_json()
-    print(data)
+    #print(data)
     email = data.get("email")
     password = data.get("password")
     name = data.get("name")
@@ -383,19 +411,19 @@ def register():
 @api.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
-    print(data)
+    #print(data)
     email = data.get("email")
     password = data.get("password")
 
     if not email or not password:
         return jsonify({"message": "Email and password are required"}), 400
     user = User.query.filter_by(email=email).first()
-    print(user)
+    #print(user)
 
     if not user:
         return jsonify({"message": "User doesn't exist"}), 401
     token = create_access_token(identity=user.id)
-    print(token)
+    #print(token)
 
     if user.password != password:
         return jsonify({"message": "Password incorrect"}), 401
@@ -452,3 +480,46 @@ class APIException(Exception):
             "message": str(self),
             "status_code": self.status_code
         }
+
+
+@api.route("/like", methods=["POST"])
+@jwt_required()
+def add_like():
+    print("hola")
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
+    data = request.get_json()
+    review_id = data.get("review_id")
+    like_type = data.get("like_type")
+    
+    if user is None:
+        raise APIException("User not found", status_code=404)
+    like = Like.query.filter_by(user_id = user.id, review_id = review_id).first()
+    if like:
+        raise APIException("User already vote", status_code=404)
+    
+    like = Like(user_id = user.id, review_id = review_id, like = like_type)
+
+    db.session.add(like)
+    db.session.commit()
+
+    return jsonify("like"), 200
+
+
+@api.route('/allMovies/Horror', methods=['GET'])
+def get_horror_movies():
+    horror_movies = Movie.query.join(Movie.genre_movie).filter(Genre.name == 'Horror', Movie.vote_count > 7000).all()
+    serialized_movies = [movie.serialize() for movie in horror_movies]
+    return jsonify(serialized_movies)
+
+@api.route('/allMovies/Action', methods=['GET'])
+def get_action_movies():
+    action_movies = Movie.query.join(Movie.genre_movie).filter(Genre.name == 'Action', Movie.vote_count > 7000).all()
+    serialized_movies = [movie.serialize() for movie in action_movies]
+    return jsonify(serialized_movies)
+
+@api.route('/allMovies/Comedy', methods=['GET'])
+def get_comedy_movies():
+    comedy_movies = Movie.query.join(Movie.genre_movie).filter(Genre.name == 'Comedy', Movie.vote_count > 7000).all()
+    serialized_movies = [movie.serialize() for movie in comedy_movies]
+    return jsonify(serialized_movies)
