@@ -1,23 +1,47 @@
-.form-contact-us{
-    margin: 15px;
-    
-    
+.form-contact-us {
+  margin: 15px;
+  color: white;
 }
+
 .row-contact-us {
-    padding: 10px;
-    margin: 0 auto;
-    width: 50%;
-    border: 1px solid black;
-    border-radius: 10px;
-  }
-.btn-contactUs{
-   background-color: #EB984E;
-   min-width:40%; 
-   width: 40%;  
-   margin-top: 10px;
-   margin: 0 auto;
-   margin-bottom: 10px;
+  padding: 10px;
+  margin: 0 auto;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 10px;
 }
-.btn-contactUs:hover{
-    background-color: #EB984E;
+
+.btn-contactUs {
+  margin-top: 20px;
+  background-color: #3d86b1;
+  color: white;
+  min-width: 40%;
+  width: 40%;
+  margin-top: 10px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-contactUs:hover {
+  background-position: 100% 100%;
+  transform: scale(1.1);
+}
+
+
+
+.success-message {
+  color: rgb(50, 218, 50);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: rgb(252, 96, 96);
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+ 
 }

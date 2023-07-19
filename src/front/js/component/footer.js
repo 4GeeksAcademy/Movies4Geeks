@@ -36,7 +36,7 @@ export const Footer = () => (
 		  </Link>
 		</div>
 			<div className="centered-text my-2">
-		  	<p className="made-with-love"> By Javier, Ruber, and Johana</p>
+		  	<p className="made-with-love"> By Javier, ruben, and Johana</p>
 		  	<p className="copyright">
          	 &copy; {new Date().getFullYear()} Movies4Geeks. All rights reserved.</p>
 			</div>
