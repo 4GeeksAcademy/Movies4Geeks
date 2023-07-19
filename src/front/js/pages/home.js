@@ -21,7 +21,10 @@ export const Home = () => {
 			<div id="modal-root"></div>
 			
 			<PosterCarousel view="topRated" title="Top Rated"/>
-			<p>
+			<PosterCarousel view="Action" title="Action"/>
+			<PosterCarousel view="Comedy" title="Comedy"/>
+			<PosterCarousel view="Horror" title="Horror"/>
+			{/* <p>
 				<img src={rigoImageUrl} />
 			</p>
 			<div className="alert alert-info">
@@ -33,7 +36,7 @@ export const Home = () => {
 				<a href="https://start.4geeksacademy.com/starters/react-flask">
 					Read documentation
 				</a>
-			</p>
+			</p> */}
 		</div>
 	);
 };
