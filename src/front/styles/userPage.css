@@ -1,5 +1,6 @@
 .userPage-container{
     margin-top: 25px;
+    margin-bottom: 25px;
 }
 .aside-user{
     background-color: #1C2833;
@@ -103,6 +104,10 @@
 @media only screen and (max-width: 950px){
     .userPage-container{
         flex-direction: column;
+    }
+    .main-user{
+        margin-left: 0px;
+        margin-top: 15px;
     }
 
 }
