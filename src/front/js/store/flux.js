@@ -212,6 +212,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ auth: false })
 			},
 			editUser:(user)=>{
+				console.log(user)
 				const config = {
 					method: 'PUT',
 					body: JSON.stringify(user),

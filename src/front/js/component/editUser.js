@@ -8,12 +8,13 @@ import "../../styles/editUser.css"
 export const EditUser = () => {
 
   const { store, actions } = useContext(Context);
-  const [name, setName]=useState(store.use?.name);
-  const [last_name,setLast_name]=useState(store.use?.Last_name);
-  const [email,setEmail]=useState(store.use?.email);
-  const [birthday,setBirthday]= useState(store.use?.birthday);
-  const [nickname,setNickname]=useState(store.use?.nickname);
-  const [password, setPassword]= useState(store.use?.password)
+  const [name, setName]=useState(store.user?.name);
+  const [last_name,setLast_name]=useState(store.user?.Last_name);
+  const [email,setEmail]=useState(store.user?.email);
+  const [birthday,setBirthday]= useState(store.user?.birthday);
+  const [nickname,setNickname]=useState(store.user?.nickname);
+  const [password, setPassword]= useState(store.user?.password)
+  const [confirmPassword, setConfirmPassword]= useState("")
   
 
   const handleInputChange = (e) => {
@@ -89,11 +90,11 @@ export const EditUser = () => {
           <div className="row">
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12"> 
               <label htmlFor="password" className="form-label">New password</label>
-              <input type="password" className="form-control input-user" id="password" value={password} />
+              <input type="password" onChange={e=>setPassword(e.target.value)} className="form-control input-user" id="password" value={password} />
             </div>
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-             <label for="confirmPassword" className="form-label">Confirm new password</label>
-             <input type="password" className="form-control input-user" id="confirmPassword"/> 
+             <label for="confirmPassword"  className="form-label">Confirm new password</label>
+             <input type="password" onChange={e=>setConfirmPassword(e.target.value)} className="form-control input-user" id="confirmPassword"/> 
                
 
             

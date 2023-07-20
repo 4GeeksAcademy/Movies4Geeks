@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Movie, Videos, Genre, Genre_Movie, Score, Review
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-import requests
+# import requests
 from datetime import datetime
 import time
 
@@ -439,16 +439,17 @@ def get_user_info():
 @jwt_required()
 def editUser():
     id=get_jwt_identity()
-    data = request.json()
+    print(id)
+    data = request.json
     print(data)
-    user=User.query.get(id)
-    
-    user.email=data["email",user.email],
-    user.password=data["password",user.password],
-    user.name=data["email",user.email],
-    user.last_name=data["last_name",user.last_name],
-    user.nickname=data["nickname",user.nickname],
-    user.birthday=data["birthday",user.birthday],
+    user=User.query.filter_by(id=id).first()
+   
+    user.email=data["email"],
+    user.password=data["password"],
+    user.name=data["email"],
+    user.last_name=data["last_name"],
+    user.nickname=data["nickname"],
+    user.birthday=data["birthday"],
     db.session.commit()
     return jsonify({"Msg":"Usuario editado satisfactoriamente"})
 
