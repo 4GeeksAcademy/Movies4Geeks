@@ -9,17 +9,17 @@ import { Reviews } from "../component/reviews";
 export const Movie = () => {
   const params = useParams();
   const { actions, store } = useContext(Context);
+  const movieId = params.movieId;
 
   useEffect(() => {
       actions.getMovie(params.movieId);
       actions.getTrailer(params.movieId);
       actions.getGenresById(params.movieId)
-  }, []);
+  }, [movieId]);
   const movie = store.movie;
   const trailer = store.trailer;
   const genres = store.genresById;
   //console.log(store.movie);
-  const movieId = store.movie?.id
   //console.log(movieId)
   
   if(!movieId) return null

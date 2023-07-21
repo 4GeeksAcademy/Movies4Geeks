@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ProfileButton } from "./profileButton";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import { Search } from "./search";
 
 
 export const Navbar = () => {
@@ -69,8 +70,18 @@ export const Navbar = () => {
               </button>
             </Link>
           )}
-          <div className={`collapse navbar-collapse ${expanded ? 'show' : ''}`}>
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 links">
+          <div className={`collapse navbar-collapse row ${expanded ? 'show' : ''}`}>
+            <div className="col-lg-6">
+            <Search />
+
+            </div>
+            <Link to={"/allMovies"} className="nav-link text-light col-lg-2 linkAlign" href="#link1">
+              Movies
+            </Link>
+            <a className="nav-link text-light col-lg-2 linkAlign" href="#link2">
+              About Us
+            </a>
+            {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0 links">
               <li className="nav-item">
                 <Link to={"/allMovies"} className="nav-link text-light" href="#link1">
                   Movies
@@ -81,15 +92,10 @@ export const Navbar = () => {
                   About Us
                 </a>
               </li>
-              <li className="nav-item">
-                <div className="navbarSearch">
-                  <input type="text" placeholder="Search " />
-                  <span><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
-                </div>
-              </li>
-            </ul>
+              
+            </ul> */}
             {token ? (
-              <div className="dropdown-center d-none d-lg-block perfilLarge">
+              <div className="dropdown-center d-none d-lg-block perfilLarge col-lg-2">
                 <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <ProfileButton nickname={nickname} />
                 </button>
@@ -110,7 +116,7 @@ export const Navbar = () => {
               </div>
 
             ) : (
-              <Link to="/login" style={{ textDecoration: "none" }}>
+              <Link to="/login" style={{ textDecoration: "none" }} className="col-lg-2">
                 <button className="btn btn-dark d-none d-lg-block perfilLarge" >
                   <ProfileButton label="Login" />
                 </button>
