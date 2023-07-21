@@ -37,7 +37,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			isAuthenticated: false,
 			user: null,
-			auth: false
+			auth: false,
+			token: null,
+			userName: null,
+			userLastName: null,
+			userBirthday: null,
+			email: null,
+			nickname: null,
+			userId: null,
+			Horror: [],
+			Action: [],
+			Comedy: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -145,18 +155,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getReviewsById: async (movieId) => {
 				//console.log(movieId)
+				const headers = {
+					"Content-Type": "application/json",
+				}
+				if (localStorage.getItem("token")) {
+					headers["Authorization"] = 'Bearer ' + localStorage.getItem("token")
+				}
+				const options = {
+					method: 'GET',
+					headers,
+				};
 				try {
-					const resp = await fetch(`${process.env.BACKEND_URL}/api/reviews/${movieId}`)
+					const resp = await fetch(`${process.env.BACKEND_URL}/api/reviews/${movieId}`, options)
 					const data = await resp.json()
-					//console.log(data)
-					setStore({ reviews: data.results })
+					console.log(data)
+					setStore({ reviews: data.results ?? [] }) //see with marcos when the token is expired how to prevent error
 				} catch (error) {
 					console.log("Error", error)
 				}
 			},
 			isAuthenticated: (token) => {
 				console.log(token);
-				localStorage.setItem('token', token);
+
 
 				const options = {
 					method: 'POST',
@@ -176,7 +196,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(response => {
-						setStore({ storeToken: true, token: token });
+						console.log(response)
+						setStore({ storeToken: true });
 					})
 					.catch(error => console.log('error', error));
 			},
@@ -191,10 +212,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 						.then((response) => response.json())
 						.then((data) => {
+							console.log(data);
 							if (data.token) {
 								localStorage.setItem("token", data.token);
-								setStore({ user: data.user });
+								localStorage.setItem("userName", data.user.name);
+								localStorage.setItem("email", data.user.email);
+								localStorage.setItem("nickname", data.user.nickname)
+								localStorage.setItem("userId", data.user.id)
+								localStorage.setItem("userLastName", data.user.last_name)
+								localStorage.setItem("userBirthday", data.user.birthday)
+
+								setStore({ userName: data.user.name });
+								setStore({ email: data.user.email });
+								setStore({ token: data.token });
 								setStore({ auth: true });
+								setStore({ nickname: data.user.nickname });
+								setStore({ userId: data.user.id });
+								setStore({ userLastName: data.user.last_name });
+								setStore({ userBirthday: data.user.birthday });
 								resolve(true);
 							} else {
 								console.log("Password or mail incorrect");
@@ -229,6 +264,74 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  
 				  console.log(response)
 				})
+			},
+			updateToken: () => {
+				if (localStorage.getItem("token")) {
+					setStore({ token: localStorage.getItem("token") })
+					setStore({ userName: localStorage.getItem("userName") })
+					setStore({ email: localStorage.getItem("email") })
+					setStore({ nickname: localStorage.getItem("nickname") })
+					setStore({ userId: localStorage.getItem("userId") })
+					setStore({ userLastName: localStorage.getItem("userLastName") })
+					setStore({ userBirthday: localStorage.getItem("userBirthday") })
+				}
+			},
+			createReview: async (score, title, text, movieId) => {
+				let store = getStore()
+				const options = {
+					method: 'POST',
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": 'Bearer ' + localStorage.getItem("token")
+					},
+					body: JSON.stringify({
+						"score": score,
+						"title": title,
+						"text": text,
+						"movie_id": movieId,
+
+
+					})
+				};
+				try {
+					const resp = await fetch(`${process.env.BACKEND_URL}/api/review`, options)
+					const data = await resp.json()
+					console.log(data)
+					return data
+					//setStore({ reviews: data.results })
+				} catch (error) {
+					console.log("Error", error)
+				}
+			},
+			getHorrorMovies: async () =>{
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/allMovies/Horror`);
+					const data = await response.json();
+					//console.log(data)
+					setStore({Horror: data})
+				  } catch (error) {
+					console.error(error);
+				  }
+			},
+			getActionMovies: async () =>{
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/allMovies/Action`);
+					const data = await response.json();
+					//console.log(data)
+					setStore({Action: data})
+				  } catch (error) {
+					console.error(error);
+				  }
+			},
+			getComedyMovies: async () =>{
+				try {
+					const response = await fetch(`${process.env.BACKEND_URL}/api/allMovies/Comedy`);
+					const data = await response.json();
+					//console.log(data)
+					setStore({Comedy: data})
+				  } catch (error) {
+					console.error(error);
+				  }
 			}
 
 		}

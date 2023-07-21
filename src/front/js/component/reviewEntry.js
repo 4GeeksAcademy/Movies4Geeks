@@ -1,9 +1,9 @@
 
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import "../../styles/reviewEntry.css";
+import { ReviewLikes } from "./reviewLikes";
 
-export const ReviewEntry = ({ review }) => {
+export const ReviewEntry = ({ review, onLikeChange }) => {
     const [showAllText, setShowAllText] = useState(false);
     const wordsLimit = 40;
     const words = review.text.split(' ');
@@ -12,6 +12,8 @@ export const ReviewEntry = ({ review }) => {
     }
     const shortText = words.slice(0, wordsLimit).join(' ') + "...";
     const text = showAllText ? review.text : shortText;
+    
+
     return (
         <div className="reviewContainer" >
             <div className="reviewBody">
@@ -31,12 +33,7 @@ export const ReviewEntry = ({ review }) => {
                 </div>
             </div>
             <div className="reviewFooter">
-                <div className="helpfull">
-                    <FontAwesomeIcon icon={faThumbsUp} />
-                </div>
-                <div className="notHelpfull">
-                    <FontAwesomeIcon icon={faThumbsDown} />
-                </div>
+                <ReviewLikes review={review} onLikeChange={onLikeChange} />
             </div>
         </div>
 

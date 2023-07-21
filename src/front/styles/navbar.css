@@ -2,7 +2,7 @@
     background: #161616 !important;
 }
 .logo{
-    max-height: 112px;
+    max-height: 65px;
     padding: 0;
 }
 .navbarContainer{
@@ -24,14 +24,34 @@
 .navbar-toggler svg{
     fill: white;
 }
-.iconBars:hover{
+/* .iconBars:hover{
     color: #3F97CD;
-}
+} */
 .perfilLarge{
     margin: 0 !important;
-    background: black;
-    border: 1px solid;
+    background: #161616;
+    border: none !important;
     margin-right: 8px;
+    position: relative;
+    
+}
+.dropdownMenu{
+    position: absolute;
+    right: 0 !important;
+}
+.dropdown-menu[data-bs-popper] {
+    top: 100%;
+    right: 8px !important;
+    left: auto !important;
+    margin-top: 0.125rem;
+}
+.perfilLarge button{
+    display: flex;
+    background-color:#161616 !important;
+    border: none !important;
+}
+.perfilLarge button::after{
+    content: none;
 }
 .links{
     width: 60%;
@@ -54,3 +74,30 @@
     right: 5px;
 
 }
+.profileButton{
+    display: flex;
+    
+}
+.perfilIcon{
+    margin-left: 8px;
+}
+  
+.iconBars:hover {
+    color: #3F97CD; 
+}
+.hamburguer{
+    border: none;
+    box-shadow: none;
+}
+
+.linkAlign{
+    text-align: center;
+}
+.navbar-brand{
+    margin-right: 3rem;
+}
+.perfilLargeDropdown{
+    margin-left: auto;
+}
+
+

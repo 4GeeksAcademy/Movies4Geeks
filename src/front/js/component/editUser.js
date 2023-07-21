@@ -46,12 +46,15 @@ export const EditUser = () => {
   
   
     e.preventDefault()
-    actions.editUser(user)
+    actions.editUser(user);
+    actions.signOut();
 
     setTimeout(() => {
       setMessageSent(true);
       setTimeout(() => {
-        navigate("/userPage");
+        
+        navigate("/login");
+        navigate(0);
       }, 2000);
     }, 2000);
   };
