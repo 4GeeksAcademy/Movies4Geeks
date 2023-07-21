@@ -1,33 +1,32 @@
-import React, { useEffect, useContext, useState } from "react";
-//import { useParams } from "react-router";
+import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/movie.css";
 import { Reviews } from "../component/reviews";
 
-
 export const Movie = () => {
   const params = useParams();
   const { actions, store } = useContext(Context);
+  const posterPath = store.movie.poster_path;
 
   useEffect(() => {
     actions.getMovie(params.movieId);
     actions.getTrailer(params.movieId);
-    actions.getGenresById(params.movieId)
+    actions.getGenresById(params.movieId);
   }, []);
+
   const movie = store.movie;
   const trailer = store.trailer;
   const genres = store.genresById;
-  //console.log(store.movie);
-  const movieId = store.movie?.id
-  //console.log(movieId)
+  const movieId = store.movie?.id;
 
-  
-  if (!movieId) return null
+  if (!movieId) return null;
+
   return (
-    <>
-      <div className="container">
-        <div className="movieDetailHeader ">
+    <div className="container ">
+      <div className="container-content blur-background">
+        <div className="image-background" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${posterPath})` }}></div>
+        <div className="movieDetailHeader" style={{ position: "relative", zIndex: 1 }}>
           <div className="titleRatingContainer">
             <div className="movieDetailTitle col-6">
               <h1>{movie.original_title}</h1>
@@ -35,7 +34,7 @@ export const Movie = () => {
             </div>
             <div className="movieDetailInfo col-6 col-lg-3">
               <div className="ratingContainer">
-                <span className="ratingStar">&#9733;</span> 
+                <span className="ratingStar">&#9733;</span>
                 <span className="ratingText">Rating: {movie.vote_average}</span>
               </div>
             </div>
@@ -50,36 +49,26 @@ export const Movie = () => {
                 title="YouTube video player" frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-              >
-
-              </iframe>
+              ></iframe>
             </div>
-
           </div>
         </div>
         <div className="movieDetailGenres">
           <div className="movieDetailGenre">
-            {genres.map((genre, index) => {
-              //console.log(genre)
-              return (
-                <button key={index} className="genreButton">
+            {genres.map((genre, index) => (
+              <button key={index} className="genreButton">
                 {genre}
               </button>
-              )
-            })}
-
+            ))}
           </div>
           <div className="movieOverview">
             <p className="fade-in-text">{movie.overview}</p>
           </div>
         </div>
       </div>
-      <div className="movieDetailReviews">
+      <div className="movieDetailReviews" style={{ position: "relative", zIndex: 1 }}>
         <Reviews movieId={movieId} key={movie.id} />
       </div>
-
-    </>
-
-  )
-
-}  
+    </div>
+  );
+}; 

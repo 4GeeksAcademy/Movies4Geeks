@@ -6,8 +6,8 @@
     padding: 16px 0;
 }
 .movieDetailTitle p {
-    margin: 10px; /* Remove the default margin */
-    font-size: 18px; /* Decrease font size for the release date */
+    margin: 10px; 
+    font-size: 18px; 
 }
 .movieDetailPoster{
     padding: 0;
@@ -67,3 +67,53 @@ margin-left: 0px;}
     font-weight: bold;
     margin: 0;
   }
+
+
+
+
+.blur-background {
+  padding: 0 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(50px);
+}
+
+
+
+
+
+  .blur-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(500px);
+    z-index: -1;
+  }
+  
+  .image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(50px);
+    z-index: -1;
+  }
+  

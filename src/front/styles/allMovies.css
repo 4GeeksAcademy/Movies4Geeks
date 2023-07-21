@@ -7,7 +7,7 @@
   .ratingStar {
     color:#3F97CD;
     margin-right: 5px;
-    font-size: 25px;
+    font-size: 30px;
   }
   
   .ratingText {
@@ -36,7 +36,7 @@
   
   .genreButton:hover {
     background: rgb(29, 28, 37);
-    box-shadow: 0 0 10px #3d86b1, 0 0 40px #3d86b1, 0 0 80px #3d86b1 ;
+    box-shadow: 0 0 10px #fafcfd, 0 0 40px #ffffff, 0 0 80px #ffffff ;
   }
   /*opcional para que aparezca gradualmente la sipnosis*/
 
