@@ -5,9 +5,15 @@
     color: white;
     padding: 16px 0;
 }
+.movieDetailTitle p {
+    margin: 10px; 
+    font-size: 18px; 
+}
 .movieDetailPoster{
     padding: 0;
     margin-bottom: 16px;
+    flex: 0 0 300px;
+    margin-right: 16px;
 }
 .movieDetailTrailer{
     padding: 0;
@@ -15,12 +21,16 @@
     /* margin: 0 16px; */
     /* position: relative;
     padding-bottom: 56.25%; */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .movieDetailInfo{
     color: white;
     padding-top: 16px;
-    background: #161616;
-    border: 1px solid #D4D4D4;
+   /* background: #161616;
+  /*  border: 1px solid #D4D4D4;*/
     border-radius: 5px;
     padding-bottom: 16px;
     margin-bottom: 16px;
@@ -29,19 +39,81 @@
     list-style: none;
 }
 .movieDetailGenre{
-    margin-left: 16px;
-}
+margin-left: 0px;}
+
 .movieTrailerIframe{
-    padding: 0 16px;
-    min-height: 330px;
+    
+    height: 100%;
+    width: 100%;
 }
 /* @media only screen and (max-width: 600px){
     .movieDetailTrailer
 } */
 
 .movieDetailMedia{
+
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
 }
 .movieOverview{
     padding: 16px 0 40px 0;
+    
 }
+.overviewText {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+
+
+
+.blur-background {
+  padding: 0 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(50px);
+}
+
+
+
+
+
+  .blur-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(500px);
+    z-index: -1;
+  }
+  
+  .image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(50px);
+    z-index: -1;
+  }
+  
