@@ -43,7 +43,7 @@ export const Navbar = () => {
           {token ? (
             <>
               <div className="dropdown-center ms-auto d-lg-none perfilLarge">
-                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="btn btn-secondary dropdown-toggle perfilLargeDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <ProfileButton nickname={nickname} />
                 </button>
                 <ul className="dropdown-menu dropdown-menu-dark dropdownMenu">
@@ -78,9 +78,10 @@ export const Navbar = () => {
             <Link to={"/allMovies"} className="nav-link text-light col-lg-2 linkAlign" href="#link1">
               Movies
             </Link>
-            <a className="nav-link text-light col-lg-2 linkAlign" href="#link2">
+            <Link to={"/aboutUs"} className="nav-link text-light col-lg-2 linkAlign" href="#link1">
               About Us
-            </a>
+            </Link>
+            
             {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0 links">
               <li className="nav-item">
                 <Link to={"/allMovies"} className="nav-link text-light" href="#link1">
@@ -96,7 +97,7 @@ export const Navbar = () => {
             </ul> */}
             {token ? (
               <div className="dropdown-center d-none d-lg-block perfilLarge col-lg-2">
-                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="btn btn-secondary dropdown-toggle perfilLargeDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <ProfileButton nickname={nickname} />
                 </button>
                 <ul className="dropdown-menu dropdown-menu-dark dropdownMenu">

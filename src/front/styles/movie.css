@@ -113,7 +113,7 @@ margin-left: 0px;}
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    filter: blur(50px);
+    filter: blur(50px) brightness(0.5);
     z-index: -1;
   }
   
