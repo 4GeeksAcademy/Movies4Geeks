@@ -6,10 +6,12 @@ import foto2 from "../../img/la-foto-javier.png";
 import foto3 from "../../img/johana-foto.png";
 
 
+
+
 export const AboutUs = () => {
   return (
   <div className="Container">
-    <h1 className="about-us-heading">ABOUT US</h1>
+    <h1 className="about-us-heading">Abaut Us... </h1>
     <div className="container-row">
     <div className="flip-card">
       <div className="flip-card-inner">
@@ -23,8 +25,8 @@ export const AboutUs = () => {
           <div className="back-footer">
             <h3>Ruben Garcia Gutierrez</h3>
             <p>
-              I am Ruben, I am 35 years old and currently I am dedicated to training myself as a full stack developer.
-              I am from Barcelona and I have high expectations for the future, aiming to grow and thrive in this vast world of web development.
+              I am Ruben, I am 35 years old from Barcelona Spain.I dedicated my entire professional life to the world of sales. 
+              However, a seemingly unimportant conversation ended up broadening my horizons to a field that would captivate me and make me strive to learn a little more every day.
             </p>
           </div>
         </div>
@@ -61,7 +63,7 @@ export const AboutUs = () => {
           </div>
           <div className="back-footer" style={{ textAlign: "center" }}>
             <h3>Johana Semeniuk</h3>
-            <p>I'm Johana, I'm 29 years old, and I've been living in Spain since I was a teenager. 
+            <p>I'm Johana, I'm 29 years old, and I've been living in Barcelona Spain since I was a teenager. 
               Currently, I'm attending this bootcamp, which is a completely unknown world to me. However, I can say that I find it very interesting. 
             </p>
           </div>
