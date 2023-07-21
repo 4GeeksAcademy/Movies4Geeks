@@ -16,7 +16,7 @@
     padding: 8px;
     list-style: none;
     margin: 0;
-    z-index: 1; /* Asegura que la lista de resultados se muestre por encima de otros elementos */
+    z-index: 5; /* Asegura que la lista de resultados se muestre por encima de otros elementos */
   }
   
   /* Estilos para cada elemento de la lista de resultados */
