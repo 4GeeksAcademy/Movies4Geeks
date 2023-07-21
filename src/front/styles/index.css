@@ -45,6 +45,10 @@ body{
     max-width: 300px;
     min-width: 150px;
 }
+.carousel-control-next, .carousel-control-prev{
+    width: auto;
+    padding: 16px;
+}
 
 
 

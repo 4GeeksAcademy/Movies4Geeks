@@ -5,11 +5,11 @@ import { Context } from "../store/appContext";
 export const Private = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  const [user, setUser] = useState(store.user && store.user);
-  const token = localStorage.getItem("token");
+  const [user, setUser] = useState(store.userName);
+  
 
   useEffect(() => {
-    actions.isAuthenticated(token);
+    actions.isAuthenticated(store.token);
   }, []);
   
   const signOut = () => {
@@ -17,10 +17,10 @@ export const Private = () => {
     navigate("/");
   };
 
-  if (store.storeToken && user) {
+  if (store.token) {
     return (
       <div className="container">
-        <h1>Welcome, {user.name}</h1>
+        <h1>Welcome, {store.userName}</h1>
         <button type="button" className="btn btn-dark" onClick={signOut}>
           Sign Out
         </button>
