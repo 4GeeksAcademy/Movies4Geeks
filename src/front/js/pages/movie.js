@@ -7,25 +7,24 @@ import { Reviews } from "../component/reviews";
 export const Movie = () => {
   const params = useParams();
   const { actions, store } = useContext(Context);
-  const posterPath = store.movie.poster_path;
+  const movieId = params.movieId;
 
   useEffect(() => {
-    actions.getMovie(params.movieId);
-    actions.getTrailer(params.movieId);
-    actions.getGenresById(params.movieId);
-  }, []);
-
+      actions.getMovie(params.movieId);
+      actions.getTrailer(params.movieId);
+      actions.getGenresById(params.movieId)
+  }, [movieId]);
   const movie = store.movie;
   const trailer = store.trailer;
   const genres = store.genresById;
-  const movieId = store.movie?.id;
-
-  if (!movieId) return null;
-
+  //console.log(store.movie);
+  //console.log(movieId)
+  
+  if(!movieId) return null
   return (
     <div className="container ">
       <div className="container-content blur-background">
-        <div className="image-background" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${posterPath})` }}></div>
+        <div className="image-background" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.poster_path})` }}></div>
         <div className="movieDetailHeader" style={{ position: "relative", zIndex: 1 }}>
           <div className="titleRatingContainer">
             <div className="movieDetailTitle col-6">
@@ -67,7 +66,7 @@ export const Movie = () => {
         </div>
       </div>
       <div className="movieDetailReviews" style={{ position: "relative", zIndex: 1 }}>
-        <Reviews movieId={movieId} key={movie.id} />
+        <Reviews movieId={movieId} title={movie.original_title} image={movie.poster_path} key={movie.id} />
       </div>
     </div>
   );

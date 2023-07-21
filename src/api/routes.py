@@ -8,6 +8,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 import requests
 from datetime import datetime, date, timedelta
 import time
+from sqlalchemy import or_
 
 api = Blueprint('api', __name__)
 ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MGYxMDkyNDZkNzUxYmJhYjNmMTQzMGNlYzNmYmU0NCIsInN1YiI6IjY0ODgxODY1ZDJiMjA5MDBjYTIxMTg2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RiM24dMvTMZi652gXFQnpguE7dT8yYex5ZsTaY3OjJw"
@@ -523,3 +524,16 @@ def get_comedy_movies():
     comedy_movies = Movie.query.join(Movie.genre_movie).filter(Genre.name == 'Comedy', Movie.vote_count > 7000).all()
     serialized_movies = [movie.serialize() for movie in comedy_movies]
     return jsonify(serialized_movies)
+
+
+@api.route('/search/<string:search_term>', methods=['GET'])
+def search_movies(search_term):
+    search_term = search_term.replace('_', ' ')  # Reemplaza '_' con espacio para búsquedas con múltiples palabras
+    search_words = search_term.split()
+    print(search_words)
+    conditions = [Movie.original_title.ilike(f'%{word}%') for word in search_words]
+    print(conditions)
+    movies = Movie.query.filter(or_(*conditions)).all()
+    print(movies)
+    data = [movie.serialize() for movie in movies]
+    return jsonify(data)
