@@ -1,5 +1,5 @@
 import React, { useState, useContext,useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/editUser.css"
 
@@ -15,6 +15,8 @@ export const EditUser = () => {
   const [nickname,setNickname]=useState(store.user?.nickname);
   const [password, setPassword]= useState(store.user?.password)
   const [confirmPassword, setConfirmPassword]= useState("")
+  const [isMessageSent, setMessageSent] = useState(false);
+  const navigate = useNavigate();
   
 
   const handleInputChange = (e) => {
@@ -39,19 +41,33 @@ export const EditUser = () => {
       nickname:nickname,
       birthday:birthday,
     }
+
+    
+  
   
     e.preventDefault()
     actions.editUser(user)
+
+    setTimeout(() => {
+      setMessageSent(true);
+      setTimeout(() => {
+        navigate("/userPage");
+      }, 2000);
+    }, 2000);
+  };
+
  
 
-  }
+  
+
+  
   
   return (
 
     <div className="container userPage-container">
       <div className="aside-user col-lg-3 col-12">
         <p className="fw-bold">{store.user?.name}</p>
-        <Link to="/" className="personal-aside-edit-user"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+        <Link to="/userPage" className="personal-aside-edit-user"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
           <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
         </svg>Personal information</Link>
         <Link to="/editUser" className="edit-user-active"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -65,7 +81,7 @@ export const EditUser = () => {
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
               <label for="userName" className="form-label">New name</label>
               <input type="text" className="form-control input-user" id="userName" 
-              onChange={e=>setName(e.target.value)} value={name} aria-describedby="emailHelp" />
+              onChange={e=>setName(e.target.value)} value={name}  />
             </div>
 
             <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
@@ -124,6 +140,15 @@ export const EditUser = () => {
 
             <button type="reset" className="btn cancel-user">Cancel</button>
             <button type="submit" className="btn submit-user">Submit</button>
+            {isMessageSent && (
+        <div className="success-message">
+          Edit has been succesfull! 
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+          <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+          <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+        </svg>
+        </div>
+      )}
           </div>
         </form>
       </div>

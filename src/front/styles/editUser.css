@@ -47,7 +47,8 @@
     border-radius: 15px;
     margin-top: 10px;
     padding: 15px;
-    color:#808B96
+    color:#808B96;
+    margin-bottom: 25px;
 }
 .edit-user-active:hover{
     color:#808B96;
