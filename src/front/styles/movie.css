@@ -1,0 +1,47 @@
+.movieDetailHeader{
+    padding: 24px 0;
+}
+.movieDetailTitle h1{
+    color: white;
+    padding: 16px 0;
+}
+.movieDetailPoster{
+    padding: 0;
+    margin-bottom: 16px;
+}
+.movieDetailTrailer{
+    padding: 0;
+    margin-bottom: 16px;
+    /* margin: 0 16px; */
+    /* position: relative;
+    padding-bottom: 56.25%; */
+}
+.movieDetailInfo{
+    color: white;
+    padding-top: 16px;
+    background: #161616;
+    border: 1px solid #D4D4D4;
+    border-radius: 5px;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+.movieDetailGenres{
+    list-style: none;
+}
+.movieDetailGenre{
+    margin-left: 16px;
+}
+.movieTrailerIframe{
+    padding: 0 16px;
+    min-height: 330px;
+}
+/* @media only screen and (max-width: 600px){
+    .movieDetailTrailer
+} */
+
+.movieDetailMedia{
+    display: flex;
+}
+.movieOverview{
+    padding: 16px 0 40px 0;
+}

@@ -6,18 +6,25 @@ import { CarouselComp } from "../component/carouselComp";
 import { PosterCarousel } from "../component/posterCarousel";
 import {Navbar} from "../component/navbar"
 import { Reviews } from "../component/reviews";
+import "../../styles/addReviewModal.css"
+
 
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="text-center ">
+		<div className="text-center container">
 			
 			<CarouselComp />
+
+			<div id="modal-root"></div>
 			
-			<PosterCarousel view="topRated"/>
-			<p>
+			<PosterCarousel view="topRated" title="Top Rated"/>
+			<PosterCarousel view="Action" title="Action"/>
+			<PosterCarousel view="Comedy" title="Comedy"/>
+			<PosterCarousel view="Horror" title="Horror"/>
+			{/* <p>
 				<img src={rigoImageUrl} />
 			</p>
 			<div className="alert alert-info">
@@ -29,7 +36,7 @@ export const Home = () => {
 				<a href="https://start.4geeksacademy.com/starters/react-flask">
 					Read documentation
 				</a>
-			</p>
+			</p> */}
 		</div>
 	);
 };

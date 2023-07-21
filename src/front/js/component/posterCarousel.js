@@ -2,15 +2,36 @@ import React, {useState, useEffect, useContext} from "react";
 import { Context } from "../store/appContext";
 import { CardPoster } from "./cardPoster";
 import "../../styles/carousel.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+
+import { createPortal } from "react-dom";
+import { TrailerModal } from "./trailerModal";
 
 export const PosterCarousel = (props) =>{
-  console.log(props.view)
+  //console.log(props.view)
   const view = props.view
   const { store, actions } = useContext(Context);
   const movies = store[view]
   const [currentIndex, setCurrentIndex] = useState(0);
   const [numVisibleCards, setNumVisibleCards] = useState(5);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [trailer, setTrailer] = useState("");
+
+  const openModal = (movieId) => {
+    
+    actions.getTrailer(movieId);
+    setIsModalOpen(true);
+};
+
+const closeModal = (e) => {
+    setIsModalOpen(false);
+    console.log("close")
+};
+
+  //console.log(movies)
+  
   useEffect(() => {
     updateVisibleCards();
     window.addEventListener('resize', updateVisibleCards);
@@ -56,46 +77,57 @@ export const PosterCarousel = (props) =>{
   };
 
   return (
-    <div id="carouselPoster" className="carousel slide carouselPoster" data-bs-ride={false}>
-      <div className={`carousel-inner visible-${numVisibleCards} carousel-content `}>
-        {movies.map((movie, index)=>{
-          const isActive =
-            (index >= currentIndex && index < currentIndex + numVisibleCards) ||
-            (currentIndex + numVisibleCards > movies.length &&
-            index < (currentIndex + numVisibleCards) % movies.length);
+    <>
+    <div className="carouselPosterContainer">
+      <div className="carouselPosterTitle">
+        <h1 >
+          {props.title}
+          <span className="carouselPosterTitleIcon">
+            <FontAwesomeIcon icon={faChevronRight} />
+          </span>
+        </h1>
 
-          const cardStyle = {
-            display: isActive ? 'block' : 'none',
-          };
-
-            return (
-              <div className={`carousel-item ${isActive ? 'active' : ''} carousel-card`} key={index} style={cardStyle}>
-                <CardPoster movie={movie} index={index} key={index}/>
-                  {/* <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} className="d-block w-100" alt="..."/>
-                  <div className="carouselBody ">
-                    <h5 className="">{movie.title} </h5>
-                    <div className="">
-                      <a href="#" className="btn btn-primary">Trailer</a>
-                    </div>
-                  </div> */}
-              </div>
-            );
-        })}
       </div>
-            <button className="carousel-control-prev carouselButtonPrevious" type="button" data-bs-target="#carouselPoster" data-bs-slide="prev" onClick={handlePrev}>
-              <div className="carouselButton">
-                <span className="carousel-control-prev-icon" style={{color: "blue"}} aria-hidden="true"></span>
-                <span className="visually-hidden">Previous</span>
-              </div>
-            </button>
-            <button className="carousel-control-next carouselButtonNext" type="button" data-bs-target="#carouselPoster" data-bs-slide="next" onClick={handleNext}>
-              <div className="carouselButton">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Next</span>
-              </div>
-            </button>
-        
+
+      <div id="carouselPoster" className="carousel slide carouselPoster" data-bs-ride={false}>
+        <div className={`carousel-inner visible-${numVisibleCards} carousel-content `}>
+          {movies.map((movie, index)=>{
+            const isActive =
+              (index >= currentIndex && index < currentIndex + numVisibleCards) ||
+              (currentIndex + numVisibleCards > movies.length &&
+              index < (currentIndex + numVisibleCards) % movies.length);
+
+            const cardStyle = {
+              display: isActive ? 'block' : 'none',
+            };
+
+              return (
+                <div className={`carousel-item ${isActive ? 'active' : ''} carousel-card`} key={index} style={cardStyle}>
+                  <CardPoster movie={movie} index={index} key={index} onTrailerButtonClick={openModal} />
+                </div>
+              );
+          })}
+          {isModalOpen && createPortal(
+                    <TrailerModal isOpen={isModalOpen} onClose={closeModal} trailer={store.trailer} key={store.trailer}/>,
+                    document.getElementById('modal-root')
+                )}
+        </div>
+              <button className="carousel-control-prev carouselButtonPrevious" type="button" data-bs-target="#carouselPoster" data-bs-slide="prev" onClick={handlePrev}>
+                <div className="carouselButton">
+                  <span className="carousel-control-prev-icon" style={{color: "blue"}} aria-hidden="true"></span>
+                  <span className="visually-hidden">Previous</span>
+                </div>
+              </button>
+              <button className="carousel-control-next carouselButtonNext" type="button" data-bs-target="#carouselPoster" data-bs-slide="next" onClick={handleNext}>
+                <div className="carouselButton">
+                  <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span className="visually-hidden">Next</span>
+                </div>
+              </button>
+          
+      </div>
     </div>
+    </>
         );
 };
 

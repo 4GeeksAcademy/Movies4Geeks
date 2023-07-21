@@ -1,0 +1,10 @@
+.helpfull{
+    display: flex;
+    
+}
+.helpfullCount{
+    margin: 0 8px;
+}
+.notHelpfull{
+    display: flex;
+}
