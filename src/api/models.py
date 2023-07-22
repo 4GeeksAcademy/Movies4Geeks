@@ -186,3 +186,23 @@ class Videos(db.Model):
             "type": self.type,
             "site": self.site,           
         }
+    
+
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(1000), nullable=False)
+    sender_name = db.Column(db.String(120), nullable=False)
+    email = db.Column(db.String(120), nullable=False) 
+   
+
+    def __repr__(self):
+        return f'<Message {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "content": self.content,
+            "sender_name": self.sender_name,
+            "email": self.email,  
+        }

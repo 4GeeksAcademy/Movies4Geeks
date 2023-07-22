@@ -1,17 +1,47 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Movie, Videos, Genre, Genre_Movie, Score, Review, Like
+from api.models import db, User, Movie, Videos, Genre, Genre_Movie, Score, Review, Like , Message
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 import requests
 from datetime import datetime, date, timedelta
 import time
+from api.models import Message
+
 from sqlalchemy import or_
 
 api = Blueprint('api', __name__)
 ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MGYxMDkyNDZkNzUxYmJhYjNmMTQzMGNlYzNmYmU0NCIsInN1YiI6IjY0ODgxODY1ZDJiMjA5MDBjYTIxMTg2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RiM24dMvTMZi652gXFQnpguE7dT8yYex5ZsTaY3OjJw"
+
+@api.route('/send_message', methods=['POST'])
+def send_message():
+    data = request.get_json()
+   # print(data)
+    sender_name = data.get("sender_name")
+    email = data.get("email")
+    content = data.get("content")
+
+    new_message = Message(sender_name=sender_name,  email=email, content=content) 
+    print(new_message) 
+    db.session.add(new_message)
+    db.session.commit()
+
+    return jsonify({'message': 'Mensaje enviado con exito!'})
+
+  
+
+
+@api.route('/get_messages', methods=['GET'])
+def get_messages():
+    messages = Message.query.all()
+    messages_serialized = [message.serialize() for message in messages]
+
+    return jsonify(messages_serialized)
+
+
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
