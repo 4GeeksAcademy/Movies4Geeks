@@ -27,6 +27,7 @@ export const Navbar = () => {
   };
   const logout = () => {
     actions.signOut();
+    navigate("/");
     navigate(0);
   }
 
@@ -108,7 +109,7 @@ export const Navbar = () => {
 
             ) : (
               <Link to="/login" style={{ textDecoration: "none" }} className="col-lg-2">
-                <button className="btn btn-dark d-none d-lg-block perfilLarge" >
+                <button className="btn btn-dark d-none d-lg-block perfilLarge loginButtonLarge" >
                   <ProfileButton label="Login" />
                 </button>
               </Link>

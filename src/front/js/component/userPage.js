@@ -13,7 +13,7 @@ export const UserPage = () => {
   };
 
 console.log(store?.userName)
-console.log(store?.nickname)
+console.log(store?.userLastName)
   return (
     <>
       <div className="container userPage-container">
@@ -31,11 +31,11 @@ console.log(store?.nickname)
           <form className="form-user">
             <div className="row">
               <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="userName" className="form-label">Name</label>
+                <label htmlFor="userName" className="form-label">Name</label>
                 <input type="text" className="form-control input-user" id="userName" value={store?.userName} disabled />
               </div>
               <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="userSurname" className="form-label">Surname</label>
+                <label htmlFor="userSurname" className="form-label">Surname</label>
                 <input type="text" className="form-control input-user" id="userSurname" value={store?.userLastName} disabled aria-describedby="emailHelp" />
               </div>
             </div>
@@ -43,12 +43,12 @@ console.log(store?.nickname)
 
             <div className="row">
               <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="exampleInputEmail1" className="form-label">Nickname</label>
+                <label htmlFor="exampleInputEmail1" className="form-label">Nickname</label>
                 <input type="text" className="form-control input-user" id="exampleInputEmail1" disabled value={store?.nickname} />
 
               </div>
               <div className="mb-3 col-lg-6 col-md-6 col-sm-12">
-                <label for="birthday" className="form-label">Birthday</label>
+                <label htmlFor="birthday" className="form-label">Birthday</label>
                 <input type="date" className="form-control input-user" id="birthday" value={store?.userBirthday} />
               </div>
             </div>

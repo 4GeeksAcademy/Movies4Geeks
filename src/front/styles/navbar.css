@@ -109,5 +109,8 @@
 .dropdown-menu{
     min-width: 6rem;
 }
+.loginButtonLarge{
+    margin-left: auto !important;
+}
 
 
