@@ -1,0 +1,55 @@
+.form-user{
+    width: 80%;
+    margin: 0 auto;
+    
+    padding: 15px;
+    color: #808B96;
+    border-radius: 10px
+}
+.button-user{
+    display: flex;
+    justify-content: center;
+}
+.button-user button{
+    margin-right: 15px;
+}
+.cancel-user{
+    background-color: white;
+    color: black;
+}
+.submit-user{
+    background-color: white;
+    color: black;
+
+}
+.submit-user :hover{
+    background-color: red;
+}
+.personal-aside-edit-user{
+    background-color: inherit;
+    color: #808B96;
+    margin-top: 5%;
+    padding: 15px;
+    border-radius: 15px;
+    text-decoration: none;
+    
+
+}
+.personal-aside-edit-user:hover{
+    background-color:#AED6F1 ;
+    color: #808B96;
+
+}
+.edit-user-active{
+    background-color: #FCF3CF;
+    color: #808B96;
+    text-decoration: none;
+    border-radius: 15px;
+    margin-top: 10px;
+    padding: 15px;
+    color:#808B96;
+    margin-bottom: 25px;
+}
+.edit-user-active:hover{
+    color:#808B96;
+}

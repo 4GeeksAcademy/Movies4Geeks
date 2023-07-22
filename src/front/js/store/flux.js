@@ -40,6 +40,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			auth: false,
 			token: null,
 			userName: null,
+			userLastName: null,
+			userBirthday: null,
 			email: null,
 			nickname: null,
 			userId: null,
@@ -217,12 +219,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 								localStorage.setItem("email", data.user.email);
 								localStorage.setItem("nickname", data.user.nickname)
 								localStorage.setItem("userId", data.user.id)
+								localStorage.setItem("userLastName", data.user.last_name)
+								localStorage.setItem("userBirthday", data.user.birthday)
+
 								setStore({ userName: data.user.name });
 								setStore({ email: data.user.email });
 								setStore({ token: data.token });
 								setStore({ auth: true });
 								setStore({ nickname: data.user.nickname });
 								setStore({ userId: data.user.id });
+								setStore({ userLastName: data.user.last_name });
+								setStore({ userBirthday: data.user.birthday });
 								resolve(true);
 							} else {
 								console.log("Password or mail incorrect");
@@ -239,6 +246,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				localStorage.removeItem("token");
 				setStore({ auth: false })
 			},
+			editUser:(user)=>{
+				console.log(user)
+				const config = {
+					method: 'PUT',
+					body: JSON.stringify(user),
+					headers: {
+					  "content-Type": "application/json",
+					  "Authorization":"Bearer " + localStorage.getItem("token")
+				
+					}
+				  }
+
+				fetch(process.env.BACKEND_URL + "/api/editUser",config)
+				.then((response) => response.json())
+				.then((response) => {
+				  
+				  console.log(response)
+				})
+			},
 			updateToken: () => {
 				if (localStorage.getItem("token")) {
 					setStore({ token: localStorage.getItem("token") })
@@ -246,6 +272,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ email: localStorage.getItem("email") })
 					setStore({ nickname: localStorage.getItem("nickname") })
 					setStore({ userId: localStorage.getItem("userId") })
+					setStore({ userLastName: localStorage.getItem("userLastName") })
+					setStore({ userBirthday: localStorage.getItem("userBirthday") })
 				}
 			},
 			createReview: async (score, title, text, movieId) => {
@@ -309,6 +337,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		}
 	}
 };
+
 
 
 export default getState;

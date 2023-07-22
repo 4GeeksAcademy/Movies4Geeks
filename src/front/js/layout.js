@@ -17,6 +17,8 @@ import { MovieProfile } from "./component/movieProfile";
 import { AboutUs } from "./pages/aboutUs";
 import { AllMovies } from "./pages/allMovies";
 import { Movie } from "./pages/movie";
+import { UserPage } from "./component/userPage";
+import { EditUser } from "./component/editUser";
 
 //create your first component
 const Layout = () => {
@@ -46,6 +48,9 @@ const Layout = () => {
 							path="/allMovies/:movieId"
 							element={<Movie />}
 						/>
+                         <Route element={<UserPage />} path="/userPage" />
+                         <Route element={<EditUser />} path="/editUser" />
+
                     </Routes>
                     
                     <Footer />

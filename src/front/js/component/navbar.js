@@ -1,8 +1,12 @@
+
+
 import React, { useState, useContext } from "react";
+
 import "../../styles/navbar.css"
 import logo from "../../img/logo_transparente.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
+import { UserPage } from "./userPage";
 import { Link } from "react-router-dom";
 import { ProfileButton } from "./profileButton";
 import { Context } from "../store/appContext";
@@ -89,7 +93,7 @@ export const Navbar = () => {
                 <ul className="dropdown-menu dropdown-menu-dark dropdownMenu perfilOptionsLarge">
                   <li>
                     <Link
-                      to={`/perfil/${userId}`}
+                      to={`/userPage`}
                       style={{
                         textDecoration: "none",
                         color: "white",
