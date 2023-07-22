@@ -3,13 +3,13 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
+  margin-top: 64px;
 }
-
 .contact-button {
   font-size: 30px;
-  color: #3d86b1;
+  color: #3D86B1;
   border: none;
-  background: linear-gradient(155deg, #3d86b1 50%, #3d86b1 50%);
+  background: linear-gradient(155deg, #3D86B1 50%, #3D86B1 50%);
   background-size: 400% 400%;
   background-position: 0 0;
   padding: 2;
@@ -20,12 +20,10 @@ footer {
   cursor: pointer;
   transform: scale(0.8);
 }
-
 .contact-button:hover {
   background-position: 100% 100%;
   transform: scale(1.1);
 }
-
 .contact-button::after {
   position: absolute;
   content: "";
@@ -38,13 +36,11 @@ footer {
   transform: rotate(155deg) scale(0);
   transition: 0.6s ease-out;
 }
-
 .contact-button:hover::after {
   background-color: rgb(0, 0, 0);
   transform: rotate(0) scale(1);
   border-radius: 50%;
 }
-
 .contact-button .tooltip {
   position: absolute;
   top: 100%;
@@ -60,25 +56,20 @@ footer {
   transition: 0.4s;
   filter: opacity(0);
 }
-
 .contact-button:hover .tooltip {
   transform: translateY(20px);
   filter: opacity(1);
 }
-
 .contact-button:hover::after {
-  background: linear-gradient(155deg, #3d86b1 50%, #3d86b1 50%);
+  background: linear-gradient(155deg, #3D86B1 50%, #3D86B1 50%);
 }
-
 .contact-button:hover .tooltip {
-  background: #3d86b1;
+  background: #3D86B1;
   box-sizing: border-box;
 }
-
 .contact-button:hover span {
   color: #fff;
 }
-
 .social-media-icons {
   margin-top: 2rem;
   display: flex;
@@ -86,12 +77,10 @@ footer {
   align-items: center;
   justify-content: center;
 }
-
 .social-media-icons a i {
   width: 70px;
   height: 70px;
 }
-
 i {
   font-size: 30px;
   background: linear-gradient(135deg, rgb(0, 0, 0) 50%, rgb(255, 255, 255) 50%);
@@ -105,12 +94,11 @@ i {
   color: rgba(255, 0, 0, 0);
   cursor: pointer;
 }
-
 .tooltip {
   position: absolute;
   top: 100%;
-  left: -10px;
-  background: #3d86b1;
+  /* left: -10px; */
+  background: #3D86B1;
   font-size: 14px;
   padding: 10px;
   border-radius: 30px;
@@ -121,33 +109,27 @@ i {
   transition: .4s;
   filter: opacity(0);
 }
-
 .fa-brands.fa-instagram:hover::after {
-  background: linear-gradient(225deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+  background: linear-gradient(225deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
 }
-
 i:nth-child(3):hover:after {
-  background: linear-gradient(45deg, #3d86b1 #00ACEE, #36D8FF, #003bdf, #0087bc);
+  background: linear-gradient(45deg, #3D86B1 #00ACEE, #36D8FF, #003BDF, #0087BC);
 }
-
 i:nth-child(4):hover:after {
-  background: linear-gradient(45deg, #3d86b1, #0022ff, #00b7ff);
+  background: linear-gradient(45deg, #3D86B1, #0022FF, #00B7FF);
 }
-
 i:hover .tooltip {
   transform: translateY(20px);
   filter: opacity(1);
 }
-
 i:hover::after {
   background-color: rgb(0, 0, 0);
   transform: rotate(0);
   border-radius: 50%;
   cursor: pointer;
   display: block;
-  background: linear-gradient(120deg, #3d86b1, #0084e9);
+  background: linear-gradient(120deg, #3D86B1, #0084E9);
 }
-
 i::after {
   position: absolute;
   content: "";
@@ -160,16 +142,33 @@ i::after {
   transform: rotate(135deg) scale(.85);
   transition: .6s ease-out;
 }
-
 i:hover {
   background-position: 100% 100%;
 }
-
 .made-with-love {
-    margin-top: 20px; 
+    margin-top: 20px;
     text-align: center;
   }
   .copyright{
-    margin-top: 20px; 
+    margin-top: 20px;
     text-align: center;
   }
+  .social-media-icons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+    .social-media-icons {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .social-media-icons a i {
+      width: 60px;
+      height: 60px;
+      font-size: 20px;
+    }
+  }
+  

@@ -10,8 +10,8 @@ import foto3 from "../../img/johana-foto.png";
 
 export const AboutUs = () => {
   return (
-  <div className="Container">
-    <h1 className="about-us-heading">Abaut Us... </h1>
+  <div className="container">
+    <h1 className="about-us-heading">About Us... </h1>
     <div className="container-row">
     <div className="flip-card">
       <div className="flip-card-inner">

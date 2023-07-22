@@ -11,6 +11,7 @@ from datetime import datetime, date, timedelta
 import time
 from api.models import Message
 
+from sqlalchemy import or_
 
 api = Blueprint('api', __name__)
 ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MGYxMDkyNDZkNzUxYmJhYjNmMTQzMGNlYzNmYmU0NCIsInN1YiI6IjY0ODgxODY1ZDJiMjA5MDBjYTIxMTg2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RiM24dMvTMZi652gXFQnpguE7dT8yYex5ZsTaY3OjJw"
@@ -39,21 +40,6 @@ def get_messages():
     messages_serialized = [message.serialize() for message in messages]
 
     return jsonify(messages_serialized)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -508,6 +494,28 @@ def get_user_info():
     
     return jsonify(message="Welcome, {}".format(user.name)), 200
 
+@api.route("/editUser",methods=["PUT"])
+@jwt_required()
+def editUser():
+    id=get_jwt_identity()
+    print(id)
+    data = request.json
+    print(data)
+    user=User.query.filter_by(id=id).first()
+   
+    user.email=data["email"],
+    user.password=data["password"],
+    user.name=data["email"],
+    user.last_name=data["last_name"],
+    user.nickname=data["nickname"],
+    user.birthday=data["birthday"],
+    db.session.commit()
+    return jsonify({"Msg":"Usuario editado satisfactoriamente"})
+
+       
+    
+
+
 
 @api.errorhandler(APIException)
 def handle_api_exception(error):
@@ -568,3 +576,16 @@ def get_comedy_movies():
     comedy_movies = Movie.query.join(Movie.genre_movie).filter(Genre.name == 'Comedy', Movie.vote_count > 7000).all()
     serialized_movies = [movie.serialize() for movie in comedy_movies]
     return jsonify(serialized_movies)
+
+
+@api.route('/search/<string:search_term>', methods=['GET'])
+def search_movies(search_term):
+    search_term = search_term.replace('_', ' ')  # Reemplaza '_' con espacio para búsquedas con múltiples palabras
+    search_words = search_term.split()
+    print(search_words)
+    conditions = [Movie.original_title.ilike(f'%{word}%') for word in search_words]
+    print(conditions)
+    movies = Movie.query.filter(or_(*conditions)).all()
+    print(movies)
+    data = [movie.serialize() for movie in movies]
+    return jsonify(data)
