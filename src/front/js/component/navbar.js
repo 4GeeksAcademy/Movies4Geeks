@@ -46,7 +46,7 @@ export const Navbar = () => {
                 <button className="btn btn-secondary dropdown-toggle perfilLargeDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <ProfileButton nickname={nickname} />
                 </button>
-                <ul className="dropdown-menu dropdown-menu-dark dropdownMenu">
+                <ul className="dropdown-menu dropdown-menu-dark dropdownMenu perfilOptionsShort">
                   <li>
                     <Link
                       to={`/perfil/${userId}`}
@@ -58,7 +58,7 @@ export const Navbar = () => {
                       Profile
                     </Link>
                   </li>
-                  <li><a className="dropdown-item" onClick={logout} href="#">logout</a></li>
+                  <li><a className="dropdown-item" onClick={logout} href="#">Logout</a></li>
                 </ul>
               </div>
 
@@ -72,7 +72,7 @@ export const Navbar = () => {
           )}
           <div className={`collapse navbar-collapse row ${expanded ? 'show' : ''}`}>
             <div className="col-lg-6">
-            <Search />
+              <Search />
 
             </div>
             <Link to={"/allMovies"} className="nav-link text-light col-lg-2 linkAlign" href="#link1">
@@ -81,26 +81,12 @@ export const Navbar = () => {
             <Link to={"/aboutUs"} className="nav-link text-light col-lg-2 linkAlign" href="#link1">
               About Us
             </Link>
-            
-            {/* <ul className="navbar-nav me-auto mb-2 mb-lg-0 links">
-              <li className="nav-item">
-                <Link to={"/allMovies"} className="nav-link text-light" href="#link1">
-                  Movies
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-light" href="#link2">
-                  About Us
-                </a>
-              </li>
-              
-            </ul> */}
             {token ? (
               <div className="dropdown-center d-none d-lg-block perfilLarge col-lg-2">
                 <button className="btn btn-secondary dropdown-toggle perfilLargeDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <ProfileButton nickname={nickname} />
                 </button>
-                <ul className="dropdown-menu dropdown-menu-dark dropdownMenu">
+                <ul className="dropdown-menu dropdown-menu-dark dropdownMenu perfilOptionsLarge">
                   <li>
                     <Link
                       to={`/perfil/${userId}`}
@@ -112,7 +98,7 @@ export const Navbar = () => {
                       Profile
                     </Link>
                   </li>
-                  <li><a className="dropdown-item" onClick={logout} href="#">logout</a></li>
+                  <li><a className="dropdown-item" onClick={logout} href="#">Logout</a></li>
                 </ul>
               </div>
 

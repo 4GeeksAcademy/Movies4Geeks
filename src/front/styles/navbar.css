@@ -41,7 +41,7 @@
 }
 .dropdown-menu[data-bs-popper] {
     top: 100%;
-    right: 8px !important;
+    right: 8px;
     left: auto !important;
     margin-top: 0.125rem;
 }
@@ -98,6 +98,16 @@
 }
 .perfilLargeDropdown{
     margin-left: auto;
+}
+
+.perfilOptionsShort{
+    right: 0 !important;
+}
+.perfilOptionsLarge{
+    right: 8px !important;
+}
+.dropdown-menu{
+    min-width: 6rem;
 }
 
 
