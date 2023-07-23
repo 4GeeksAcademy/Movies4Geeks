@@ -54,7 +54,7 @@ export const Navbar = () => {
                 <ul className="dropdown-menu dropdown-menu-dark dropdownMenu perfilOptionsShort">
                   <li>
                     <Link
-                      to={`/perfil/${userId}`}
+                      to={`/userPage`}
                       style={{
                         textDecoration: "none",
                         color: "white",
