@@ -503,12 +503,17 @@ def editUser():
     print(data)
     user=User.query.filter_by(id=id).first()
    
-    user.email=data["email"],
-    user.password=data["password"],
-    user.name=data["email"],
-    user.last_name=data["last_name"],
-    user.nickname=data["nickname"],
-    user.birthday=data["birthday"],
+    user.name = data.get('name', user.name)
+    user.last_name = data.get('last_name', user.last_name)
+    user.email = data.get('email', user.email)
+    user.nickname = data.get('nickname', user.nickname)
+    user.birthday = data.get('birthday', user.birthday)  
+    
+    
+    new_password = data.get('password')
+    if new_password:
+        user.password = new_password
+        
     db.session.commit()
     return jsonify({"Msg":"Usuario editado satisfactoriamente"})
 
