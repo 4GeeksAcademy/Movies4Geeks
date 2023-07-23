@@ -10,8 +10,10 @@ import requests
 from datetime import datetime, date, timedelta
 import time
 from api.models import Message
-
+import bcrypt
 from sqlalchemy import or_
+
+salt = bcrypt.gensalt()
 
 api = Blueprint('api', __name__)
 ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MGYxMDkyNDZkNzUxYmJhYjNmMTQzMGNlYzNmYmU0NCIsInN1YiI6IjY0ODgxODY1ZDJiMjA5MDBjYTIxMTg2YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RiM24dMvTMZi652gXFQnpguE7dT8yYex5ZsTaY3OjJw"
@@ -402,6 +404,7 @@ def register():
     nickname = data.get("nickname")
     birthday = data.get("birthday")
     avatar = data.get("avatar")
+    password_encriptada = bcrypt.hashpw(password.encode('utf-8'), salt)
 
     if not email or not password:
         return jsonify({"message": "Email and password are required"})
@@ -422,10 +425,10 @@ def register():
             "message": "<p className='text-black'> Password must meet the following requirements:</p>",
             "requirements": requirements
         })
-
+    
     new_user = User(
         email=email,
-        password=password,
+        password=password_encriptada.decode('utf-8'),
         name=name,
         last_name=last_name,
         nickname=nickname,
@@ -445,6 +448,7 @@ def login():
     #print(data)
     email = data.get("email")
     password = data.get("password")
+    
 
     if not email or not password:
         return jsonify({"message": "Email and password are required"}), 400
@@ -456,7 +460,8 @@ def login():
     token = create_access_token(identity=user.id)
     #print(token)
 
-    if user.password != password:
+    
+    if not bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
         return jsonify({"message": "Password incorrect"}), 401
 
     token = create_access_token(identity=user.id)
