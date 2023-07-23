@@ -18,19 +18,23 @@ export const EditUser = () => {
   const [isMessageSent, setMessageSent] = useState(false);
   const navigate = useNavigate();
 
-  console.log(store.userBirthday)
+ 
 
   const formatDate = (dateString) => {
     if (!dateString) {
       return ""; // Devuelve una cadena vacía si dateString es null o undefined
     }
+    const dateToFormat = new Date(dateString)
+    const month = (dateToFormat.getMonth() + 1).toString().padStart(2, "0")
+    const formattedDate = `${dateToFormat.getFullYear()}-${month}-${dateToFormat.getDate()}`;
 
-    const [day, month, year] = dateString.split("/");
-    const formattedDate = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     return formattedDate;
   };
 
   const [formattedBirthday, setFormattedBirthday] = useState(formatDate(store?.userBirthday));
+  useEffect(() => {
+    setFormattedBirthday(formatDate(store.userBirthday))
+  }, [store.userBirthday]);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
