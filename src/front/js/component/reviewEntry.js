@@ -12,7 +12,7 @@ export const ReviewEntry = ({ review, onLikeChange }) => {
     }
     const shortText = words.slice(0, wordsLimit).join(' ') + "...";
     const text = showAllText ? review.text : shortText;
-    
+
 
     return (
         <div className="reviewContainer" >
@@ -20,6 +20,8 @@ export const ReviewEntry = ({ review, onLikeChange }) => {
                 <h3 className="reviewTitle">
                     {review.title}
                 </h3>
+                <i className="fa-solid fa-user"></i>
+                <p className="reviewUserName">User: {review.user_name}</p>
                 <p className="reviewText" dangerouslySetInnerHTML={{ __html: text }}>
 
                     {/* {text} */}

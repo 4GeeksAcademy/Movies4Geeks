@@ -364,6 +364,10 @@ def get_reviews_by_id(movie_id):
             if like:
                 review_data["is_voted"] = True
                 review_data["vote_type"] = like.like
+
+            user = User.query.get(review.user_id)
+            if user:
+                review_data["user_name"] = user.name
             
             data.append(review_data)
     else:
