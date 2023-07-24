@@ -118,8 +118,8 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     movie_id = db.Column(db.Integer, db.ForeignKey('movie.id'))
-    title = db.Column(db.String(120), unique=False, nullable=False)
-    text = db.Column(db.String(1200), unique=False, nullable=False)
+    title = db.Column(db.String(200), unique=False, nullable=False)
+    text = db.Column(db.Text, unique=False, nullable=False)
     #adding likes
     likes = db.relationship('Like', backref='review', lazy=True)
 
@@ -129,13 +129,13 @@ class Review(db.Model):
         return f'<Review {self.title}>'
 
     def serialize(self):
-        
+        text_with_br = self.text.replace('\n', '<br>')
         return {
             "id": self.id,
             "user_id": self.user_id,
             "movie_id": self.movie_id,
             "title": self.title,
-            "text": self.text,
+            "text": text_with_br,
             #adding likes
             "likes": len([like.id for like in self.likes if like.like==1]),
             "dislike": len([like.id for like in self.likes if like.like==0]),
