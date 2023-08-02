@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState, useLayoutEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../../styles/login.css";
 import { Context } from "../store/appContext";
 
@@ -9,7 +9,13 @@ export const Login = () => {
   const [alertMessage, setAlertMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const { store, actions } = useContext(Context);
+
+  useLayoutEffect(() => {
+    // Ajustar el scroll al inicio del componente cada vez que se monte
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleRegisterClick = () => {
     setShowLoginForm(false);
@@ -26,8 +32,18 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    if (store.auth) navigate("/");
-  }, [store.auth]);
+    if (store.auth) {
+      const redirectPath = localStorage.getItem("redirectPath");
+      if (redirectPath) {
+        // Si hay una ruta almacenada en localStorage, redirige al usuario a esa ruta después del inicio de sesión
+        localStorage.removeItem("redirectPath"); // Limpiar el localStorage
+        navigate(redirectPath);
+      } else {
+        // Si no hay una ruta almacenada en localStorage, redirige al usuario a la página principal
+        navigate("/");
+      }
+    }
+  }, [store.auth, navigate]);
 
   const handleLogin = async (event) => {
     event.preventDefault();

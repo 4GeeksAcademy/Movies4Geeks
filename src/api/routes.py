@@ -502,25 +502,32 @@ def get_user_info():
 @api.route("/editUser",methods=["PUT"])
 @jwt_required()
 def editUser():
-    id=get_jwt_identity()
+    id = get_jwt_identity()
     print(id)
     data = request.json
     print(data)
-    user=User.query.filter_by(id=id).first()
-   
+    user = User.query.filter_by(id=id).first()
+
+    current_password = data.get('currentPassword')
+    if not current_password:
+        return jsonify({"error": "Debes proporcionar la contraseña actual"}), 400
+
+    if not bcrypt.checkpw(current_password.encode('utf-8'), user.password.encode('utf-8')):
+        return jsonify({"error": "La contraseña actual es incorrecta"}), 400
+
     user.name = data.get('name', user.name)
     user.last_name = data.get('last_name', user.last_name)
     user.email = data.get('email', user.email)
     user.nickname = data.get('nickname', user.nickname)
-    user.birthday = data.get('birthday', user.birthday)  
-    
-    
-    new_password = data.get('password')
-    if new_password:
-        user.password = new_password
-        
+    user.birthday = data.get('birthday', user.birthday)
+
+    new_password = data.get('newPassword')
+    if new_password is not None and new_password.strip() != "":
+        password_encriptada = bcrypt.hashpw(new_password.encode('utf-8'), salt)
+        user.password = password_encriptada.decode('utf-8')
+
     db.session.commit()
-    return jsonify({"Msg":"Usuario editado satisfactoriamente"})
+    return jsonify({"Msg": "Usuario editado satisfactoriamente"})
 
        
     
