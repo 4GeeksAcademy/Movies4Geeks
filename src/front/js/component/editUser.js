@@ -10,15 +10,17 @@ export const EditUser = () => {
   const { store, actions } = useContext(Context);
   const [name, setName] = useState(store.userName);
   const [last_name, setLast_name] = useState(store.userLastName);
-  const [email, setEmail] = useState(store.email);
+  const [email, setEmail] = useState(store.email || "");
   const [birthday, setBirthday] = useState(store?.userBirthday);
   const [nickname, setNickname] = useState(store.nickname);
+  const [currentPassword, setCurrentPassword] = useState("")
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("")
   const [isMessageSent, setMessageSent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
- 
+
 
   const formatDate = (dateString) => {
     if (!dateString) {
@@ -50,38 +52,57 @@ export const EditUser = () => {
     setPasswordMatch(newEmail === confirmEmail);
   };
   const editContact = (e) => {
+    e.preventDefault();
     const user = {
       name: name,
       last_name: last_name,
       email: email,
       nickname: nickname,
       birthday: birthday,
+      currentPassword: currentPassword,
     };
-
+  
+    // Validar la nueva contraseña solo si el campo password no está vacío
     if (password.trim() !== "") {
-      user.password = password;
+      if (password.length < 8 ||
+          !/[A-Z]/.test(password) ||
+          !/[a-z]/.test(password) ||
+          !/\d/.test(password)) {
+        setErrorMessage(`La nueva contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial`);
+        return;
+      }
+      user.newPassword = password;
     }
+  
+    if (!currentPassword.trim()) {
+      setErrorMessage("Por favor, ingresa la contraseña actual.");
+      return;
+    }
+    
+    actions.editUser(user)
+      .then((response) => {
+        console.log(user);
+        if (response && response.Msg === 'Usuario editado satisfactoriamente') {
+          setMessageSent(true);
+          setTimeout(() => {
+            actions.signOut();
+            navigate("/login");
+            navigate(0);
+          }, 2000);
 
-
-
-
-    e.preventDefault()
-    actions.editUser(user);
-    actions.signOut();
-
-    setTimeout(() => {
-      setMessageSent(true);
-      setTimeout(() => {
-
-        navigate("/login");
-        navigate(0);
-      }, 2000);
-    }, 2000);
+        } else if (response && response.error) {
+          setErrorMessage(response.error);
+        } else {
+          // Otros errores que no sean 403 ni mensajes de error específicos
+          setErrorMessage("Error al editar el usuario. Por favor, intenta de nuevo más tarde.");
+        }
+      })
+      .catch((error) => {
+        // Aquí puedes manejar errores que ocurran durante la solicitud
+        console.log("Error en la solicitud al backend:", error);
+        setErrorMessage("Error en la solicitud al backend. Por favor, intenta de nuevo más tarde.");
+      });
   };
-
-
-
-
 
 
 
@@ -130,20 +151,21 @@ export const EditUser = () => {
             </div>
             <div className="row">
               <div className="mb-3 col-lg-6 ">
-                <label htmlFor="password" className="form-label">New password</label>
-                <input type="password" onChange={e => setPassword(e.target.value)} className="form-control input-user" id="password" value={password} />
+                <label htmlFor="actualPassword" className="form-label">Current Password</label>
+                <input type="password" onChange={e => setCurrentPassword(e.target.value)} className="form-control input-user" id="currentPassword" value={currentPassword} />
               </div>
               <div className="mb-3 col-lg-6 ">
-                <label htmlFor="confirmPassword" className="form-label">Confirm new password</label>
-                <input type="password" onChange={e => setConfirmPassword(e.target.value)} className="form-control input-user" id="confirmPassword" />
-
-
-
+                <label htmlFor="password" className="form-label">New password</label>
+                <input type="password" onChange={e => setPassword(e.target.value)} className="form-control input-user" id="password" value={password} />
               </div>
             </div>
 
             <div className="row">
-              <div className="mb-3 col-12">
+              <div className="mb-3 col-lg-6 ">
+                <label htmlFor="confirmPassword" className="form-label">Confirm new password</label>
+                <input type="password" onChange={e => setConfirmPassword(e.target.value)} className="form-control input-user" id="confirmPassword" />
+              </div>
+              <div className="mb-3 col-lg-6">
                 <label htmlFor="newemail" className="form-label">New email</label>
                 <input type="email" className="form-control input-user" id="newemail"
                   placeholder="a@a.com"
@@ -157,6 +179,11 @@ export const EditUser = () => {
                   {!emailMatch && <div className="invalid-feedback">Emails do not match.</div>}
               </div> */}
             </div>
+            {errorMessage && (
+              <div className="alert alert-danger col-12" role="alert">
+                {errorMessage}
+              </div>
+            )}
             <div className="button-user">
               <button type="reset" className="btn cancel-user">Cancel</button>
               <button type="submit" className="btn submit-user">Submit</button>

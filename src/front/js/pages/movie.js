@@ -8,6 +8,7 @@ export const Movie = () => {
   const params = useParams();
   const { actions, store } = useContext(Context);
   const movieId = params.movieId;
+  const userId = store.userId;
 
   useEffect(() => {
       actions.getMovie(params.movieId);
@@ -17,14 +18,14 @@ export const Movie = () => {
   const movie = store.movie;
   const trailer = store.trailer;
   const genres = store.genresById;
-  //console.log(store.movie);
+  //console.log(movie.poster_path);
   //console.log(movieId)
   
   if(!movieId) return null
   return (
     <div className="container ">
       <div className="container-content blur-background">
-        <div className="image-background" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.poster_path})` }}></div>
+        <div className="image-background" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie?.poster_path})` }}></div>
         <div className="movieDetailHeader" style={{ position: "relative", zIndex: 1 }}>
           <div className="titleRatingContainer">
             <div className="movieDetailTitle col-6">
@@ -40,7 +41,7 @@ export const Movie = () => {
           </div>
           <div className="movieDetailMedia row">
             <div className="movieDetailPoster col-md-4 col-lg-2 d-none d-md-block" id="movieDetailTrailer">
-              <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} className="d-block w-100" alt="..." />
+              <img src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`} className="d-block w-100" alt="..." />
             </div>
             <div className="movieDetailTrailer col-md-8 col-lg-7">
               <iframe className="movieTrailerIframe" key={movie.id}
@@ -66,7 +67,13 @@ export const Movie = () => {
         </div>
       </div>
       <div className="movieDetailReviews" style={{ position: "relative", zIndex: 1 }}>
-        <Reviews movieId={movieId} title={movie.original_title} image={movie.poster_path} key={movie.id} />
+        <Reviews 
+          movieId={movieId} 
+          title={movie.original_title} 
+          image={movie.poster_path} 
+          key={movie.id} 
+          userId={userId} 
+        />
       </div>
     </div>
   );

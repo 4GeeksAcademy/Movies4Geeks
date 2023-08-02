@@ -135,7 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			getTrailer: async (movieId) => {
-				console.log(movieId)
+				//console.log(movieId)
 				try {
 					const resp = await fetch(`${process.env.BACKEND_URL}/api/all_movies/trailer/${movieId}`)
 					const data = await resp.json()
@@ -168,14 +168,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const resp = await fetch(`${process.env.BACKEND_URL}/api/reviews/${movieId}`, options)
 					const data = await resp.json()
-					console.log(data)
+					//console.log(data)
 					setStore({ reviews: data.results ?? [] }) //see with marcos when the token is expired how to prevent error
 				} catch (error) {
 					console.log("Error", error)
 				}
 			},
 			isAuthenticated: (token) => {
-				console.log(token);
+				//console.log(token);
 
 
 				const options = {
@@ -196,7 +196,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					.then(response => {
-						console.log(response)
+						//console.log(response)
 						setStore({ storeToken: true });
 					})
 					.catch(error => console.log('error', error));
@@ -212,7 +212,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 						.then((response) => response.json())
 						.then((data) => {
-							console.log(data);
+							//console.log(data);
 							if (data.token) {
 								localStorage.setItem("token", data.token);
 								localStorage.setItem("userName", data.user.name);
@@ -232,7 +232,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								setStore({ userBirthday: data.user.birthday });
 								resolve(true);
 							} else {
-								console.log("Password or mail incorrect");
+								//console.log("Password or mail incorrect");
 								resolve(false);
 							}
 						})
@@ -247,7 +247,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ auth: false })
 			},
 			editUser:(user)=>{
-				console.log(user)
+				//console.log(user)
 				const config = {
 					method: 'PUT',
 					body: JSON.stringify(user),
@@ -258,11 +258,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				  }
 
-				fetch(process.env.BACKEND_URL + "/api/editUser",config)
+				return fetch(process.env.BACKEND_URL + "/api/editUser",config)
 				.then((response) => response.json())
 				.then((response) => {
-				  
-				  console.log(response)
+				  //console.log(response)
+				  return(response)
 				})
 			},
 			updateToken: () => {
@@ -296,11 +296,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const resp = await fetch(`${process.env.BACKEND_URL}/api/review`, options)
 					const data = await resp.json()
-					console.log(data)
+					//console.log(data)
 					return data
 					//setStore({ reviews: data.results })
 				} catch (error) {
-					console.log("Error", error)
+					//console.log("Error", error)
 				}
 			},
 			getHorrorMovies: async () =>{
